@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { JsxElement } from "typescript";
 import { piantor } from "./layouts/piantor";
-import React from "react";
+import React, { use } from "react";
 import {
   globalCssAtom,
   globalCssPropertiesAtom,
@@ -11,6 +11,7 @@ import {
   keyCssAtom,
   keyCssPropertiesAtom,
   layerCssAtom,
+  layersAtom,
 } from "./state";
 import { useAtom } from "jotai";
 import { parseCssString } from "./cssUtils";
@@ -19,23 +20,7 @@ import KeyboardLayer from "./components/KeyboardLayer";
 
 
 function renderKeyboard(keyboard: Keyboard): JSX.Element {
-  const layers: Layer[] = [
-    {
-      name: "base",
-      legends: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"],
-      order: 0,
-    },
-    {
-      name: "symbols",
-      legends: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
-      order: 1,
-    },
-    {
-      name: "symbols",
-      legends: ["test1 test2", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
-      order: 2,
-    },
-  ];
+  const [layers, setLayers]=useAtom(layersAtom)
   const style: KeyStyle = {
     tailwind:
       " flex items-center w-11 h-11 rounded-lg bold shadow shadow-gray-600",
@@ -46,7 +31,7 @@ function renderKeyboard(keyboard: Keyboard): JSX.Element {
   console.log(keyboard.positions.length);
 
   for (const layer of layers) {
-    const rendered = KeyboardLayer(layer, keyboard, style);
+    const rendered = KeyboardLayer({layer, keyboard});
     result.push(rendered);
   }
 

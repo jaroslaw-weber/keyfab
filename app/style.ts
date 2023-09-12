@@ -11,16 +11,16 @@ const oceanBlue: Style = {
 	border:1px;
 	height:18rem;
 	margin-top:2rem;
+	width:44rem;
 	margin-left:2rem;
 	border-radius: 0.5rem;`,
   keyCss: `background-color: #fff;
 	opacity:0.5;
 	color:#000;
 	border-radius: 0.25rem;
-	height:3rem;
-	width:3rem;
-	font-size:1.2rem;
-	padding-top:0.5rem;`,
+	height:2.8rem;
+	width:2.8rem;
+	font-size:1.2rem;`,
 };
 
 const grass: Style = {
@@ -32,6 +32,7 @@ const grass: Style = {
 	height:18rem;
 	margin-top:2rem;
 	margin-left:2rem;
+	width:44rem;
 	border-radius: 0.5rem;`,
   keyCss: `background-color: #000;
 	opacity:0.5;
@@ -39,9 +40,8 @@ const grass: Style = {
 	border-radius: 0.25rem;
 	height:3rem;
 	width:3rem;
-	font-size:1rem;
-	padding-top:0.8rem;`,
+	font-size:1rem;`,
 };
 
-const styles = [ oceanBlue,grass];
+const styles = [oceanBlue, grass];
 export const defaultStyle = styles[0];

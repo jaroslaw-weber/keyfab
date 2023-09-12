@@ -1,6 +1,7 @@
 import { atom, useAtom } from "jotai";
 import { parseCssString } from "./cssUtils";
 import {defaultStyle} from './style'
+import { defaultLayersPiantor } from "./layer";
 
 export const globalCssAtom = atom(defaultStyle.globalCss);
 export const globalCssPropertiesAtom = atom((get) =>
@@ -16,3 +17,5 @@ export const keyCssAtom = atom(defaultStyle.keyCss);
 export const keyCssPropertiesAtom = atom((get) =>
   parseCssString(get(keyCssAtom))
 );
+
+export const layersAtom = atom(defaultLayersPiantor)

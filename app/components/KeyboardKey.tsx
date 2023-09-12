@@ -5,12 +5,11 @@ import { keyCssPropertiesAtom } from "../state";
 
 export default function KeyboardKey(props: {
   position: Position;
-  style: KeyStyle;
   label: string;
   layer: Layer;
   keyboard: Keyboard;
 }) {
-  const { position, style, label, layer, keyboard } = props;
+  const { position, label, layer, keyboard } = props;
 
   const [keyCssProperties]=useAtom(keyCssPropertiesAtom)
   const { spacingMultiplier } = keyboard;
@@ -29,7 +28,7 @@ export default function KeyboardKey(props: {
   console.log('keyCssProperties', keyCssProperties)
   return (
     <div
-      className=""
+      className="flex justify-center"
       style={{
         position: "absolute",
         top,
@@ -38,7 +37,7 @@ export default function KeyboardKey(props: {
         ...keyCssProperties,
       }}
     >
-      <p className={style.pTailwind}> {label}</p>
+      <input className="m-auto text-center mx-auto stealthy w-full h-full" value={label}></input>
     </div>
   );
 }
