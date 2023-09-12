@@ -6,6 +6,8 @@ it's basically same concept as http://www.keyboard-layout-editor.com/ but more e
 
 ![Preview](preview.png)
 
+![Preview2](preview2.png)
+
 
 ## Getting Started
 

@@ -35,13 +35,13 @@ const grass: Style = {
 	width:44rem;
 	border-radius: 0.5rem;`,
   keyCss: `background-color: #000;
-	opacity:0.5;
-	color:#fff;
-	border-radius: 0.25rem;
-	height:3rem;
-	width:3rem;
-	font-size:1rem;`,
+  opacity:0.6;
+  color:#fff;
+  border-radius:50% 50% 52% 48% / 58% 56% 44% 42%  ;
+  height:3rem;
+  width:3rem;
+  font-size:0.8rem;`,
 };
 
-const styles = [oceanBlue, grass];
+const styles = [grass,oceanBlue, grass];
 export const defaultStyle = styles[0];
