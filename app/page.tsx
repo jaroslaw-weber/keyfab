@@ -1,62 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import { JsxElement } from "typescript";
 import { piantor } from "./layouts/piantor";
-import { CSSProperties } from "react";
+import React from "react";
+import {
+  globalCssAtom,
+  globalCssPropertiesAtom,
+  globalTailwindAtom,
+  keyCssAtom,
+  keyCssPropertiesAtom,
+  layerCssAtom,
+} from "./state";
+import { useAtom } from "jotai";
+import { parseCssString } from "./cssUtils";
+import KeyboardKey from "./components/KeyboardKey";
+import KeyboardLayer from "./components/KeyboardLayer";
 
-function renderKey(
-  position: Position,
-  style: KeyStyle,
-  label: string,
-  layer: Layer,
-  keyboard:Keyboard
-): JSX.Element {
-  const { spacingMultiplier } = keyboard;
-  const spacing = (layer.order) *20;
 
-  const css = parseCssString(style.css)
-  /*
-  console.log('spacing', spacing);
-  console.log('position', position)
-  console.log('label', label)
-  */
-  const top = ((position.y+1) * (spacingMultiplier) + spacing) + "rem"
- // console.log('top',top)
-  const left = (position.x+1) * spacingMultiplier + "rem"
-
-  const rotation = position.rotation??0
-  const rotate = `rotate(${rotation}deg)`
-  return (
-    <div
-      className={style.tailwind}
-      style={{
-        position: "absolute",
-        top,
-        left,
-        transform: rotate,
-        ...css
-      }}
-    >
-      <p className={style.pTailwind}> {label}</p>
-    </div>
-  );
-}
-
-function renderLayer(
-  layer: Layer,
-  keyboard: Keyboard,
-  style: KeyStyle
-): JSX.Element {
-  const result: JSX.Element[] = [];
-  for (let i = 0; i < keyboard.positions.length; i++) {
-    const label = layer.legends[i];
-    const position = keyboard.positions[i];
-    result.push(renderKey(position, style, label, layer, keyboard));
-  }
-
-  return <div className="">{result}</div>;
-}
 function renderKeyboard(keyboard: Keyboard): JSX.Element {
-
   const layers: Layer[] = [
     {
       name: "base",
@@ -67,7 +29,6 @@ function renderKeyboard(keyboard: Keyboard): JSX.Element {
       name: "symbols",
       legends: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
       order: 1,
-      
     },
     {
       name: "symbols",
@@ -76,46 +37,71 @@ function renderKeyboard(keyboard: Keyboard): JSX.Element {
     },
   ];
   const style: KeyStyle = {
-    tailwind: " flex items-center w-11 h-11 rounded-lg bold shadow shadow-gray-600",
+    tailwind:
+      " flex items-center w-11 h-11 rounded-lg bold shadow shadow-gray-600",
     pTailwind: "mx-auto opacity-80 text-center",
-    css: 'background-color: #33BBC5;color:#fff;font-size:0,9rem',
+    css: "background-color: #33BBC5;color:#fff;font-size:0,9rem",
   };
   const result: JSX.Element[] = [];
   console.log(keyboard.positions.length);
 
   for (const layer of layers) {
-    const rendered = renderLayer(layer, keyboard, style);
+    const rendered = KeyboardLayer(layer, keyboard, style);
     result.push(rendered);
   }
 
-  return <div className="" style={{
-
-    
-  }}>{result}</div>;
+  return (
+    <div className="flex flex-col h-full">
+      {result}
+    </div>
+  );
 }
-
-
-function parseCssString(cssString:string):CSSProperties {
-  const styleObj = {};
-  const declarations = cssString.split(';');
-
-  for (const declaration of declarations) {
-    const [property, value] = declaration.split(':');
-    if (property && value) {
-      styleObj[property.trim()] = value.trim();
-    }
-  }
-
-  return styleObj;
-}
-
 export default function Home() {
-  const pageStyle: PageStyle = {
-    css: `background-color: white;height:200vh`,
-  }
-  const css = parseCssString(pageStyle.css);
-  console.log('css', css);
   const renderdKeyboard = renderKeyboard(piantor);
-  
-  return <main  className="min-h-screen"  style={css}><div className="min-h-screen" style={css}>{renderdKeyboard}</div></main>;
+  const [globalCss, setGlobalCss] = useAtom(globalCssAtom);
+  const [layerCss, setLayerCss] = useAtom(layerCssAtom);
+  const [keyCss, setKeyCss] = useAtom(keyCssAtom);
+
+  const textareaClasses = `border rounded px-2 py-1 mt-1 mb-2`
+  const editLayerCssPanel = (
+    <div className="flex flex-col h-full spacing-10 p-8">
+      <div>
+        <p className="text-2xl mb-4">edit layout in real time!</p>
+        <p>global style (css)</p>
+        <textarea
+          className={textareaClasses}
+          onChange={(e) => setGlobalCss(e.target.value)}
+          value={globalCss}
+          rows={2}
+        />
+      </div>
+      <div>
+        <p>layer style (css)</p>
+        <textarea
+          className={textareaClasses}
+          onChange={(e) => setLayerCss(e.target.value)}
+          value={layerCss}
+          rows={7}
+        />
+      </div>
+      <div>
+        <p>key style (css)</p>
+        <textarea
+          className={textareaClasses}
+          onChange={(e) => setKeyCss(e.target.value)}
+          value={keyCss}
+        rows={8}
+        />
+      </div>
+    </div>
+  );
+
+  const [globalCssProperties] = useAtom(globalCssPropertiesAtom);
+
+  return (
+    <main className={`min-h-screen flex flex-row`} style={globalCssProperties}>
+      <div className="flex-1">{renderdKeyboard}</div>
+      <div className="flex-1">{editLayerCssPanel}</div>
+    </main>
+  );
 }
