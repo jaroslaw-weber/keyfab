@@ -2,7 +2,7 @@
 import { CSSProperties } from "react";
 
 export function parseCssString(cssString: string): CSSProperties {
-  const styleObj = {};
+  const styleObj:any= {};
   const declarations = cssString.split(";");
 
   for (const declaration of declarations) {

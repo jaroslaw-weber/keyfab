@@ -1,48 +1,18 @@
 "use client";
 
-import Image from "next/image";
-import { JsxElement } from "typescript";
 import { piantor } from "./layouts/piantor";
-import React, { use } from "react";
+import React from "react";
 import {
   globalCssAtom,
   globalCssPropertiesAtom,
-  globalTailwindAtom,
   keyCssAtom,
-  keyCssPropertiesAtom,
   layerCssAtom,
-  layersAtom,
 } from "./state";
 import { useAtom } from "jotai";
-import { parseCssString } from "./cssUtils";
-import KeyboardKey from "./components/KeyboardKey";
-import KeyboardLayer from "./components/KeyboardLayer";
+import KeyboardView from "./components/KeyboardView";
 
-
-function renderKeyboard(keyboard: Keyboard): JSX.Element {
-  const [layers, setLayers]=useAtom(layersAtom)
-  const style: KeyStyle = {
-    tailwind:
-      " flex items-center w-11 h-11 rounded-lg bold shadow shadow-gray-600",
-    pTailwind: "mx-auto opacity-80 text-center",
-    css: "background-color: #33BBC5;color:#fff;font-size:0,9rem",
-  };
-  const result: JSX.Element[] = [];
-  console.log(keyboard.positions.length);
-
-  for (const layer of layers) {
-    const rendered = KeyboardLayer({layer, keyboard});
-    result.push(rendered);
-  }
-
-  return (
-    <div className="flex flex-col h-full">
-      {result}
-    </div>
-  );
-}
 export default function Home() {
-  const renderdKeyboard = renderKeyboard(piantor);
+  const renderdKeyboard = KeyboardView(piantor);
   const [globalCss, setGlobalCss] = useAtom(globalCssAtom);
   const [layerCss, setLayerCss] = useAtom(layerCssAtom);
   const [keyCss, setKeyCss] = useAtom(keyCssAtom);

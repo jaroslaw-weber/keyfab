@@ -31,7 +31,7 @@ interface Keyboard {
    * key positions
    */
   positions: Position[];
-  spacingMultiplier?: number;
+  spacingMultiplier: number;
 }
 
 /**
