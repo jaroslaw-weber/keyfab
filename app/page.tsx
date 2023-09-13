@@ -32,10 +32,10 @@ export default function Home() {
           edit mode: {editMode}
         </p>
         <button className="border rounded py-1 px-2 bg-slate-800 text-white" onClick={toggleEditMode}>toggle edit mode</button></div>
-        <div className="flex flex-row global">
+        <div className="flex flex-row global gap-6">
           <div className="flex-1">{renderdKeyboard}</div>
-          <div className="flex-1">{EditStylePanel()}</div>
           <div className="flex-1">{EditKeyPanel()}</div>
+          <div className="flex-1">{EditStylePanel()}</div>
         </div>
       </div>
     </main>

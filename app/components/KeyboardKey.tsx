@@ -24,7 +24,7 @@ export default function KeyboardKey(props: {
     throw new Error("No layers found");
   }
 
-  const v: string = layers[layerIndex].legends[index];
+  const v: string = layers[layerIndex].legends[index] ??""
 
   const [keyboard] = useAtom(keyboardAtom);
 

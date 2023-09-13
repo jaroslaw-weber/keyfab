@@ -1,5 +1,6 @@
 import { useAtom } from "jotai";
 import { layersAtom, selectedKeyAtom } from "../state";
+import KeyboardKey from "./KeyboardKey";
 
 export function EditKeyPanel() {
   const [key] = useAtom(selectedKeyAtom);
@@ -28,16 +29,26 @@ export function EditKeyPanel() {
   const category = layer.specialKeys?.find(x=> x.index == key.keyIndex)?.category ?? 0;
   console.log('category', category);
   return (
-    <div>
-      <p>selected key info</p>
-      <p>layer index: {key.layerIndex}</p>
-      <p>key index: {key.keyIndex}</p>
-      <p>label: {label}</p>
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
-        <option value="0">basic key</option>
-        <option value="1">special key 1</option>
-        <option value="2">special key 2</option>
-      </select>
-    </div>
+	<div className="bg-white rounded-lg shadow-lg p-4 mx-auto max-w-md">
+	  <h2 className="text-2xl font-semibold mb-4">Selected Key</h2>
+	  <div className="space-y-2">
+		<p className="text-gray-600">Layer Number: {key.layerIndex}</p>
+		<p className="text-gray-600">Key Number: {key.keyIndex}</p>
+		<p className="text-gray-600">Label: {label}</p>
+	  </div>
+	  <div className="mt-4">
+		<label className="block text-gray-700 pb-2">Category:</label>
+		<select
+		  className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+		  value={category}
+		  onChange={(e) => setCategory(e.target.value)}
+		>
+		  <option value="0">Basic Key</option>
+		  <option value="1">Special Key 1</option>
+		  <option value="2">Special Key 2</option>
+		</select>
+	  </div>
+	</div>
   );
+  
 }

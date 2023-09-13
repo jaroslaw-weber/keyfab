@@ -5,11 +5,11 @@ export function EditStylePanel() {
   const [css, setCss] = useAtom(cssAtom);
 
   const editLayerCssPanel = (
-    <div className=" h-full  p-8 flex flex-col">
-      <p className="flex-shrink text-2xl">edit style</p>
-      <p className="flex-shrink py-2">it's plain css!</p>
+    <div className="h-full p-8 flex flex-col bg-gray-100 rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold mb-4">Edit Style</h2>
+      <p className="text-gray-600 mb-4">Customize the CSS:</p>
       <textarea
-        className={`border rounded px-2 py-1 mt-1 mb-2 flex-1`}
+        className="border rounded-lg p-2 text-sm bg-white resize-none focus:ring focus:ring-blue-200 flex-grow"
         onChange={(e) => {
           setCss(e.target.value);
           console.log("new css: ", css);

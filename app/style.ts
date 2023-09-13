@@ -12,14 +12,14 @@ const oceanBlue2  = `
 	background-color: #82a5e0;
 	border:1px;
 	height:18rem;
-	margin-top:2rem;
+	margin-bottom:2rem;
 	width:44rem;
 	margin-left:2rem;
 	border-radius: 0.5rem;
 }
 
 .key {
-   margin-top:4rem;
+   margin-top:1rem;
 	background-color: #fff;
 	opacity:0.5;
 	color:#000;
@@ -32,7 +32,7 @@ const oceanBlue2  = `
 
 .special-key-1
 {
-   margin-top:4rem;
+   margin-top:1rem;
 	background-color: #000;
 	opacity:0.5;
 	color:#fff;
@@ -44,7 +44,7 @@ const oceanBlue2  = `
 
 .special-key-2
 {
-   margin-top:4rem;
+   margin-top:1rem;
 	background-color: red;
 	opacity:0.5;
 	color:#fff;
@@ -53,6 +53,8 @@ const oceanBlue2  = `
 	width:2.8rem;
 	font-size:0.7rem;
 }
+
+
 
 `
 
