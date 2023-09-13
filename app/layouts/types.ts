@@ -1,21 +1,19 @@
-
-
 interface Position {
   x: number;
   y: number;
   /**
    * degrees
    */
-  rotation?:number;
+  rotation?: number;
 }
 
-interface PageStyle{
-	tailwind?:string;
-	css?:string
+interface PageStyle {
+  tailwind?: string;
+  css?: string;
 }
 
 interface KeyStyle {
-  css?:string;
+  css?: string;
   pTailwind?: string;
   tailwind?: string;
   /**
@@ -37,8 +35,23 @@ interface Keyboard {
 /**
  * single layer of a keyboard
  */
-interface Layer {
+ interface Layer {
   name: string;
-  legends: string[];
-  order:number
+  legends: (string | null)[];
+  order: number;
+  /**
+   * 
+   */
+  specialKeys?: SpecialKey[];
+}
+
+ interface SpecialKey{
+  index: number;
+  /**
+   * define which keys are special keys.
+   * css class .special-key-1 => 1
+   * css class .special-key-2 => 2
+   * etc.
+   */
+  category: number
 }

@@ -13,8 +13,9 @@ export default function KeyboardView(keyboard: Keyboard): JSX.Element {
 	const result: JSX.Element[] = [];
 	console.log(keyboard.positions.length);
   
-	for (const layer of layers) {
-	  const rendered = KeyboardLayer({layer, keyboard});
+	for (let i =0 ; i < layers.length; i++) {
+		const layer = layers[i];
+	  const rendered = KeyboardLayer({layer, keyboard, layerIndex:i });
 	  result.push(rendered);
 	}
   

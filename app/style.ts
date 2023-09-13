@@ -1,47 +1,66 @@
-interface Style {
-  globalCss: string;
-  layerCss: string;
-  keyCss: string;
-}
-const oceanBlue: Style = {
-  globalCss: `background-color: #e8e8e8;
+
+
+
+const oceanBlue2  = `
+.global {
+	background-color:  #edf0ee;
 	height:300vh;
-	padding-top:1rem;`,
-  layerCss: `background-color: #82a5e0;
+	padding-top:1rem;
+}
+
+.layer {
+	background-color: #82a5e0;
 	border:1px;
 	height:18rem;
 	margin-top:2rem;
 	width:44rem;
 	margin-left:2rem;
-	border-radius: 0.5rem;`,
-  keyCss: `background-color: #fff;
+	border-radius: 0.5rem;
+}
+
+.key {
+   margin-top:4rem;
+	background-color: #fff;
 	opacity:0.5;
 	color:#000;
 	border-radius: 0.25rem;
 	height:2.8rem;
 	width:2.8rem;
-	font-size:1.2rem;`,
-};
+	font-size:1.2rem;
+}
 
-const grass: Style = {
-  globalCss: `background-color: #e8e8e8;
-  height:300vh;
-  padding-top:1rem;`,
-  layerCss: `background-color: #c9dead;
-	border:1px;
-	height:18rem;
-	margin-top:2rem;
-	margin-left:2rem;
-	width:44rem;
-	border-radius: 0.5rem;`,
-  keyCss: `background-color: #000;
-  opacity:0.6;
-  color:#fff;
-  border-radius:50% 50% 52% 48% / 58% 56% 44% 42%  ;
-  height:3rem;
-  width:3rem;
-  font-size:0.8rem;`,
-};
 
-const styles = [grass,oceanBlue, grass];
+.special-key-1
+{
+   margin-top:4rem;
+	background-color: #000;
+	opacity:0.5;
+	color:#fff;
+	border-radius: 0.25rem;
+	height:2.8rem;
+	width:2.8rem;
+	font-size:0.7rem;
+}
+
+.special-key-2
+{
+   margin-top:4rem;
+	background-color: red;
+	opacity:0.5;
+	color:#fff;
+	border-radius: 0.25rem;
+	height:2.8rem;
+	width:2.8rem;
+	font-size:0.7rem;
+}
+
+`
+
+function cleanupCss(css:string){
+	//remove empty line at the beginning of the string
+	return css.replace('\n','')
+
+}
+
+const styles = [oceanBlue2].map(cleanupCss)
 export const defaultStyle = styles[0];

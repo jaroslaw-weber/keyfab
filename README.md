@@ -8,6 +8,9 @@ it's basically same concept as http://www.keyboard-layout-editor.com/ but more e
 
 ![Preview2](preview2.png)
 
+# live demo
+
+https://jaroslaw-weber.github.io/butterkeys/
 
 ## Getting Started
 

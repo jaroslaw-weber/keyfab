@@ -1,43 +1,88 @@
 //next js component:
 
 import { useAtom } from "jotai";
-import { keyCssPropertiesAtom } from "../state";
+import {
+  EditMode,
+  editModeAtom,
+  keyboardAtom,
+  layersAtom,
+  selectedKeyAtom,
+} from "../state";
 
 export default function KeyboardKey(props: {
   position: Position;
-  label: string;
   layer: Layer;
-  keyboard: Keyboard;
+  index: number;
+  layerIndex: number;
 }) {
-  const { position, label, layer, keyboard } = props;
+  const { position, layer, index, layerIndex } = props;
 
-  const [keyCssProperties]=useAtom(keyCssPropertiesAtom)
+  //const [keyCssProperties]=useAtom(keyCssPropertiesAtom)
+  const [layers, setLayers] = useAtom(layersAtom);
+  const [editMode] = useAtom(editModeAtom);
+  if (!layers) {
+    throw new Error("No layers found");
+  }
+
+  const v: string = layers[layerIndex].legends[index];
+
+  const [keyboard] = useAtom(keyboardAtom);
+
+  const [_, selectKey] = useAtom(selectedKeyAtom);
+
   const { spacingMultiplier } = keyboard;
   const spacing = layer.order * 20;
-  /*
-  console.log('spacing', spacing);
-  console.log('position', position)
-  console.log('label', label)
-  */
   const top = (position.y + 1) * spacingMultiplier + spacing + "rem";
   // console.log('top',top)
   const left = (position.x + 1) * spacingMultiplier + "rem";
 
   const rotation = position.rotation ?? 0;
   const rotate = `rotate(${rotation}deg)`;
-  console.log('keyCssProperties', keyCssProperties)
+
+  const category = layer.specialKeys?.find((x) => x.index == index)?.category;
+
+  const keyClass = category && category > 0 ? "special-key-" + category : "key";
+
+  //if edit mode is 'input' allow to edit label
+  let keyElem = (
+    <input
+      className="m-auto text-center mx-auto stealthy w-full h-full"
+      value={v}
+      onChange={(e) => {
+        const newLayers = [...layers];
+        newLayers[layerIndex].legends[index] = e.target.value;
+        setLayers(newLayers);
+      }}
+    ></input>
+  );
+  //if edit mode is 'select', allow to select key
+  if (editMode == EditMode.select) {
+    keyElem = (
+      <button
+        className="m-auto text-center mx-auto w-full h-full"
+        onClick={() => {
+          //select this key
+          selectKey({
+            keyIndex: index,
+            layerIndex: layerIndex,
+          });
+        }}
+      >
+        {v}
+      </button>
+    );
+  }
   return (
     <div
-      className="flex justify-center"
+      className={keyClass + " flex justify-center"}
       style={{
         position: "absolute",
         top,
         left,
         transform: rotate,
-        ...keyCssProperties,
       }}
     >
-      <input className="m-auto text-center mx-auto stealthy w-full h-full" value={label}></input>
+      {keyElem}
     </div>
   );
 }
