@@ -45,7 +45,7 @@ export default function KeyboardKey(props: {
 
   //if edit mode is 'input' allow to edit label
   let keyElem = (
-    <input
+    <textarea
       className="m-auto text-center mx-auto stealthy w-full h-full"
       value={v}
       onChange={(e) => {
@@ -53,7 +53,7 @@ export default function KeyboardKey(props: {
         newLayers[layerIndex].legends[index] = e.target.value;
         setLayers(newLayers);
       }}
-    ></input>
+    ></textarea>
   );
   //if edit mode is 'select', allow to select key
   if (editMode == EditMode.select) {

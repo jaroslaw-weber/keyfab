@@ -12,7 +12,7 @@ export function EditKeyPanel() {
     if (!layer.specialKeys) {
       layer.specialKeys = [];
     }
-	//remove special key
+    //remove special key
     layer.specialKeys = layer.specialKeys.filter(
       (x) => x.index != key.keyIndex
     );
@@ -25,22 +25,15 @@ export function EditKeyPanel() {
     setLayers([...layers]);
   }
 
-  function getCategory() {
-    const category = layer.specialKeys?.[key.keyIndex]?.category ?? 0;
-    return category.toString()
-  }
-  
-  const category = getCategory();
+  const category = layer.specialKeys?.find(x=> x.index == key.keyIndex)?.category ?? 0;
+  console.log('category', category);
   return (
     <div>
       <p>selected key info</p>
       <p>layer index: {key.layerIndex}</p>
       <p>key index: {key.keyIndex}</p>
       <p>label: {label}</p>
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
+      <select value={category} onChange={(e) => setCategory(e.target.value)}>
         <option value="0">basic key</option>
         <option value="1">special key 1</option>
         <option value="2">special key 2</option>

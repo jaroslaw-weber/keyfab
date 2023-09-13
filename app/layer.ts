@@ -1,5 +1,3 @@
-
-
 export const defaultUserLayout: Layer[] = [
   {
     name: "base",
@@ -44,9 +42,18 @@ export const defaultUserLayout: Layer[] = [
       "ctr",
       null,
       null,
-      "sym/num",
+      "sym\nnum",
     ],
     order: 0,
+    specialKeys: [
+      { index: 0, category: 1 },
+      { index: 37, category: 2 },
+      { index: 25, category: 2 },
+      { index: 26, category: 1 },
+      { index: 6, category: 1 },
+      { index: 12, category: 2 },
+      { index: 40, category: 2 },
+    ],
   },
   {
     name: "symbols",
