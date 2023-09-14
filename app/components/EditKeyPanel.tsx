@@ -26,29 +26,28 @@ export function EditKeyPanel() {
     setLayers([...layers]);
   }
 
-  const category = layer.specialKeys?.find(x=> x.index == key.keyIndex)?.category ?? 0;
-  console.log('category', category);
-  return (
-	<div className="bg-white rounded-lg shadow-lg p-4 mx-auto max-w-md">
-	  <h2 className="text-2xl font-semibold mb-4">Selected Key</h2>
-	  <div className="space-y-2">
-		<p className="text-gray-600">Layer Number: {key.layerIndex}</p>
-		<p className="text-gray-600">Key Number: {key.keyIndex}</p>
-		<p className="text-gray-600">Label: {label}</p>
-	  </div>
-	  <div className="mt-4">
-		<label className="block text-gray-700 pb-2">Category:</label>
-		<select
-		  className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
-		  value={category}
-		  onChange={(e) => setCategory(e.target.value)}
-		>
-		  <option value="0">Basic Key</option>
-		  <option value="1">Special Key 1</option>
-		  <option value="2">Special Key 2</option>
-		</select>
-	  </div>
-	</div>
+  const category =
+    layer.specialKeys?.find((x) => x.index == key.keyIndex)?.category ?? 0;
+  console.log("category", category);
+  const result = (
+    <div className="card bg-base-100 shadow-xl">
+      <div className="card-body">
+        <h2 className="card-title justify-center">Selected Key</h2>
+        <div></div>
+        <div className="card-actions justify-center">
+          <kbd className="kbd">{label}</kbd>
+        </div>
+        <select
+          className="select select-bordered w-full max-w-xs mt-2"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="0">Basic Key</option>
+          <option value="1">Special Key 1</option>
+          <option value="2">Special Key 2</option>
+        </select>
+      </div>
+    </div>
   );
-  
+  return result;
 }

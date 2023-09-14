@@ -41,7 +41,17 @@ export default function KeyboardKey(props: {
 
   const category = layer.specialKeys?.find((x) => x.index == index)?.category;
 
-  const keyClass = category && category > 0 ? "special-key-" + category : "key";
+  let keyClass = "key";
+  if(category && category >0){
+    keyClass += ` key-special-${category}`
+  }
+  else{
+    keyClass += ` key-basic`
+  }
+
+  if(v == null || v == ""){
+    keyClass += " key-empty";
+  }
 
   //if edit mode is 'input' allow to edit label
   let keyElem = (
@@ -59,7 +69,7 @@ export default function KeyboardKey(props: {
   if (editMode == EditMode.select) {
     keyElem = (
       <button
-        className="m-auto text-center mx-auto w-full h-full"
+        className={" m-auto text-center mx-auto w-full h-full"}
         onClick={() => {
           //select this key
           selectKey({

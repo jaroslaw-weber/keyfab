@@ -5,7 +5,7 @@ import { atomWithStorage } from "jotai/utils";
 import { piantor } from "./layouts/piantor";
 import { SelectedKey } from "./SelectedKey";
 
-export const cssAtom = atomWithStorage("style", defaultStyle);
+export const styleAtom = atomWithStorage("style", defaultStyle);
 
 export const layersAtom = atomWithStorage("layers", defaultUserLayout);
 
@@ -29,3 +29,6 @@ const defaultSelectedKey: SelectedKey = {
   keyIndex: 0,
 };
 export const selectedKeyAtom = atom(defaultSelectedKey);
+
+
+export const layerCountAtom = atomWithStorage("layer-count", 3);

@@ -101,4 +101,19 @@ export const defaultUserLayout: Layer[] = [
     legends: ["", "]", ">", "}", ")", "", "", "[", "<", "{", "("],
     order: 2,
   },
+  {
+    name: "layer",
+    legends: [],
+    order: 3,
+  },
+  {
+    name: "layer",
+    legends: [],
+    order: 4,
+  },
+  {
+    name: "layer",
+    legends: [],
+    order: 5,
+  },
 ];

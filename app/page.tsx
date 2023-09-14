@@ -2,16 +2,18 @@
 
 import { piantor } from "./layouts/piantor";
 import React from "react";
-import { EditMode, cssAtom, editModeAtom } from "./state";
+import { EditMode, styleAtom, editModeAtom } from "./state";
 import { useAtom } from "jotai";
 import KeyboardView from "./components/KeyboardView";
 import { EditStylePanel } from "./components/EditStylePanel";
 import { EditKeyPanel } from "./components/EditKeyPanel";
+import { EditLayerCount } from "./components/EditLayerCount";
+import { SelectMode } from "./components/SelectMode";
 
 export default function Home() {
   const renderdKeyboard = KeyboardView(piantor);
 
-  const [css] = useAtom(cssAtom);
+  const [css] = useAtom(styleAtom);
 
   const [editMode, setEditMode] = useAtom(editModeAtom);
 
@@ -25,16 +27,14 @@ export default function Home() {
 
   return (
     <main className={`min-h-screen`}>
-      <style>{css}</style>
+      <style>{css.css}</style>
       <div className="">
-        <div className="flex justify-around py-2">
-        <p className="">
-          edit mode: {editMode}
-        </p>
-        <button className="border rounded py-1 px-2 bg-slate-800 text-white" onClick={toggleEditMode}>toggle edit mode</button></div>
         <div className="flex flex-row global gap-6">
           <div className="flex-1">{renderdKeyboard}</div>
-          <div className="flex-1">{EditKeyPanel()}</div>
+          <div className="flex-1 flex flex-col gap-6">{SelectMode()}
+            {EditKeyPanel()}
+            {EditLayerCount()}
+          </div>
           <div className="flex-1">{EditStylePanel()}</div>
         </div>
       </div>

@@ -1,23 +1,57 @@
 import { useAtom } from "jotai";
-import { cssAtom } from "../state";
+import { styleAtom as styleAtom } from "../state";
+import { styles } from "../style";
 
 export function EditStylePanel() {
-  const [css, setCss] = useAtom(cssAtom);
+  const [style, setStyle] = useAtom(styleAtom);
 
-  const editLayerCssPanel = (
-    <div className="h-full p-8 flex flex-col bg-gray-100 rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">Edit Style</h2>
-      <p className="text-gray-600 mb-4">Customize the CSS:</p>
-      <textarea
-        className="border rounded-lg p-2 text-sm bg-white resize-none focus:ring focus:ring-blue-200 flex-grow"
-        onChange={(e) => {
-          setCss(e.target.value);
-          console.log("new css: ", css);
-        }}
-        value={css}
-        rows={10}
-      />
+  const styleItems = [];
+  for (const style of styles) {
+    const styleItem = (
+      <option value={style.name}>{style.name}</option>
+      
+    );
+    styleItems.push(styleItem);
+  }
+  const selectStyle = (
+    <select
+          className="select select-bordered w-full max-w-xs my-2"
+          value={styles[0].name}
+          onChange={(e) => {
+            const selected = styles.find(x => x.name==e.target.value);
+            if(!selected) return;
+            setStyle(selected)
+          }}
+        >
+          {styleItems}
+        </select>
+  );
+  const textarea = (
+    <textarea
+      className="textarea textarea-bordered"
+      placeholder="Input your CSS here"
+      onChange={(e) => {
+        const newStyle = {
+          ...style,
+          css: e.target.value,
+        };
+        setStyle(newStyle);
+        console.log("new css: ", style);
+      }}
+      value={style.css}
+      rows={10}
+    ></textarea>
+  );
+  const card = (
+    <div className="card bg-base-100 shadow-xl">
+      <div className="card-body">
+        <h2 className="card-title justify-center">Style</h2>
+        <div></div>
+        {selectStyle}
+        {textarea}
+        <div className="card-actions justify-center"></div>
+      </div>
     </div>
   );
-  return editLayerCssPanel;
+  return card;
 }
