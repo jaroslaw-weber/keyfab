@@ -10,7 +10,7 @@ export function EditLayerCount() {
       min={1}
       max={10}
       value={layerCount}
-      className="range-sm range-primary"
+      className="range range-primary"
     />
   );
   const result2 = (

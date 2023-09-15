@@ -1,8 +1,6 @@
 const lilRainbow = `
 .global {
 	background-color:  #edf0ee;
-	min-height:100vh;
-	padding-top:4rem;
 	}
 	
 	.layer-name
@@ -80,6 +78,9 @@ const lilRainbow = `
 	opacity:0.2;
 	color:#000;
 	}
+	
+	
+	
 	
 	
 	

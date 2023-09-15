@@ -15,27 +15,25 @@ export default function Home() {
 
   const [css] = useAtom(styleAtom);
 
-  const [editMode, setEditMode] = useAtom(editModeAtom);
-
-  function toggleEditMode() {
-    if (editMode == EditMode.input) {
-      setEditMode(EditMode.select);
-    } else {
-      setEditMode(EditMode.input);
-    }
-  }
+ 
 
   return (
     <main className={`min-h-screen`}>
       <style>{css.css}</style>
-      <div className="">
-        <div className="flex flex-row global gap-6">
+      <div className="global min-h-full">
+        <p className="text-center uppercase font-bold text-lg pt-4 tracking-wider">butter keys</p>
+        <p className="text-center mb-6 mt-4 lowercase text-sm">Keyboard Layout Design Made Easy</p>
+        <div className="flex flex-row  gap-6">
           <div className="flex-1">{renderdKeyboard}</div>
-          <div className="flex-1 flex flex-col gap-6">{SelectMode()}
-            {EditKeyPanel()}
+          <div className="flex-1 flex flex-col gap-6">
+            <div className="flex gap-4">
+
+            {SelectMode()}
             {EditLayerCount()}
+            </div>
+            {EditKeyPanel()}
           </div>
-          <div className="flex-1">{EditStylePanel()}</div>
+          <div className="flex-1 mr-8">{EditStylePanel()}</div>
         </div>
       </div>
     </main>

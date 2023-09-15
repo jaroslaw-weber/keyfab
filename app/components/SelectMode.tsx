@@ -34,7 +34,7 @@ export function SelectMode() {
       </div>
     </div>
   );
-  const toggle=<input type="checkbox" className="toggle" checked={editMode} onClick={e=>{
+  const toggle=<input type="checkbox" className="toggle mt-2" checked={editMode} onClick={e=>{
    //console.log('e',e.target)
     setEditMode(!editMode)
   }}/>
