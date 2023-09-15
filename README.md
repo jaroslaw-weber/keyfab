@@ -21,6 +21,7 @@ it's similar consept as http://www.keyboard-layout-editor.com/ but more easy to 
 - sharing layouts
 - more pre-made styles
 - changing layer order
+- add video showcase
 
 
 ## Getting Started
