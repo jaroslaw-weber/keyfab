@@ -31,10 +31,9 @@ export default function KeyboardKey(props: {
   const [_, selectKey] = useAtom(selectedKeyAtom);
 
   const { spacingMultiplier } = keyboard;
-  const spacing = layer.order * 20;
-  const top = (position.y + 1) * spacingMultiplier + spacing + "rem";
+  const top = (position.y ) * spacingMultiplier  + "rem";
   // console.log('top',top)
-  const left = (position.x + 1) * spacingMultiplier + "rem";
+  const left = (position.x ) * spacingMultiplier + "rem";
 
   const rotation = position.rotation ?? 0;
   const rotate = `rotate(${rotation}deg)`;
@@ -63,10 +62,17 @@ export default function KeyboardKey(props: {
         newLayers[layerIndex].legends[index] = e.target.value;
         setLayers(newLayers);
       }}
+      onClick={() => {
+        //select this key
+        selectKey({
+          keyIndex: index,
+          layerIndex: layerIndex,
+        });
+      }}
     ></textarea>
   );
   //if edit mode is 'select', allow to select key
-  if (editMode == EditMode.select) {
+  if (!editMode) {
     keyElem = (
       <button
         className={" m-auto text-center mx-auto w-full h-full"}

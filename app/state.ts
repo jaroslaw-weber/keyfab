@@ -9,7 +9,6 @@ export const styleAtom = atomWithStorage("style", defaultStyle);
 
 export const layersAtom = atomWithStorage("layers", defaultUserLayout);
 
-
 export const keyboardAtom = atom(piantor);
 
 export enum EditMode {
@@ -22,7 +21,7 @@ export enum EditMode {
    * */
   select = "select",
 }
-export const editModeAtom = atomWithStorage("edit-mode","input");
+export const editModeAtom = atomWithStorage("edit-mode", true);
 
 const defaultSelectedKey: SelectedKey = {
   layerIndex: 0,
@@ -30,5 +29,4 @@ const defaultSelectedKey: SelectedKey = {
 };
 export const selectedKeyAtom = atom(defaultSelectedKey);
 
-
-export const layerCountAtom = atomWithStorage("layer-count", 3);
+export const layerCountAtom = atomWithStorage("layer-count", 6);
