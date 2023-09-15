@@ -22,6 +22,7 @@ it's similar consept as http://www.keyboard-layout-editor.com/ but more easy to 
 - more pre-made styles
 - changing layer order
 - add video showcase
+- custom fonts
 
 
 ## Getting Started
