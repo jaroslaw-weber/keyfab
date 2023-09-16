@@ -8,23 +8,37 @@ export function EditStylePanel() {
   const styleItems = [];
   for (const style of styles) {
     const styleItem = (
-      <option value={style.name}>{style.name}</option>
-      
+      <option
+        value={style.name}
+        onSelect={(e) => {
+          const name = e.currentTarget.value;
+          console.log("name", name);
+          const style = styles.find((s) => s.name === name);
+          if (!style) {
+            throw new Error("style not found");
+          }
+          setStyle(style);
+        }}
+      >
+        {style.name}
+      </option>
     );
     styleItems.push(styleItem);
   }
   const selectStyle = (
     <select
-          className="select select-bordered w-full max-w-xs my-2"
-          value={styles[0].name}
-          onChange={(e) => {
-            const selected = styles.find(x => x.name==e.target.value);
-            if(!selected) return;
-            setStyle(selected)
-          }}
-        >
-          {styleItems}
-        </select>
+      className="select select-bordered w-full max-w-xs my-2"
+      value={style.name}
+      onChange={(e) => {
+        console.log('s', e.target.value);
+        const selected = styles.find((x) => x.name == e.target.value);
+        console.log("name", selected);
+        if (!selected) return;
+        setStyle(selected);
+      }}
+    >
+      {styleItems}
+    </select>
   );
   const textarea = (
     <textarea
