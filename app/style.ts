@@ -444,6 +444,77 @@ opacity:0.2;
 `,
 };
 
+const choc = {
+	name: 'choc',
+	css:`
+	
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+	.global {
+	background-color:  #fff;
+	}
+	
+	.layer-name
+	{
+	//text-decoration: underline;
+	text-transform: lowercase;
+	 background: transparent;
+	border: none;
+	opacity:1;
+	width:100%;
+	text-align: left;
+	padding-left:4rem;
+	font-size: 1rem;
+	}
+	
+	.layer {
+	font-family: 'Montserrat Alternates', sans-serif;
+	font-weight: bold;
+	position:relative;
+	border:1px;
+	height:21rem;
+	margin-bottom:2rem;
+	width:44rem;
+	margin-left:2rem;
+	border-radius: 0.5rem;
+	color:#707371;
+	}
+	
+	.key {
+	margin-left:1.2rem;
+	   margin-top:3rem;
+	background-size: 2.8rem  2.8rem;
+	height:2.8rem;
+	width:2.8rem;
+	font-size:0.8rem;
+	
+	 background-image: url("https://jaroslaw-weber.github.io/butterkeys/image/key/choc.png");
+	}
+	
+	.key-basic {
+	}
+	
+	
+	.key-special-1
+	{
+	font-size:0.7rem;
+	}
+	
+	.key-special-2
+	{
+	font-size:0.6rem;
+	}
+	
+	.key-empty {
+	 background-image: url("https://jaroslaw-weber.github.io/butterkeys/image/key/choc.png");
+	opacity:0.2;
+	color:#000;
+	}
+	
+	
+	
+	`
+}
+
 function cleanupCss(css: string) {
   //remove empty line at the beginning of the string
   return css.replace("\n", "").replaceAll("\t", "");
@@ -458,6 +529,7 @@ export const styles: Style[] = [
   blockyb,
   macbook,
   firstComputer,
+  choc,
   darkBarbie,
 ].map((s) => {
   s.css = cleanupCss(s.css);
