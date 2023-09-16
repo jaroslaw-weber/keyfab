@@ -7,9 +7,12 @@ https://jaroslaw-weber.github.io/butterkeys/
 
 this project is for quickly creating good looking custom keyboard layout designs.
 
-it's similar consept as http://www.keyboard-layout-editor.com/ but more easy to use.
+![Preview](p1.png)
+![Preview](p2.png)
+![Preview](p3.png)
+![Preview](p4.png)
 
-![Preview](preview.png)
+it's similar consept as http://www.keyboard-layout-editor.com/ but more easy to use.
 
 # features
 
