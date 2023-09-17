@@ -18,14 +18,19 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 
 - endless flexibility in styling (use css to create custom styles)
 - quick label input (just click and type)
+- piantor/moonlander keyboard types
+- ready to use styles
+- edit layer name
+- change layer count
+- batch change key style
+- custom fonts through css
 
 # todo
 - more keyboard types (currently only supports piantor 42 key split layout)
 - sharing layouts
-- more pre-made styles
 - changing layer order
 - add video showcase
-- custom fonts
+- add export/import
 
 
 ## Getting Started
