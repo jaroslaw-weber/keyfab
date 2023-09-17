@@ -12,7 +12,6 @@ export function EditStylePanel() {
         value={style.name}
         onSelect={(e) => {
           const name = e.currentTarget.value;
-          console.log("name", name);
           const style = styles.find((s) => s.name === name);
           if (!style) {
             throw new Error("style not found");
@@ -30,9 +29,7 @@ export function EditStylePanel() {
       className="select select-bordered w-full max-w-xs my-2"
       value={style.name}
       onChange={(e) => {
-        console.log('s', e.target.value);
         const selected = styles.find((x) => x.name == e.target.value);
-        console.log("name", selected);
         if (!selected) return;
         setStyle(selected);
       }}
@@ -50,7 +47,6 @@ export function EditStylePanel() {
           css: e.target.value,
         };
         setStyle(newStyle);
-        console.log("new css: ", style);
       }}
       value={style.css}
       rows={10}

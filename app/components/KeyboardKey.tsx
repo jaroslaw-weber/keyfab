@@ -29,6 +29,9 @@ export default function KeyboardKey(props: {
     return <div/>
   }
   const position = keyboardType.positions[index];
+  if(!position){
+    return <div/>
+  }
 
   const v: string = layer?.legends?.[index] ??""
 
@@ -36,7 +39,6 @@ export default function KeyboardKey(props: {
 
   const  spacingMultiplier=3.2
   const top = (position.y ) * spacingMultiplier  + "rem";
-  // console.log('top',top)
   const left = (position.x ) * spacingMultiplier + "rem";
 
   const rotation = position.rotation ?? 0;

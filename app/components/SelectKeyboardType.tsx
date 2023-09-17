@@ -14,7 +14,6 @@ export function SelectKeyboardType() {
         value={t.name}
         onSelect={(e) => {
           const name = e.currentTarget.value;
-          console.log("name", name);
           const style = keyboardTypes.find((s) => s.name === name);
           if (!style) {
             throw new Error("style not found");
@@ -32,9 +31,7 @@ export function SelectKeyboardType() {
       className="select select-bordered w-full max-w-xs my-2"
       value={keyboardType.name}
       onChange={(e) => {
-        console.log("s", e.target.value);
         const selected = keyboardTypes.find((x) => x.name == e.target.value);
-        console.log("name", selected);
         if (!selected) return;
         setKeyboardType(selected);
       }}

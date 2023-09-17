@@ -35,7 +35,6 @@ export function SelectMode() {
     </div>
   );
   const toggle=<input type="checkbox" className="toggle mt-2" checked={editMode} onClick={e=>{
-   //console.log('e',e.target)
     setEditMode(!editMode)
   }}/>
   const card = (

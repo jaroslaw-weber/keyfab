@@ -17,8 +17,7 @@ export default function KeyboardLayer(props: {
 
   const result: JSX.Element[] = [];
   const className = layerIndex < layerCount ? "layer" : "invisible";
-  console.log("positions: ", keyboardType.positions);
-  for (let i = 0; i < keyCount; i++) {
+  for (let i = 0; i <100; i++) {
     
       const key = KeyboardKey({ index: i, layerIndex });
       result.push(key);

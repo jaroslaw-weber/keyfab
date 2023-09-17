@@ -28,7 +28,7 @@ export function EditKeyPanel() {
 
   const category =
     layer.specialKeys?.find((x) => x.index == key.keyIndex)?.category ?? 0;
-  console.log("category", category);
+    
   const result = (
     <div className="card bg-base-100 shadow-xl sticky top-2">
       <div className="card-body">
