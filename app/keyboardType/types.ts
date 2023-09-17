@@ -7,45 +7,28 @@ interface Position {
   rotation?: number;
 }
 
-interface PageStyle {
-  tailwind?: string;
-  css?: string;
-}
-
-interface KeyStyle {
-  css?: string;
-  pTailwind?: string;
-  tailwind?: string;
-  /**
-   * bigger = more space between keys
-   */
-  spacingMultiplier?: number;
-
-  font?: string;
-}
-interface Keyboard {
+interface KeyboardType {
   name: string;
   /**
    * key positions
    */
   positions: Position[];
-  spacingMultiplier: number;
 }
 
 /**
  * single layer of a keyboard
  */
- interface Layer {
+interface Layer {
   name: string;
   legends: (string | null)[];
   order: number;
   /**
-   * 
+   *
    */
   specialKeys?: SpecialKey[];
 }
 
- interface SpecialKey{
+interface SpecialKey {
   index: number;
   /**
    * define which keys are special keys.
@@ -53,5 +36,5 @@ interface Keyboard {
    * css class .special-key-2 => 2
    * etc.
    */
-  category: number
+  category: number;
 }

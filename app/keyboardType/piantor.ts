@@ -77,8 +77,7 @@ const positions: Position[] = [
   },
 ];
 
-export const piantor: Keyboard = {
+export const piantor: KeyboardType = {
   name: "piantor",
   positions,
-  spacingMultiplier: 3.2,
 };

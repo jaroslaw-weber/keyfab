@@ -1,6 +1,6 @@
 "use client";
 
-import { piantor } from "./layouts/piantor";
+import { piantor } from "./keyboardType/piantor";
 import React from "react";
 import { EditMode, styleAtom, editModeAtom } from "./state";
 import { useAtom } from "jotai";
@@ -9,6 +9,7 @@ import { EditStylePanel } from "./components/EditStylePanel";
 import { EditKeyPanel } from "./components/EditKeyPanel";
 import { EditLayerCount } from "./components/EditLayerCount";
 import { SelectMode } from "./components/SelectMode";
+import { SelectKeyboardType } from "./components/SelectKeyboardType";
 
 export default function Home() {
   const renderdKeyboard = KeyboardView(piantor);
@@ -33,7 +34,7 @@ export default function Home() {
             </div>
             {EditKeyPanel()}
           </div>
-          <div className="flex-1 mr-8">{EditStylePanel()}</div>
+          <div className="flex-1 mr-8">{SelectKeyboardType()}{EditStylePanel()}</div>
         </div>
       </div>
     </main>

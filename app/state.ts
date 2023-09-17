@@ -2,14 +2,15 @@ import { PrimitiveAtom, atom } from "jotai";
 import { defaultStyle } from "./style";
 import { defaultUserLayout } from "./layer";
 import { atomWithStorage } from "jotai/utils";
-import { piantor } from "./layouts/piantor";
+import { piantor } from "./keyboardType/piantor";
 import { SelectedKey } from "./SelectedKey";
+import { keyboardTypes } from "./keyboardType/list";
 
 export const styleAtom = atomWithStorage("style", defaultStyle);
 
 export const layersAtom = atomWithStorage("layers", defaultUserLayout);
 
-export const keyboardAtom = atom(piantor);
+export const keyboardTypeAtom = atomWithStorage('keyboardType',keyboardTypes[0]);
 
 export enum EditMode {
   /**

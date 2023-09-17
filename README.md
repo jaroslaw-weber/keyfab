@@ -12,7 +12,7 @@ this project is for quickly creating good looking custom keyboard layout designs
 ![Preview](p3.png)
 ![Preview](p4.png)
 
-it's similar consept as http://www.keyboard-layout-editor.com/ but more easy to use.
+it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to use.
 
 # features
 

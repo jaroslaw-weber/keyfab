@@ -1,32 +1,28 @@
 import { useAtom } from "jotai";
 import KeyboardKey from "./KeyboardKey";
-import { layerCountAtom, layersAtom } from "../state";
+import { keyboardTypeAtom, layerCountAtom, layersAtom } from "../state";
 //import { layerCssPropertiesAtom } from "../state";
 
 export default function KeyboardLayer(props: {
-  layer: Layer;
-  keyboard: Keyboard;
   layerIndex: number;
 }): JSX.Element {
   const [layerCount] = useAtom(layerCountAtom);
-  const { layer, keyboard, layerIndex } = props;
-
+  const [keyboardType] = useAtom(keyboardTypeAtom);
   const [layers, setLayers] = useAtom(layersAtom);
 
-  function setLayerName(layerName: string) {
-    layers[layerIndex].name = layerName;
-    setLayers(layers);
-  }
+  const { layerIndex } = props;
 
-  // const [layerCssProperties] = useAtom(layerCssPropertiesAtom);
+  const layer = layers[layerIndex];
+  const keyCount = keyboardType.positions.length
+
   const result: JSX.Element[] = [];
   const className = layerIndex < layerCount ? "layer" : "invisible";
-  for (let i = 0; i < keyboard.positions.length; i++) {
-    if (!layer) {
-      continue;
-    }
-    const position = keyboard.positions[i];
-    result.push(KeyboardKey({ position, layer, index: i, layerIndex }));
+  console.log("positions: ", keyboardType.positions);
+  for (let i = 0; i < keyCount; i++) {
+    
+      const key = KeyboardKey({ index: i, layerIndex });
+      result.push(key);
+    
   }
 
   return (
@@ -34,7 +30,7 @@ export default function KeyboardLayer(props: {
       <input
         className="layer-name"
         value={layers[layerIndex]?.name}
-        onChange={(e) =>{
+        onChange={(e) => {
           const newName = e.target.value;
           const newLayers = [...layers];
           newLayers[layerIndex].name = newName;

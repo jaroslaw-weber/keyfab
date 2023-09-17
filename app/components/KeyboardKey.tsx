@@ -4,33 +4,37 @@ import { useAtom } from "jotai";
 import {
   EditMode,
   editModeAtom,
-  keyboardAtom,
+  keyboardTypeAtom,
   layersAtom,
   selectedKeyAtom,
 } from "../state";
 
 export default function KeyboardKey(props: {
-  position: Position;
-  layer: Layer;
   index: number;
   layerIndex: number;
 }) {
-  const { position, layer, index, layerIndex } = props;
+  const {  index, layerIndex } = props;
 
-  //const [keyCssProperties]=useAtom(keyCssPropertiesAtom)
   const [layers, setLayers] = useAtom(layersAtom);
   const [editMode] = useAtom(editModeAtom);
+  const [keyboardType] = useAtom(keyboardTypeAtom);
+  const [_, selectKey] = useAtom(selectedKeyAtom);
   if (!layers) {
+    return <div/>
     throw new Error("No layers found");
   }
 
-  const v: string = layers[layerIndex].legends[index] ??""
+  const layer = layers[layerIndex];
+  if(!layer){
+    return <div/>
+  }
+  const position = keyboardType.positions[index];
 
-  const [keyboard] = useAtom(keyboardAtom);
+  const v: string = layer?.legends?.[index] ??""
 
-  const [_, selectKey] = useAtom(selectedKeyAtom);
 
-  const { spacingMultiplier } = keyboard;
+
+  const  spacingMultiplier=3.2
   const top = (position.y ) * spacingMultiplier  + "rem";
   // console.log('top',top)
   const left = (position.x ) * spacingMultiplier + "rem";
