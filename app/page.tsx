@@ -34,7 +34,7 @@ export default function Home() {
             </div>
             {EditKeyPanel()}
           </div>
-          <div className="flex-1 mr-8">{SelectKeyboardType()}{EditStylePanel()}</div>
+          <div className="flex-1 mr-8 gap-6 flex flex-col">{SelectKeyboardType()}{EditStylePanel()}</div>
         </div>
       </div>
     </main>

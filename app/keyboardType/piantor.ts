@@ -1,3 +1,62 @@
+import { sameRowButLower } from "./utils"
+
+const row1 = [
+  { x: 0, y: 0.9 },
+  { x: 1, y: 0.9 },
+  { x: 2, y: 0.6 },
+  { x: 3, y: 0.3 },
+  { x: 4, y: 0.3 },
+  { x: 5, y: 0.6 },
+//
+
+{x: 7, y: 0.6},
+{x: 8, y: 0.3},
+{x: 9, y: 0.3},
+{x: 10, y: 0.6},
+{x: 11, y: 0.9},
+{x: 12, y: 0.9},
+]
+const row2 = sameRowButLower(row1)
+const row3 = sameRowButLower(row2)
+
+const thumbs = [
+   //thumb keys
+   {
+    x: 3,
+    y: 3.8,
+    //rotation: -10,
+  },
+  {
+    x: 4,
+    y: 4,
+    //rotation: -10,
+  },
+  {
+    x: 5,
+    y: 4.2,
+    //rotation: -10,
+  },
+  //thumb keys
+  {
+    x: 7,
+    y: 4.2,
+    //rotation: 10,
+  },
+  {
+    x: 8,
+    y: 4,
+    //rotation: 10,
+  },
+  {
+    x: 9,
+    y: 3.8,
+    //rotation: 10,
+  },
+]
+
+const positions:Position[] = [...row1, ...row2, ...row3, ...thumbs]
+
+/*
 const positions: Position[] = [
   //left
   //row 1
@@ -75,9 +134,11 @@ const positions: Position[] = [
     y: 3.8,
     //rotation: 10,
   },
-];
+];*/
 
 export const piantor: KeyboardType = {
   name: "piantor",
   positions,
+  spacing:3.2
+  ,keySize:2.8
 };

@@ -13,33 +13,32 @@ export default function KeyboardKey(props: {
   index: number;
   layerIndex: number;
 }) {
-  const {  index, layerIndex } = props;
+  const { index, layerIndex } = props;
 
   const [layers, setLayers] = useAtom(layersAtom);
   const [editMode] = useAtom(editModeAtom);
   const [keyboardType] = useAtom(keyboardTypeAtom);
   const [_, selectKey] = useAtom(selectedKeyAtom);
   if (!layers) {
-    return <div/>
+    return <div />;
     throw new Error("No layers found");
   }
 
   const layer = layers[layerIndex];
-  if(!layer){
-    return <div/>
+  if (!layer) {
+    return <div />;
   }
   const position = keyboardType.positions[index];
-  if(!position){
-    return <div/>
+  if (!position) {
+    return <div />;
   }
 
-  const v: string = layer?.legends?.[index] ??""
+  const v: string = layer?.legends?.[index] ?? "";
 
-
-
-  const  spacingMultiplier=3.2
-  const top = (position.y ) * spacingMultiplier  + "rem";
-  const left = (position.x ) * spacingMultiplier + "rem";
+  const spacingMultiplier = keyboardType.spacing;
+  const keySize = keyboardType.keySize;
+  const top = position.y * spacingMultiplier + "rem";
+  const left = position.x * spacingMultiplier + "rem";
 
   const rotation = position.rotation ?? 0;
   const rotate = `rotate(${rotation}deg)`;
@@ -47,14 +46,13 @@ export default function KeyboardKey(props: {
   const category = layer.specialKeys?.find((x) => x.index == index)?.category;
 
   let keyClass = "key";
-  if(category && category >0){
-    keyClass += ` key-special-${category}`
-  }
-  else{
-    keyClass += ` key-basic`
+  if (category && category > 0) {
+    keyClass += ` key-special-${category}`;
+  } else {
+    keyClass += ` key-basic`;
   }
 
-  if(v == null || v == ""){
+  if (v == null || v == "") {
     keyClass += " key-empty";
   }
 
@@ -102,6 +100,8 @@ export default function KeyboardKey(props: {
         top,
         left,
         transform: rotate,
+        height: keySize + "rem",
+        width: keySize + "rem",
       }}
     >
       {keyElem}
