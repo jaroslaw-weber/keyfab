@@ -1,7 +1,7 @@
 
 # live demo
 
-https://jaroslaw-weber.github.io/butterkeys/
+https://jaroslaw-weber.github.io/keyfab/
 
 # what is this project
 
@@ -33,9 +33,9 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 - add export/import
 
 
-## Getting Started
+## dev mode on local machine
 
-First, run the development server:
+Run: 
 
 ```bash
 npm run dev
