@@ -22,7 +22,7 @@ export default function Home() {
     <main className={`min-h-screen`}>
       <style>{css.css}</style>
       <div className="global min-h-full">
-        <p className="text-center uppercase font-bold text-lg pt-4 tracking-wider">butter keys</p>
+        <p className="text-center uppercase font-bold text-lg pt-4 tracking-wider">keyfab</p>
         <p className="text-center mb-6 mt-4 lowercase text-sm">Keyboard Layout Design Made Easy</p>
         <div className="flex flex-row  gap-6">
           <div className="flex-1">{renderdKeyboard}</div>
