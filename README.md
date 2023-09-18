@@ -7,10 +7,9 @@ https://jaroslaw-weber.github.io/keyfab/
 
 this project is for quickly creating good looking custom keyboard layout designs.
 
+![Preview](preview.mp4)
+
 ![Preview](p1.png)
-![Preview](p2.png)
-![Preview](p3.png)
-![Preview](p4.png)
 
 it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to use.
 
