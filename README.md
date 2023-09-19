@@ -34,8 +34,10 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 
 # todo
 - editing key position
-- more keyboard types (currently only supports piantor 42 key split layout)
 - add tutorial on how to setup custom key shape
+- export/import style/keyboard types
+- share keyboard layout with url
+- more keyboard types (currently only supports piantor 42 key split layout)
 - sharing layouts
 - changing layer order
 - add video showcase
