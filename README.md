@@ -33,7 +33,9 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 - custom fonts through css
 
 # todo
+- editing key position
 - more keyboard types (currently only supports piantor 42 key split layout)
+- add tutorial on how to setup custom key shape
 - sharing layouts
 - changing layer order
 - add video showcase
