@@ -487,7 +487,7 @@ const choc = {
 	width:2.8rem;
 	font-size:0.8rem;
 	
-	 background-image: url("https://jaroslaw-weber.github.io/butterkeys/image/key/choc.png");
+	 background-image: url("https://jaroslaw-weber.github.io/keyfab/image/key/choc.png");
 	}
 	
 	.key-basic {
