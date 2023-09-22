@@ -1,8 +1,12 @@
 import { useAtom } from "jotai";
-import { layerCountAtom } from "../state";
+import { Step, layerCountAtom, stepAtom } from "../state";
 
 export function EditLayerCount() {
   const [layerCount, setLayerCount] = useAtom(layerCountAtom);
+  const [step] = useAtom(stepAtom);
+  if(step != Step.input){
+    return null;
+  }
   const slider = (
     <input
       onChange={(e) => setLayerCount(parseInt(e.target.value))}

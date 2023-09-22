@@ -2,7 +2,7 @@
 
 import { piantor } from "./keyboardType/piantor";
 import React from "react";
-import { EditMode, styleAtom, editModeAtom } from "./state";
+import { EditMode, styleAtom, editModeAtom, stepAtom, Step } from "./state";
 import { useAtom } from "jotai";
 import KeyboardView from "./components/KeyboardView";
 import { EditStylePanel } from "./components/EditStylePanel";
@@ -10,14 +10,26 @@ import { EditKeyPanel } from "./components/EditKeyPanel";
 import { EditLayerCount } from "./components/EditLayerCount";
 import { SelectMode } from "./components/SelectMode";
 import { SelectKeyboardType } from "./components/SelectKeyboardType";
+import { Steps } from "./components/Steps";
+import { ResetButton } from "./components/ResetButton";
 
 export default function Home() {
   const renderdKeyboard = KeyboardView(piantor);
 
   const [css] = useAtom(styleAtom);
 
+  const [step] = useAtom(stepAtom);
  
 
+  const resetButton = ResetButton();
+  const stepsComponent = Steps();
+  //const selectModeComponent = SelectMode();
+  const editLayerCountComponent = EditLayerCount();
+  const editKeyPanelComponent = EditKeyPanel();
+  const selectKeyboardTypeComponent = SelectKeyboardType();
+  const editStylePanelComponent = EditStylePanel();
+
+  
   return (
     <main className={`min-h-screen`}>
       <style>{css.css}</style>
@@ -26,17 +38,18 @@ export default function Home() {
         <p className="text-center mb-6 mt-4 lowercase text-sm">Keyboard Layout Design Made Easy</p>
         <div className="flex flex-row  gap-6">
           <div className="flex-1">{renderdKeyboard}</div>
-          <div className="flex-1 flex flex-col gap-6">
-            <div className="flex gap-4">
-
-            {SelectMode()}
-            {EditLayerCount()}
-            </div>
-            {EditKeyPanel()}
+          <div className="flex-1 flex flex-col gap-6 pr-8">
+            {resetButton}
+            {stepsComponent}
+              {editLayerCountComponent}
+            
+            {editKeyPanelComponent}
+            {selectKeyboardTypeComponent}
+            {editStylePanelComponent}
           </div>
-          <div className="flex-1 mr-8 gap-6 flex flex-col">{SelectKeyboardType()}{EditStylePanel()}</div>
         </div>
       </div>
     </main>
   );
+
 }

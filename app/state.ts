@@ -22,7 +22,17 @@ export enum EditMode {
    * */
   select = "select",
 }
+
+export enum Step {
+  move = "move",
+  input = "input",
+  style = "style",
+  keyType = "keyType",
+  preview = "preview",
+}
 export const editModeAtom = atomWithStorage("edit-mode", true);
+
+export const stepAtom = atomWithStorage("step", Step.move);
 
 const defaultSelectedKey: SelectedKey = {
   layerIndex: 0,

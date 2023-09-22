@@ -42,6 +42,7 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 - changing layer order
 - add video showcase
 - add export/import
+- select all text on focus (easier to overwrite existing label)
 
 
 ## dev mode on local machine

@@ -1,9 +1,13 @@
 import { useAtom } from "jotai";
-import { keyboardTypeAtom } from "../state";
+import { Step, keyboardTypeAtom, stepAtom } from "../state";
 import { keyboardTypes } from "../keyboardType/list";
 
 export function SelectKeyboardType() {
   const [keyboardType, setKeyboardType] = useAtom(keyboardTypeAtom);
+  const [step] = useAtom(stepAtom);
+  if(step!= Step.move){
+    return null;
+  }
 
   //
 

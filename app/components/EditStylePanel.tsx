@@ -1,9 +1,13 @@
 import { useAtom } from "jotai";
-import { styleAtom as styleAtom } from "../state";
+import { Step, stepAtom, styleAtom as styleAtom } from "../state";
 import { styles } from "../style";
 
 export function EditStylePanel() {
   const [style, setStyle] = useAtom(styleAtom);
+  const [step] = useAtom(stepAtom);
+  if(step!=Step.style){
+    return <div/>
+  }
 
   const styleItems = [];
   for (const style of styles) {
