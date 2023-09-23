@@ -90,52 +90,11 @@ export default function KeyboardKey(props: {
       </button>
     );
   }
-  const isSelected = key.keyIndex == index;
-  const showArrows = isSelected && step == Step.move;
-
-  function getArrowButton(
-    arrow: string,
-    direction: string,
-    xChange: number,
-    yChange: number
-  ) {
-    let s:CSSProperties = {
-      position:'absolute',
-      zIndex: 3,
-      width: '50px'
-      ,height: '50px'
-    };
-    if(direction=='left')
-    {
-      s.top = '0'
-      s.left = '-50px'
-    }
-    if(direction=='right'){
-      s.top = '0'
-      s.right = '-50px'
-    }
-    if(direction == 'up' ){
-      s.top = '-50px'
-      s.left = '0'
-    }
-    if(direction == 'down'){
-      s.bottom = '-50px'
-      s.left =  '0'
-    }
-    return (
-      <button
-        style={{...s}}
-        onClick={(e) => {
-          const newKeyboardType = { ...keyboardType }; // Create a shallow copy
-          newKeyboardType.positions[index].x += xChange; // Update the copy
-          newKeyboardType.positions[index].y += yChange; // Update the copy
-          setKeyboardType(newKeyboardType); // Update the state with the copy
-        }}
-      >
-        {arrow}
-      </button>
-    );
+  const isSelected = key.keyIndex == index && key.layerIndex == layerIndex;
+  if(isSelected && step == Step.move){
+    keyClass +=' border border-red-500 border-8 rounded';
   }
+  
   return (
     <div
       className={keyClass + " justify-center"}
@@ -149,11 +108,7 @@ export default function KeyboardKey(props: {
         width: keySize + "rem",
       }}
     >
-      {showArrows ? getArrowButton("↑", "up", 0, -0.1) : null}
-      {showArrows ? getArrowButton("←",'left', -0.1, 0) : null}
       {keyElem}
-      {showArrows ? getArrowButton("→",'right', +0.1, 0) : null}
-      {showArrows ? getArrowButton("↓", 'down', 0,0.1) : null}
     </div>
   );
 }

@@ -20,11 +20,11 @@ export function Steps() {
   }
   return (
     <ul className="steps sticky top-2">
-      <button className={getClasses(Step.move)} onClick={e =>setStep(Step.move)}>Move</button>
-      <button className={getClasses(Step.input)} onClick={e =>setStep(Step.input)}>Input</button>
-      <button className={getClasses(Step.keyType)} onClick={e =>setStep(Step.keyType)}>Key Type</button>
-      <button className={getClasses(Step.style)} onClick={e =>setStep(Step.style)}>Style</button>
-      <button className={getClasses(Step.preview)} onClick={e =>setStep(Step.preview)}>Preview</button>
+      <button className={getClasses(Step.move)} onClick={e =>setStep(Step.move)}>Key Placement</button>
+      <button className={getClasses(Step.input)} onClick={e =>setStep(Step.input)}>Labels</button>
+      <button className={getClasses(Step.keyType)} onClick={e =>setStep(Step.keyType)}>Key Style</button>
+      <button className={getClasses(Step.style)} onClick={e =>setStep(Step.style)}>Global Style</button>
+      <button className={getClasses(Step.preview)} onClick={e =>setStep(Step.preview)}>Print</button>
     </ul>
   );
 }

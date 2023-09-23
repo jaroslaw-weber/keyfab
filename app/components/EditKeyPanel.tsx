@@ -23,62 +23,68 @@ export function EditKeyPanel() {
     keyboardType.positions[key.keyIndex] = p;
     setKeyboardType(keyboardType);
   }
-/*
+
   //
+  /*
   useEffect(() => {
   let pressed = false;
-    const pp = keyboardType.positions[key.keyIndex];
+    const pp = position
     console.log('mounting')
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      
+      const kt = {...keyboardType}
       //const pp = position
       const k = key
       if (pressed) return;
       switch (e.key) {
         case "ArrowUp": {
+          e.preventDefault()
+          
           const p = {
             x: pp.x,
-            y: pp.y - 1,
+            y: pp.y - 0.1,
           };
 
-          keyboardType.positions[k.keyIndex] = p;
+          kt.positions[k.keyIndex] = p;
           console.log("pos", p);
-          setKeyboardType(keyboardType);
+          setKeyboardType(kt);
           pressed = true;
           break;
         }
         case "ArrowDown": {
+          e.preventDefault()
           const p = {
             x: pp.x,
-            y: pp.y + 1,
+            y: pp.y + 0.1,
           };
 
-          keyboardType.positions[k.keyIndex] = p;
+          kt.positions[k.keyIndex] = p;
           console.log("pos", p);
-          setKeyboardType(keyboardType);
+          setKeyboardType(kt);
           pressed = true;
           break;
         }
         case "ArrowLeft": {
           const p = {
-            x: pp.x - 1,
+            x: pp.x - 0.1,
             y: pp.y,
           };
 
-          keyboardType.positions[k.keyIndex] = p;
+          kt.positions[k.keyIndex] = p;
           console.log("pos", p);
-          setKeyboardType(keyboardType);
+          setKeyboardType(kt);
           pressed = true;
           break;
         }
         case "ArrowRight": {
           const p = {
-            x: pp.x + 1,
+            x: pp.x + 0.1,
             y: pp.y,
           };
 
-          keyboardType.positions[k.keyIndex] = p;
+          kt.positions[k.keyIndex] = p;
           console.log("pos", p);
-          setKeyboardType(keyboardType);
+          setKeyboardType(kt);
           pressed = true;
           break;
         }
@@ -98,7 +104,7 @@ export function EditKeyPanel() {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup",handleKeyUp);
     };
-  }, [position,key, keyboardType.positions, key.keyIndex, setKeyboardType]);
+  }, [key, keyboardType, position, setKeyboardType]);
 */
   if (step != Step.keyType) return null;
   //

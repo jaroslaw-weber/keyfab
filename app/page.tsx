@@ -12,6 +12,7 @@ import { SelectMode } from "./components/SelectMode";
 import { SelectKeyboardType } from "./components/SelectKeyboardType";
 import { Steps } from "./components/Steps";
 import { ResetButton } from "./components/ResetButton";
+import { MoveKey } from "./components/MoveKey";
 
 export default function Home() {
   const renderdKeyboard = KeyboardView(piantor);
@@ -46,6 +47,7 @@ export default function Home() {
             {editKeyPanelComponent}
             {selectKeyboardTypeComponent}
             {editStylePanelComponent}
+            {MoveKey()}
           </div>
         </div>
       </div>
