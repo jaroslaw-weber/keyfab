@@ -10,7 +10,7 @@ import {
   selectedKeyAtom,
   stepAtom,
 } from "../state";
-import { useState } from "react";
+import { CSSProperties, useState } from "react";
 
 export default function KeyboardKey(props: {
   index: number;
@@ -22,8 +22,6 @@ export default function KeyboardKey(props: {
   const [keyboardType, setKeyboardType] = useAtom(keyboardTypeAtom);
   const [key, selectKey] = useAtom(selectedKeyAtom);
   const [step] = useAtom(stepAtom);
-  
-
 
   if (!layers) {
     return <div />;
@@ -58,7 +56,7 @@ export default function KeyboardKey(props: {
   if (step == Step.input) {
     keyElem = (
       <textarea
-        className="m-auto text-center mx-auto stealthy w-full h-full"
+        className="m-auto text-center mx-auto stealthy w-full h-full z-0"
         value={label}
         onChange={(e) => {
           const newLayers = [...layers];
@@ -79,7 +77,7 @@ export default function KeyboardKey(props: {
   } else {
     keyElem = (
       <button
-        className={" m-auto text-center mx-auto w-full h-full"}
+        className={" m-auto text-center mx-auto w-full h-full absolute left-0 top-0 z-0"}
         onClick={() => {
           //select this key
           selectKey({
@@ -92,33 +90,70 @@ export default function KeyboardKey(props: {
       </button>
     );
   }
-  const isSelected = key.keyIndex == index
+  const isSelected = key.keyIndex == index;
   const showArrows = isSelected && step == Step.move;
 
-  function getArrowButton(arrow:string, xChange:number) {return  <button onClick={
-    (e) => {   const newKeyboardType = { ...keyboardType }; // Create a shallow copy
-    newKeyboardType.positions[index].x += xChange; // Update the copy
-    setKeyboardType(newKeyboardType); // Update the state with the copy
- 
+  function getArrowButton(
+    arrow: string,
+    direction: string,
+    xChange: number,
+    yChange: number
+  ) {
+    let s:CSSProperties = {
+      position:'absolute',
+      zIndex: 3,
+      width: '50px'
+      ,height: '50px'
+    };
+    if(direction=='left')
+    {
+      s.top = '0'
+      s.left = '-50px'
     }
-  }>{arrow}</button>
-}
+    if(direction=='right'){
+      s.top = '0'
+      s.right = '-50px'
+    }
+    if(direction == 'up' ){
+      s.top = '-50px'
+      s.left = '0'
+    }
+    if(direction == 'down'){
+      s.bottom = '-50px'
+      s.left =  '0'
+    }
+    return (
+      <button
+        style={{...s}}
+        onClick={(e) => {
+          const newKeyboardType = { ...keyboardType }; // Create a shallow copy
+          newKeyboardType.positions[index].x += xChange; // Update the copy
+          newKeyboardType.positions[index].y += yChange; // Update the copy
+          setKeyboardType(newKeyboardType); // Update the state with the copy
+        }}
+      >
+        {arrow}
+      </button>
+    );
+  }
   return (
-    
     <div
-      className={keyClass + " flex justify-center"}
+      className={keyClass + " justify-center"}
       style={{
         position: "absolute",
         top,
         left,
+        zIndex:0,
         transform: rotate,
         height: keySize + "rem",
         width: keySize + "rem",
       }}
     >
-      {showArrows? getArrowButton('←', -0.1) : null}
+      {showArrows ? getArrowButton("↑", "up", 0, -0.1) : null}
+      {showArrows ? getArrowButton("←",'left', -0.1, 0) : null}
       {keyElem}
-      {showArrows? getArrowButton('→', +0.1) : null}
+      {showArrows ? getArrowButton("→",'right', +0.1, 0) : null}
+      {showArrows ? getArrowButton("↓", 'down', 0,0.1) : null}
     </div>
   );
 }
