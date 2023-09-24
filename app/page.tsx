@@ -42,7 +42,6 @@ export default function Home() {
         <div className="flex flex-row  gap-6">
           <div className="flex-1">{renderdKeyboard}</div>
           <div className="flex-1 flex flex-col gap-6 pr-8">
-            {resetButton}
             {stepsComponent}
             {editLayerCountComponent}
             {Labels()}
@@ -51,6 +50,7 @@ export default function Home() {
             {editStylePanelComponent}
             {EditPhysicalLayout()}
             {MoveKey()}
+            {resetButton}
           </div>
         </div>
       </div>
