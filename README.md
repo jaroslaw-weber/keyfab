@@ -9,7 +9,7 @@ this project is for quickly creating good looking custom keyboard layout designs
 
 video preview: 
 
-https://github.com/jaroslaw-weber/keyfab/assets/9774233/b768715b-5c08-494e-88f9-9c5fa08d3436
+https://github.com/jaroslaw-weber/keyfab/assets/9774233/9149cab3-b6c1-4445-9361-9eb940062a59
 
 
 screenshots:
