@@ -13,6 +13,8 @@ import { SelectKeyboardType } from "./components/SelectKeyboardType";
 import { Steps } from "./components/Steps";
 import { ResetButton } from "./components/ResetButton";
 import { MoveKey } from "./components/MoveKey";
+import { EditPhysicalLayout } from "./components/EditPhysicalLayout";
+import { Labels } from "./components/Labels";
 
 export default function Home() {
   const renderdKeyboard = KeyboardView(piantor);
@@ -42,11 +44,12 @@ export default function Home() {
           <div className="flex-1 flex flex-col gap-6 pr-8">
             {resetButton}
             {stepsComponent}
-              {editLayerCountComponent}
-            
+            {editLayerCountComponent}
+            {Labels()}
             {editKeyPanelComponent}
             {selectKeyboardTypeComponent}
             {editStylePanelComponent}
+            {EditPhysicalLayout()}
             {MoveKey()}
           </div>
         </div>

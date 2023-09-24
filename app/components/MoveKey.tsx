@@ -28,6 +28,7 @@ export function MoveKey() {
     let pressed = false;
     const pp = position;
     console.log("mounting");
+    const keyIndex = key.keyIndex;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (step != Step.move) {
         return null;
@@ -37,9 +38,8 @@ export function MoveKey() {
       const k = key;
       //if (pressed) return;
       switch (e.key) {
-        case "ArrowUp": 
-		case "w":
-		{
+        case "ArrowUp":
+        case "w": {
           e.preventDefault();
 
           pp.y -= 0.1;
@@ -49,9 +49,9 @@ export function MoveKey() {
           pressed = true;
           break;
         }
-	
-        case "ArrowDown": 
-		case "s":{
+
+        case "ArrowDown":
+        case "s": {
           e.preventDefault();
           pp.y += 0.1;
 
@@ -60,8 +60,8 @@ export function MoveKey() {
           pressed = true;
           break;
         }
-        case "ArrowLeft": 
-		case "a":{
+        case "ArrowLeft":
+        case "a": {
           pp.x -= 0.1;
 
           kt.positions[k.keyIndex] = pp;
@@ -71,8 +71,8 @@ export function MoveKey() {
           break;
         }
 
-        case "ArrowRight": 
-		case "d":{
+        case "ArrowRight":
+        case "d": {
           pp.x += 0.1;
 
           kt.positions[k.keyIndex] = pp;
@@ -103,16 +103,30 @@ export function MoveKey() {
           pressed = true;
           break;
         }
-		case "n":{
-			//add new key (position)
-			const lastPosition = _.last( keyboardType.positions)
-			const newPosition = {
-				...lastPosition
-			}
-			newPosition.x+=1
-			kt.positions.push(newPosition)
-			setKeyboardType(kt)
-		}
+        case "n": {
+          //add new key (position)
+          //adding key next to selected key
+          //const lastPosition = _.last(keyboardType.positions);
+          const newPosition = {
+            ...pp,
+          };
+          if (!newPosition.x) {
+            throw new Error("x is not defined");
+          }
+          newPosition.x += 1.2;
+
+          kt.positions.push(newPosition);
+          setKeyboardType(kt);
+          break;
+        }
+        case "Backspace": {
+          console.log("remove at ", key.keyIndex);
+          console.log("positions", kt.positions);
+          //remove position at index key.keyIndex
+          kt.positions.splice(keyIndex, 1);
+          setKeyboardType(kt);
+          break;
+        }
 
         default:
           break;
@@ -131,8 +145,11 @@ export function MoveKey() {
     };
   }, [key, keyboardType, position, setKeyboardType]);
 
+  if (step != Step.move) return null;
   return (
     <div>
+
+<p className="pl-4 pb-4">Click on key to select it.</p>
       <div className="card bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title justify-center">Selected Key</h2>
@@ -142,6 +159,7 @@ export function MoveKey() {
           </div>
         </div>
       </div>
+      <p className="pl-4 pt-4">Use shortcuts to change physical layout of your keyboard.</p>
       <div className="card bg-base-100 shadow-xl mt-4">
         <div className="card-body">
           <h2 className="card-title justify-center">Shortcuts</h2>
@@ -150,9 +168,9 @@ export function MoveKey() {
           <div className="card-actions justify-center">
             <kbd className="kbd"> ↑ ↓ ← → </kbd>
           </div>
-			
+
           <div className="card-actions justify-center">
-			<kbd className="kbd"> w s a d </kbd>
+            <kbd className="kbd"> w s a d </kbd>
           </div>
           <p>Rotate left:</p>
           <div className="card-actions justify-center">
@@ -162,9 +180,13 @@ export function MoveKey() {
           <div className="card-actions justify-center">
             <kbd className="kbd">e</kbd>
           </div>
-		  <p>Add key:</p>
-		  <div className="card-actions justify-center">
+          <p>Add key:</p>
+          <div className="card-actions justify-center">
             <kbd className="kbd">n</kbd>
+          </div>
+          <p>Remove key:</p>
+          <div className="card-actions justify-center">
+            <kbd className="kbd">backspace</kbd>
           </div>
         </div>
       </div>
