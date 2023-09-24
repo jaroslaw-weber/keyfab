@@ -23,9 +23,17 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 
 # features
 
-- endless flexibility in styling (use css to create custom styles)
+## physical layout
+- predefined layouts (piantor/moonlander) keyboard types
+- change physical layout of the keyboard with shortcuts
+- import/export layouts
+
+## input mode
 - quick label input (just click and type)
-- piantor/moonlander keyboard types
+- speed up with "select on focus" and "tab to next key" features
+
+## global style
+- endless flexibility in styling (use css to create custom styles)
 - ready to use styles
 - edit layer name
 - change layer count
@@ -33,15 +41,13 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 - custom fonts through css
 
 # todo
-- editing key position
 - add tutorial on how to setup custom key shape
-- export/import style/keyboard types
-- share keyboard layout with url
 - more keyboard types (currently only supports piantor 42 key split layout)
+- export/import style
+- share keyboard layout with url
 - sharing layouts
 - changing layer order
-- add video showcase
-- add export/import
+- update video showcase
 
 
 ## dev mode on local machine

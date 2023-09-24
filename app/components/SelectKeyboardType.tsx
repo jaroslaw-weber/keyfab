@@ -1,9 +1,13 @@
 import { useAtom } from "jotai";
-import { keyboardTypeAtom } from "../state";
+import { Step, keyboardTypeAtom, stepAtom } from "../state";
 import { keyboardTypes } from "../keyboardType/list";
 
 export function SelectKeyboardType() {
   const [keyboardType, setKeyboardType] = useAtom(keyboardTypeAtom);
+  const [step] = useAtom(stepAtom);
+  if (step != Step.move) {
+    return null;
+  }
 
   //
 
@@ -42,11 +46,14 @@ export function SelectKeyboardType() {
   //
   const dropdown = <div></div>;
   const card = (
-    <div className="card bg-base-100 shadow-xl">
-      <div className="card-body">
-        <h2 className="card-title justify-center">Keyboard Type</h2>
-        <div className="card-actions justify-center">{selectStyle}</div>
+    <div>
+      <div className="card bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title justify-center">Keyboard Type</h2>
+          <div className="card-actions justify-center">{selectStyle}</div>
+        </div>
       </div>
+
     </div>
   );
 
