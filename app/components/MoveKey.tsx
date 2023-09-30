@@ -30,9 +30,11 @@ export function MoveKey() {
     console.log("mounting");
     const keyIndex = key.keyIndex;
     const handleKeyDown = (e: KeyboardEvent) => {
+      console.log('step', step);
       if (step != Step.move) {
         return null;
       }
+      
       const kt = { ...keyboardType };
       //const pp = position
       const k = key;
@@ -143,7 +145,7 @@ export function MoveKey() {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [key, keyboardType, position, setKeyboardType]);
+  }, [key, keyboardType, position, setKeyboardType, step]);
 
   if (step != Step.move) return null;
   return (
