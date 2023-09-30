@@ -26,6 +26,7 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 ## physical layout
 - predefined layouts (piantor/moonlander) keyboard types
 - change physical layout of the keyboard with shortcuts
+- change physical layout by editing yaml in browser
 - import/export layouts
 
 ## input mode
@@ -39,6 +40,7 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 - change layer count
 - batch change key style
 - custom fonts through css
+- advanced css editor
 
 # todo
 - add tutorial on how to setup custom key shape
@@ -48,6 +50,10 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 - sharing layouts
 - changing layer order
 - update video showcase
+- put styles in css files, not in javascript files
+- put physical layouts in yaml files, not in javascript files
+- move TODO into github tickets
+- yaml editor for labels
 
 
 ## dev mode on local machine
