@@ -1,10 +1,19 @@
 import { useAtom } from "jotai";
 import { Step, stepAtom, styleAtom as styleAtom } from "../state";
 import { styles } from "../style";
+import React from 'react';
+import CodeMirror from '@uiw/react-codemirror';
+import { css } from '@codemirror/lang-css';
+
+import {  materialLight } from '@uiw/codemirror-theme-material';
+
+
 
 export function EditStylePanel() {
   const [style, setStyle] = useAtom(styleAtom);
   const [step] = useAtom(stepAtom);
+
+
   if(step!=Step.style){
     return <div/>
   }
@@ -41,6 +50,15 @@ export function EditStylePanel() {
       {styleItems}
     </select>
   );
+  const cssEditor = <CodeMirror className="w-full max-w-xl rounded" value={style.css} height="20rem" theme={materialLight} extensions={[css()]} onChange={
+    (val, viewUpdate) => {
+      const newStyle = {...style };
+      newStyle.css = val;
+      setStyle(newStyle)
+    }
+  } />;
+
+
   const textarea = (
     <textarea
       className="textarea textarea-bordered"
@@ -62,7 +80,7 @@ export function EditStylePanel() {
         <h2 className="card-title justify-center">Style</h2>
         <div></div>
         {selectStyle}
-        {textarea}
+        {cssEditor}
         <div className="card-actions justify-center"></div>
       </div>
     </div>
