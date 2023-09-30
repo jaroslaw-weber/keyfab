@@ -19,7 +19,7 @@ export function Steps() {
     return "step";
   }
   return (
-    <ul className="steps sticky top-2">
+    <ul className="steps">
       <button className={getClasses(Step.move)} onClick={e =>setStep(Step.move)}>Key Placement</button>
       <button className={getClasses(Step.input)} onClick={e =>setStep(Step.input)}>Labels</button>
       <button className={getClasses(Step.keyType)} onClick={e =>setStep(Step.keyType)}>Key Style</button>
