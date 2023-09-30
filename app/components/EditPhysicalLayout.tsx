@@ -1,13 +1,40 @@
 import { atom, useAtom } from "jotai";
-import { Step, keyboardTypeAtom, stepAtom } from "../state";
+import { Step, codeEditorFocusAtom, keyboardTypeAtom, stepAtom, yamlAtom } from "../state";
 import { loadFromJson, saveToJson } from "../exportUtils";
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, MouseEventHandler, SyntheticEvent, useEffect } from "react";
+import CodeMirror from "@uiw/react-codemirror";
+import YAML from "yaml";
+
+import { materialLight } from "@uiw/codemirror-theme-material";
+import { validatePhysicalLayout } from "../service/validatePhysicalLayout";
 
 export function EditPhysicalLayout() {
   const [keyboardType, setKeyboardType] = useAtom(keyboardTypeAtom);
   const [step] = useAtom(stepAtom);
 
+  const stringified = YAML.stringify(keyboardType);
+  const [yaml, setYaml] = useAtom(yamlAtom);
+
+  useEffect(() => {
+    // This code will run when the component mounts
+    console.log('Component mounted');
+    
+    // You can perform any other actions here, like fetching data, etc.
+    
+    // If you want to update the Jotai atom's value, you can use the `setData` function
+    setYaml(stringified);
+    
+    // Don't forget to clean up any subscriptions or resources if needed
+    return () => {
+      console.log('Component unmounted');
+      // Clean up any subscriptions or resources here
+    };
+  }, [setYaml, stringified]); 
+  //yamlPhysicalEditorFocusAtom
+  const [codeEditorFocus, setCodeEditorFocus] = useAtom(codeEditorFocusAtom);
+
   const fileAtom = atom("");
+
 
   if (step != Step.move) {
     return null;
@@ -45,6 +72,48 @@ export function EditPhysicalLayout() {
       }}
     />
   );
+  const yamlEditor = (
+    <CodeMirror
+      className="w-full max-w-xl rounded"
+      value={yaml}
+      height="20rem"
+      theme={materialLight}
+      extensions={[]}
+      onChange={(val, viewUpdate) => {
+        setYaml(val);
+       // console.log('setting yaml', val);
+      }}
+      onFocus={() => {
+        setCodeEditorFocus(true);
+      }}
+      onBlur={() => {
+        setCodeEditorFocus(false);
+      }}
+    />
+  );
+  function applyLayout(event:SyntheticEvent) {
+    //console.log('yaml now', yaml);
+    const parsed = YAML.parse(yaml);
+    //console.log('parsed', parsed);
+    validatePhysicalLayout(parsed)
+    //console.log('applying layout', parsed);
+
+    setKeyboardType(parsed);
+
+  }
+
+  const yamlEditorCard = (
+    <div className="card bg-base-100 shadow-xl mt-4">
+      <div className="card-body">
+        <h2 className="card-title justify-center">Edit with yaml</h2>
+        <p>{`Sometimes it's easier to edit yaml directly`}</p>
+        {yamlEditor}
+        <button className="btn btn-primary" onClick={applyLayout}>
+          Apply
+        </button>
+      </div>
+    </div>
+  );
 
   const handleFileChange: ChangeEventHandler<HTMLInputElement> = (e: any) => {
     //read file to text
@@ -54,6 +123,7 @@ export function EditPhysicalLayout() {
     reader.onload = async (e: ProgressEvent<FileReader>) => {
       console.log("read ", e);
       const o = JSON.parse(e?.target?.result as string);
+      validatePhysicalLayout(o)
       console.log(o);
       setKeyboardType(o);
     };
@@ -86,6 +156,7 @@ export function EditPhysicalLayout() {
             </div>
           </div>
         </div>
+        {yamlEditorCard}
       </div>
     </div>
   );

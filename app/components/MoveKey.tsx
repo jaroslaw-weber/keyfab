@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 import { useEffect } from "react";
 import {
   Step,
+  codeEditorFocusAtom,
   keyboardTypeAtom,
   layersAtom,
   selectedKeyAtom,
@@ -13,6 +14,7 @@ export function MoveKey() {
   const [key] = useAtom(selectedKeyAtom);
   const [layers, setLayers] = useAtom(layersAtom);
   const [step] = useAtom(stepAtom);
+  const [codeEditorFocus] = useAtom(codeEditorFocusAtom);
   const layer = layers[key.layerIndex];
   const label: string | null = layers[key.layerIndex]?.legends[key.keyIndex];
 
@@ -33,6 +35,9 @@ export function MoveKey() {
       console.log('step', step);
       if (step != Step.move) {
         return null;
+      }
+      if(codeEditorFocus){
+        return null
       }
       
       const kt = { ...keyboardType };
@@ -145,7 +150,7 @@ export function MoveKey() {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [key, keyboardType, position, setKeyboardType, step]);
+  }, [key, keyboardType, position, setKeyboardType, step, codeEditorFocus]);
 
   if (step != Step.move) return null;
   return (

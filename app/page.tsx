@@ -8,7 +8,6 @@ import KeyboardView from "./components/KeyboardView";
 import { EditStylePanel } from "./components/EditStylePanel";
 import { EditKeyPanel } from "./components/EditKeyPanel";
 import { EditLayerCount } from "./components/EditLayerCount";
-import { SelectMode } from "./components/SelectMode";
 import { SelectKeyboardType } from "./components/SelectKeyboardType";
 import { Steps } from "./components/Steps";
 import { ResetButton } from "./components/ResetButton";

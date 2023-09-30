@@ -6,11 +6,17 @@ import { piantor } from "./keyboardType/piantor";
 import { SelectedKey } from "./SelectedKey";
 import { keyboardTypes } from "./keyboardType/list";
 
+
 export const styleAtom = atomWithStorage("style", defaultStyle);
 
 export const layersAtom = atomWithStorage("layers", defaultUserLayout);
 
 export const keyboardTypeAtom = atomWithStorage('keyboardType',keyboardTypes[0]);
+
+export const yamlAtom = atom('');
+
+/** is editing physical layout? */
+export const codeEditorFocusAtom = atom(false);
 
 export enum EditMode {
   /**
