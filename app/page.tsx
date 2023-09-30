@@ -46,10 +46,10 @@ export default function Home() {
         }
       `}</style>
       <div className="global min-h-full">
-        <p className="text-center uppercase font-bold text-lg pt-4 tracking-wider">
+        <p className="text-center uppercase font-bold text-3xl pt-8 tracking-wider">
           keyfab
         </p>
-        <p className="text-center mb-6 mt-4 lowercase text-sm">
+        <p className="text-center mb-8 mt-4 lowercase text italic">
           Keyboard Layout Design Made Easy
         </p>
         <div className="flex flex-row  gap-6">
