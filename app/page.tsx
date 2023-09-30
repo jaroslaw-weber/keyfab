@@ -27,7 +27,6 @@ export default function Home() {
   //const selectModeComponent = SelectMode();
   const editLayerCountComponent = EditLayerCount();
   const editKeyPanelComponent = EditKeyPanel();
-  const selectKeyboardTypeComponent = SelectKeyboardType();
   const editStylePanelComponent = EditStylePanel();
 
   return (
@@ -60,10 +59,8 @@ export default function Home() {
             {editLayerCountComponent}
             {Labels()}
             {editKeyPanelComponent}
-            {selectKeyboardTypeComponent}
             {editStylePanelComponent}
             {EditPhysicalLayout()}
-            {MoveKey()}
             {resetButton}
           </div>
         </div>

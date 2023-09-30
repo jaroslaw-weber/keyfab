@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { Step, stepAtom, styleAtom as styleAtom } from "../state";
-import { styles } from "../style";
+import { formatCss, styles } from "../style";
 import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { css } from '@codemirror/lang-css';
@@ -74,6 +74,13 @@ export function EditStylePanel() {
       rows={10}
     ></textarea>
   );
+  const formatCssButton=<button className="btn" onClick={e=>{
+    const newStyle ={
+      ...style
+    }
+    newStyle.css = formatCss(newStyle.css);
+    setStyle(newStyle);
+  }}>prettify</button>
   const card = (
     <div className="card bg-base-100 shadow-xl">
       <div className="card-body">
@@ -81,6 +88,7 @@ export function EditStylePanel() {
         <div></div>
         {selectStyle}
         {cssEditor}
+        {formatCssButton}
         <div className="card-actions justify-center"></div>
       </div>
     </div>

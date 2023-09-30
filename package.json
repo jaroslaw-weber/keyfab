@@ -16,6 +16,7 @@
     "@uiw/codemirror-theme-material": "^4.21.18",
     "@uiw/react-codemirror": "^4.21.18",
     "autoprefixer": "10.4.15",
+    "beautify": "^0.0.8",
     "daisyui": "latest",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
@@ -30,6 +31,7 @@
     "yaml": "^2.3.2"
   },
   "devDependencies": {
+    "@types/beautify": "^0.0.1",
     "@types/lodash": "^4.14.198"
   }
 }

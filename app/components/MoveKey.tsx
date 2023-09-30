@@ -32,14 +32,14 @@ export function MoveKey() {
     console.log("mounting");
     const keyIndex = key.keyIndex;
     const handleKeyDown = (e: KeyboardEvent) => {
-      console.log('step', step);
+      console.log("step", step);
       if (step != Step.move) {
         return null;
       }
-      if(codeEditorFocus){
-        return null
+      if (codeEditorFocus) {
+        return null;
       }
-      
+
       const kt = { ...keyboardType };
       //const pp = position
       const k = key;
@@ -155,8 +155,7 @@ export function MoveKey() {
   if (step != Step.move) return null;
   return (
     <div>
-
-<p className="pl-4 pb-4">Click on key to select it.</p>
+      <p className="pl-4 pb-4">Click on key to select it.</p>
       <div className="card bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title justify-center">Selected Key</h2>
@@ -166,7 +165,9 @@ export function MoveKey() {
           </div>
         </div>
       </div>
-      <p className="pl-4 pt-4">Use shortcuts to change physical layout of your keyboard.</p>
+      <p className="pl-4 pt-4">
+        Use shortcuts to change physical layout of your keyboard.
+      </p>
       <div className="card bg-base-100 shadow-xl mt-4">
         <div className="card-body">
           <h2 className="card-title justify-center">Shortcuts</h2>

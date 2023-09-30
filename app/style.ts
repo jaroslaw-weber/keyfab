@@ -1,3 +1,5 @@
+
+import beautify from 'beautify';
 const lilRainbow = {
   name: "lil rainbow",
   css: `@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
@@ -520,6 +522,13 @@ function cleanupCss(css: string) {
   return css.replace("\n", "").replaceAll("\t", "");
 }
 
+export function formatCss(css: string) {
+
+ 
+const result = beautify(css, {format: 'css'})
+return result;
+}
+
 export interface Style {
   name: string;
   css: string;
@@ -533,6 +542,7 @@ export const styles: Style[] = [
   darkBarbie,
 ].map((s) => {
   s.css = cleanupCss(s.css);
+  s.css = formatCss(s.css);
   return s;
 });
 export const defaultStyle = styles[0];
