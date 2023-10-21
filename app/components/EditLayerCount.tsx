@@ -4,7 +4,7 @@ import { Step, layerCountAtom, stepAtom } from "../state";
 export function EditLayerCount() {
   const [layerCount, setLayerCount] = useAtom(layerCountAtom);
   const [step] = useAtom(stepAtom);
-  if(step != Step.input){
+  if(step != Step.layers){
     return null;
   }
   const slider = (

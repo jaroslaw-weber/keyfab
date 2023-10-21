@@ -16,14 +16,11 @@ import { EditPhysicalLayout } from "./components/EditPhysicalLayout";
 import { Labels } from "./components/Labels";
 
 export default function Home() {
-
   const [css] = useAtom(styleAtom);
 
   return (
     <main className={`min-h-screen`}>
-      <style>
-        {css.css}
-      </style>
+      <style>{css.css}</style>
       <style>{`
         .cm-scroller {
           border-radius: 0.25rem;
@@ -36,22 +33,24 @@ export default function Home() {
         }
       `}</style>
       <div className="global min-h-full">
-        <p className="text-center uppercase font-bold text-3xl pt-8 tracking-wider">
-          keyfab
-        </p>
-        <p className="text-center mb-8 mt-4 lowercase text italic">
-          Keyboard Layout Design Made Easy
-        </p>
+        <div className="navbar px-6">
+          <a className="normal-case text-xl pr-12">keyfab</a>
+          <a className=" normal-case text-sm">keyboard layout design made easy</a>
+        </div>
+        <div className="w-full py-8 ">
+          <Steps />
+        </div>
         <div className="flex flex-row  gap-6">
-          <div className="flex-1"><KeyboardView/></div>
+          <div className="flex-1">
+            <KeyboardView />
+          </div>
           <div className="flex-1 flex flex-col gap-6 pr-8">
-            <Steps/>
-            <EditLayerCount/>
-            <Labels/>
-            <EditKeyPanel/>
-            <EditStylePanel/>
-            <EditPhysicalLayout/>
-            <ResetButton/>
+            <EditLayerCount />
+            <Labels />
+            <EditKeyPanel />
+            <EditStylePanel />
+            <EditPhysicalLayout />
+            <ResetButton />
           </div>
         </div>
       </div>

@@ -32,6 +32,7 @@ export enum EditMode {
 export enum Step {
   move = "move",
   input = "input",
+  layers='layers',
   style = "style",
   keyType = "keyType",
   preview = "preview",

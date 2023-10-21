@@ -6,7 +6,7 @@ export function Steps() {
 
   let active = true;
   const stepClassMap = new Map<Step, boolean>();
-  for (const s of [Step.move, Step.input, Step.keyType, Step.style, Step.preview]) {
+  for (const s of [Step.move,Step.layers, Step.input, Step.keyType, Step.style, Step.preview]) {
 	stepClassMap.set(s, active)
 	if(s == step) active = false;
   }
@@ -19,8 +19,9 @@ export function Steps() {
     return "step";
   }
   return (
-    <ul className="steps">
+    <ul className="steps w-full">
       <button className={getClasses(Step.move)} onClick={e =>setStep(Step.move)}>Key Placement</button>
+      <button className={getClasses(Step.layers)} onClick={e =>setStep(Step.layers)}>Layers</button>
       <button className={getClasses(Step.input)} onClick={e =>setStep(Step.input)}>Labels</button>
       <button className={getClasses(Step.keyType)} onClick={e =>setStep(Step.keyType)}>Key Style</button>
       <button className={getClasses(Step.style)} onClick={e =>setStep(Step.style)}>Global Style</button>

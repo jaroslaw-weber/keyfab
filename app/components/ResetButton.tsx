@@ -7,7 +7,7 @@ export function ResetButton() {
   }
   return (
     <button className="btn btn-error w-20 ml-auto text-white" onClick={(e) => reset()}>
-      Reset
+      Reset all
     </button>
   );
 }
