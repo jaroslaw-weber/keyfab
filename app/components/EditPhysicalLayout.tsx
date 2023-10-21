@@ -28,7 +28,6 @@ export function EditPhysicalLayout() {
   const stringified = YAML.stringify(keyboardType);
   const [yaml, setYaml] = useAtom(yamlAtom);
   const sktc = SelectKeyboardType()
-  const moveKeyComponent = MoveKey()
 
   useEffect(() => {
     // This code will run when the component mounts
@@ -46,9 +45,8 @@ export function EditPhysicalLayout() {
     };
   }, [setYaml, stringified]);
   //yamlPhysicalEditorFocusAtom
-  const [codeEditorFocus, setCodeEditorFocus] = useAtom(codeEditorFocusAtom);
+  const [, setCodeEditorFocus] = useAtom(codeEditorFocusAtom);
 
-  const fileAtom = atom("");
 
   if (step != Step.move) {
     return <div/>;
@@ -177,7 +175,7 @@ export function EditPhysicalLayout() {
     <div>
       <div className="flex flex-col gap-4">
         {sktc}
-        {moveKeyComponent}
+        <MoveKey/>
         {settingsCard}
         {yamlEditorCard}
         {importExportCard}

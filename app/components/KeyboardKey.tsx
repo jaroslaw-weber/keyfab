@@ -2,15 +2,12 @@
 
 import { useAtom } from "jotai";
 import {
-  EditMode,
   Step,
-  editModeAtom,
   keyboardTypeAtom,
   layersAtom,
   selectedKeyAtom,
   stepAtom,
 } from "../state";
-import { CSSProperties, useState } from "react";
 
 export default function KeyboardKey(props: {
   index: number;
@@ -19,13 +16,12 @@ export default function KeyboardKey(props: {
   const { index, layerIndex } = props;
 
   const [layers, setLayers] = useAtom(layersAtom);
-  const [keyboardType, setKeyboardType] = useAtom(keyboardTypeAtom);
+  const [keyboardType] = useAtom(keyboardTypeAtom);
   const [key, selectKey] = useAtom(selectedKeyAtom);
   const [step] = useAtom(stepAtom);
 
   if (!layers) {
     return <div />;
-    throw new Error("No layers found");
   }
 
   const layer = layers[layerIndex];
@@ -77,7 +73,9 @@ export default function KeyboardKey(props: {
   } else {
     keyElem = (
       <button
-        className={" m-auto text-center mx-auto w-full h-full absolute left-0 top-0 z-0"}
+        className={
+          " m-auto text-center mx-auto w-full h-full absolute left-0 top-0 z-0"
+        }
         onClick={() => {
           //select this key
           selectKey({
@@ -91,10 +89,10 @@ export default function KeyboardKey(props: {
     );
   }
   const isSelected = key.keyIndex == index && key.layerIndex == layerIndex;
-  if(isSelected && step == Step.move){
-    keyClass +=' border border-red-500 border-8 rounded';
+  if (isSelected && step == Step.move) {
+    keyClass += " border border-red-500 border-8 rounded";
   }
-  
+
   return (
     <div
       className={keyClass + " justify-center"}
@@ -102,7 +100,7 @@ export default function KeyboardKey(props: {
         position: "absolute",
         top,
         left,
-        zIndex:0,
+        zIndex: 0,
         transform: rotate,
         height: keySize + "rem",
         width: keySize + "rem",

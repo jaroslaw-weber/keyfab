@@ -16,18 +16,8 @@ import { EditPhysicalLayout } from "./components/EditPhysicalLayout";
 import { Labels } from "./components/Labels";
 
 export default function Home() {
-  const renderdKeyboard = KeyboardView(piantor);
 
   const [css] = useAtom(styleAtom);
-
-  const [step] = useAtom(stepAtom);
-
-  const resetButton = ResetButton();
-  const stepsComponent = Steps();
-  //const selectModeComponent = SelectMode();
-  const editLayerCountComponent = EditLayerCount();
-  const editKeyPanelComponent = EditKeyPanel();
-  const editStylePanelComponent = EditStylePanel();
 
   return (
     <main className={`min-h-screen`}>
@@ -53,15 +43,15 @@ export default function Home() {
           Keyboard Layout Design Made Easy
         </p>
         <div className="flex flex-row  gap-6">
-          <div className="flex-1">{renderdKeyboard}</div>
+          <div className="flex-1"><KeyboardView/></div>
           <div className="flex-1 flex flex-col gap-6 pr-8">
-            {stepsComponent}
-            {editLayerCountComponent}
-            {Labels()}
-            {editKeyPanelComponent}
-            {editStylePanelComponent}
-            {EditPhysicalLayout()}
-            {resetButton}
+            <Steps/>
+            <EditLayerCount/>
+            <Labels/>
+            <EditKeyPanel/>
+            <EditStylePanel/>
+            <EditPhysicalLayout/>
+            <ResetButton/>
           </div>
         </div>
       </div>

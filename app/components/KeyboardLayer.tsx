@@ -7,21 +7,15 @@ export default function KeyboardLayer(props: {
   layerIndex: number;
 }): JSX.Element {
   const [layerCount] = useAtom(layerCountAtom);
-  const [keyboardType] = useAtom(keyboardTypeAtom);
   const [layers, setLayers] = useAtom(layersAtom);
 
   const { layerIndex } = props;
 
-  const layer = layers[layerIndex];
-  const keyCount = keyboardType.positions.length
-
   const result: JSX.Element[] = [];
   const className = layerIndex < layerCount ? "layer" : "invisible";
-  for (let i = 0; i <100; i++) {
-    
-      const key = KeyboardKey({ index: i, layerIndex });
-      result.push(key);
-    
+  for (let i = 0; i < 100; i++) {
+    const key = <KeyboardKey index={i} layerIndex={layerIndex} />;
+    result.push(key);
   }
 
   return (

@@ -12,19 +12,14 @@ import _ from "lodash";
 
 export function MoveKey() {
   const [key] = useAtom(selectedKeyAtom);
-  const [layers, setLayers] = useAtom(layersAtom);
+  const [layers] = useAtom(layersAtom);
   const [step] = useAtom(stepAtom);
   const [codeEditorFocus] = useAtom(codeEditorFocusAtom);
-  const layer = layers[key.layerIndex];
   const label: string | null = layers[key.layerIndex]?.legends[key.keyIndex];
 
   const [keyboardType, setKeyboardType] = useAtom(keyboardTypeAtom);
 
   const position = keyboardType.positions[key.keyIndex];
-  function setPosition(p: { x: number; y: number }) {
-    keyboardType.positions[key.keyIndex] = p;
-    setKeyboardType(keyboardType);
-  }
   //
   useEffect(() => {
     let pressed = false;

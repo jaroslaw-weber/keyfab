@@ -14,8 +14,6 @@ export function EditKeyPanel() {
   const layer = layers[key.layerIndex];
   const label: string | null = layers[key.layerIndex]?.legends[key.keyIndex];
 
-  const [keyboardType, setKeyboardType] = useAtom(keyboardTypeAtom);
-
   if (step != Step.keyType) return null;
   //
 
@@ -60,7 +58,9 @@ export function EditKeyPanel() {
           </select>
         </div>
       </div>
-      <p className="mt-4 ml-4">Click on key to select it and change key type.</p>
+      <p className="mt-4 ml-4">
+        Click on key to select it and change key type.
+      </p>
     </div>
   );
   return result;
