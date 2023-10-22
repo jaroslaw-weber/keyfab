@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { parseKleLayout } from "../service/kle";
-import { validatePhysicalLayout } from "../service/physicalLayout";
+import { validatePhysicalLayout } from "../service/physical";
 import {
   Step,
   keyboardTypeAtom,
