@@ -12,7 +12,7 @@ import _ from "lodash";
 
 export function MoveKey() {
   const [key] = useAtom(selectedKeyAtom);
-  const [layers] = useAtom(layersAtom);
+  const [layers,setLayers] = useAtom(layersAtom);
   const [step] = useAtom(stepAtom);
   const [codeEditorFocus] = useAtom(codeEditorFocusAtom);
   const label: string | null = layers[key.layerIndex]?.legends[key.keyIndex];
@@ -126,6 +126,12 @@ export function MoveKey() {
           console.log("positions", kt.positions);
           //remove position at index key.keyIndex
           kt.positions.splice(keyIndex, 1);
+          for(const layer of layers){
+            if(layer?.legends?.length>=keyIndex){
+              layer.legends.splice(keyIndex, 1);
+            }
+          }
+          setLayers([...layers])
           setKeyboardType(kt);
           break;
         }

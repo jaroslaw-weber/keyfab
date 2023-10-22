@@ -19,6 +19,8 @@ export function parseKleLayout(content: any[][]): KeyboardLayoutWithLabels {
         x: x,
         y: y,
       };
+      //console.log(keyOrCommand);
+
       if (typeof keyOrCommand === "string") {
         if (commandStack.length > 0) {
           //if have a command that will apply to the current position, apply it
@@ -34,16 +36,16 @@ export function parseKleLayout(content: any[][]): KeyboardLayoutWithLabels {
         }
         positions.push(position);
         labels.push(keyOrCommand);
+        if (keyOrCommand == "↓") {
+          //console.log('here: ',position)
+        }
         x++;
       } else if (typeof keyOrCommand === "object") {
         const command = keyOrCommand;
         //move key by x command
-        if (command.x) {
-          position.x += command.x;
-        }
-        //move key by y command
-        if (command.y) {
-          position.y += command.y;
+        if (command.x || command.y) {
+          x += command.x || 0;
+          y += command.y || 0;
         }
 
         //when found a command that will be applied to the next position
@@ -64,8 +66,8 @@ export function parseKleLayout(content: any[][]): KeyboardLayoutWithLabels {
   return {
     physicalLayout: {
       name: "custom",
-      spacing: 2.4,
-      keySize: 2.2,
+      spacing: 1.5,
+      keySize: 1.5,
 
       positions,
     },

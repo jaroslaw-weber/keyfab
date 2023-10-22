@@ -10,6 +10,7 @@ import { fixLayers, getEmptyLayer } from "../service/layer";
 
 export function EditLayerCount() {
   const [layerCount, setLayerCount] = useAtom(layerCountAtom);
+  const [keyboardType] = useAtom(keyboardTypeAtom)
   const [layers, setLayers] = useAtom(layersAtom);
   const [step] = useAtom(stepAtom);
   if (step != Step.layers) {
@@ -17,7 +18,7 @@ export function EditLayerCount() {
   }
   function onChange(e: any) {
     setLayerCount(parseInt(e.target.value));
-    fixLayers(layers, layerCount)
+    fixLayers({layers, layerCount,keyCount: keyboardType.positions.length})
     setLayers(layers);
   }
   const slider = (

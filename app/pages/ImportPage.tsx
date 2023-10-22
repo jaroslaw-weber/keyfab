@@ -26,12 +26,20 @@ export function ImportPage() {
   const handleFileChange: ChangeEventHandler<HTMLInputElement> = async (
     e: any
   ) => {
+    //
+
+    //
     const kleSettings: any[][] = await readJsonFileAsObject(e);
     const parsed = parseKleLayout(kleSettings);
     validatePhysicalLayout(parsed.physicalLayout);
     console.log(parsed);
     setKeyboardType(parsed.physicalLayout);
-    fixLayers(parsed.layers, layerCount);
+	console.log('counts', parsed.physicalLayout.positions.length, layers[0].legends.length);
+    fixLayers({
+      layers: parsed.layers,
+      layerCount,
+      keyCount: parsed.physicalLayout.positions.length,
+    });
     setLayers(parsed.layers);
   };
   const result = (
