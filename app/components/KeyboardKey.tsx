@@ -36,7 +36,11 @@ export default function KeyboardKey(props: {
   const label: string = layer?.legends?.[index] ?? "";
 
   const spacingMultiplier = keyboardType.spacing;
-  const keySize = keyboardType.keySize;
+  let height = position.h ?? 1;
+  height *= keyboardType.keySize;
+  let width = position.w ?? 1;
+  width *= keyboardType.keySize;
+
   const top = position.y * spacingMultiplier + "rem";
   const left = position.x * spacingMultiplier + "rem";
 
@@ -102,8 +106,8 @@ export default function KeyboardKey(props: {
         left,
         zIndex: 0,
         transform: rotate,
-        height: keySize + "rem",
-        width: keySize + "rem",
+        height: height + "rem",
+        width: width + "rem",
       }}
     >
       {keyElem}

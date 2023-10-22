@@ -1,15 +1,28 @@
 import { useAtom } from "jotai";
-import { Step, layerCountAtom, stepAtom } from "../state";
+import {
+  Step,
+  keyboardTypeAtom,
+  layerCountAtom,
+  layersAtom,
+  stepAtom,
+} from "../state";
+import { fixLayers, getEmptyLayer } from "../service/layer";
 
 export function EditLayerCount() {
   const [layerCount, setLayerCount] = useAtom(layerCountAtom);
+  const [layers, setLayers] = useAtom(layersAtom);
   const [step] = useAtom(stepAtom);
-  if(step != Step.layers){
+  if (step != Step.layers) {
     return null;
+  }
+  function onChange(e: any) {
+    setLayerCount(parseInt(e.target.value));
+    fixLayers(layers, layerCount)
+    setLayers(layers);
   }
   const slider = (
     <input
-      onChange={(e) => setLayerCount(parseInt(e.target.value))}
+      onChange={onChange}
       type="range"
       min={1}
       max={10}

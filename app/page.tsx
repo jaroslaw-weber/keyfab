@@ -14,6 +14,7 @@ import { ResetButton } from "./components/ResetButton";
 import { MoveKey } from "./components/MoveKey";
 import { EditPhysicalLayout } from "./components/EditPhysicalLayout";
 import { Labels } from "./components/Labels";
+import { ImportPage } from "./pages/ImportPage";
 
 export default function Home() {
   const [css] = useAtom(styleAtom);
@@ -45,6 +46,7 @@ export default function Home() {
             <KeyboardView />
           </div>
           <div className="flex-1 flex flex-col gap-6 pr-8">
+            <ImportPage/>
             <EditLayerCount />
             <Labels />
             <EditKeyPanel />

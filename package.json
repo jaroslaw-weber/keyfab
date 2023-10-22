@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest",
+    "test:watch": "vitest --watch"
   },
   "dependencies": {
     "@codemirror/lang-css": "^6.2.1",
@@ -32,6 +34,7 @@
   },
   "devDependencies": {
     "@types/beautify": "^0.0.1",
-    "@types/lodash": "^4.14.198"
+    "@types/lodash": "^4.14.198",
+    "vitest": "^0.34.6"
   }
 }

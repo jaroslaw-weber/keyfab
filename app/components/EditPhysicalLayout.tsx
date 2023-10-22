@@ -17,7 +17,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import YAML from "yaml";
 
 import { materialLight } from "@uiw/codemirror-theme-material";
-import { validatePhysicalLayout } from "../service/validatePhysicalLayout";
+import { validatePhysicalLayout } from "../service/physicalLayout";
 import { MoveKey } from "./MoveKey";
 import { SelectKeyboardType } from "./SelectKeyboardType";
 

@@ -1,3 +1,4 @@
+
 import { sameRowButLower } from "./utils";
 
 const row1: Position[] = [

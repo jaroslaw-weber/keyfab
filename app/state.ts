@@ -36,6 +36,7 @@ export enum Step {
   style = "style",
   keyType = "keyType",
   preview = "preview",
+  import="import",
 }
 export const editModeAtom = atomWithStorage("edit-mode", true);
 
