@@ -1,4 +1,4 @@
-import { PrimitiveAtom, atom } from "jotai";
+import { PrimitiveAtom, atom, useAtom } from "jotai";
 import { defaultStyle } from "./style";
 import { defaultUserLayout } from "./layer";
 import { atomWithStorage } from "jotai/utils";
@@ -56,3 +56,5 @@ export const emailAtom = atom("");
 export const passwordAtom = atom("");
 export const passwordConfirmAtom = atom("");
 export const usernameAtom = atom("");
+export const currentLayoutIdAtom = atomWithStorage("layout-id", "");
+export const currentLayoutNameAtom = atom("")
