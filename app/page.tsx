@@ -2,7 +2,15 @@
 
 import { piantor } from "./keyboardType/piantor";
 import React from "react";
-import { EditMode, styleAtom, editModeAtom, stepAtom, Step } from "./state";
+import {
+  EditMode,
+  styleAtom,
+  editModeAtom,
+  stepAtom,
+  Step,
+  emailAtom,
+  passwordAtom,
+} from "./state";
 import { useAtom } from "jotai";
 import KeyboardView from "./components/KeyboardView";
 import { EditStylePanel } from "./components/EditStylePanel";
@@ -15,9 +23,13 @@ import { MoveKey } from "./components/MoveKey";
 import { EditPhysicalLayout } from "./components/EditPhysicalLayout";
 import { Labels } from "./components/Labels";
 import { ImportPage } from "./pages/ImportPage";
+import { db } from "./db";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [css] = useAtom(styleAtom);
+  const router = useRouter();
 
   return (
     <main className={`min-h-screen`}>
@@ -36,9 +48,33 @@ export default function Home() {
       <div className="global min-h-full">
         <div className="navbar px-6">
           <a className="normal-case text-xl pr-12">keyfab</a>
-          <a className=" normal-case text-sm">keyboard layout design made easy</a>
+          <a className=" normal-case text-sm">
+            keyboard layout design made easy
+          </a>
         </div>
         <div className="w-full py-8 ">
+          <div id="login">
+            {db.authStore.isValid && (
+              <div>
+                <p>hello {db.authStore.model?.id}</p>
+                <button
+                  onClick={() => {
+                    //
+                    db.authStore.clear();
+                    router.refresh();
+                  }}
+                >
+                  logout
+                </button>
+              </div>
+            )}
+
+            {!db.authStore.isValid && (
+              <div>
+                <Link href="/login">login</Link>
+              </div>
+            )}
+          </div>
           <Steps />
         </div>
         <div className="flex flex-row  gap-6">
@@ -46,7 +82,7 @@ export default function Home() {
             <KeyboardView />
           </div>
           <div className="flex-1 flex flex-col gap-6 pr-8">
-            <ImportPage/>
+            <ImportPage />
             <EditLayerCount />
             <Labels />
             <EditKeyPanel />

@@ -6,14 +6,16 @@ import { piantor } from "./keyboardType/piantor";
 import { SelectedKey } from "./SelectedKey";
 import { keyboardTypes } from "./keyboardType/list";
 
-
 export const styleAtom = atomWithStorage("style", defaultStyle);
 
 export const layersAtom = atomWithStorage("layers", defaultUserLayout);
 
-export const keyboardTypeAtom = atomWithStorage('keyboardType',keyboardTypes[0]);
+export const keyboardTypeAtom = atomWithStorage(
+  "keyboardType",
+  keyboardTypes[0]
+);
 
-export const yamlAtom = atom('');
+export const yamlAtom = atom("");
 
 /** is editing physical layout? */
 export const codeEditorFocusAtom = atom(false);
@@ -32,11 +34,11 @@ export enum EditMode {
 export enum Step {
   move = "move",
   input = "input",
-  layers='layers',
+  layers = "layers",
   style = "style",
   keyType = "keyType",
   preview = "preview",
-  import="import",
+  import = "import",
 }
 export const editModeAtom = atomWithStorage("edit-mode", true);
 
@@ -49,3 +51,6 @@ const defaultSelectedKey: SelectedKey = {
 export const selectedKeyAtom = atom(defaultSelectedKey);
 
 export const layerCountAtom = atomWithStorage("layer-count", 6);
+
+export const emailAtom = atom("");
+export const passwordAtom = atom("");
