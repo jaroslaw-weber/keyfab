@@ -54,3 +54,5 @@ export const layerCountAtom = atomWithStorage("layer-count", 6);
 
 export const emailAtom = atom("");
 export const passwordAtom = atom("");
+export const passwordConfirmAtom = atom("");
+export const usernameAtom = atom("");

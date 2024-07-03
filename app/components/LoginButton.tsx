@@ -8,7 +8,7 @@ export function LoginButton() {
     <div id="login">
       {db.authStore.isValid && (
         <div className="flex justify-center items-center gap-4">
-          <p>hello {db.authStore.model?.id}!</p>
+          <p>hello {db.authStore.model?.username}!</p>
           <button className="btn btn-neutral"
             onClick={() => {
               //
