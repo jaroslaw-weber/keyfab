@@ -33,6 +33,6 @@ const positions: Position[] = [...row1, ...row2, ...row3, ...row4, ...row5, ...r
 export const bfo9000: KeyboardType = {
     name: "BFO-9000",
     positions,
-    spacing: 2.4,
-    keySize: 2.2,
+    spacing: 2.18,
+    keySize: 1.8,
   };
