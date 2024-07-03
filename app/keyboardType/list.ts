@@ -1,6 +1,7 @@
 import { validatePhysicalLayout } from "../service/physical";
 import { moonlander } from "./moonlander";
 import { piantor } from "./piantor";
+import { bfo9000 } from "./bfo9000";
 
 import planc from "../physical/planc.json";
 import ansi104 from "../physical/ansi104.json";
@@ -26,6 +27,7 @@ for (const l of jsonLayouts) {
 export const keyboardTypes: KeyboardType[] = [
   piantor,
   moonlander,
+  bfo9000,
   //layouts from json
   ...jsonLayouts,
 ];
