@@ -26,10 +26,10 @@ import { ImportPage } from "./pages/ImportPage";
 import { db } from "./db";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { LoginButton } from "./components/LoginButton";
 
 export default function Home() {
   const [css] = useAtom(styleAtom);
-  const router = useRouter();
 
   return (
     <main className={`min-h-screen`}>
@@ -47,34 +47,17 @@ export default function Home() {
       `}</style>
       <div className="global min-h-full">
         <div className="navbar px-6">
+          <div className="flex-1">
           <a className="normal-case text-xl pr-12">keyfab</a>
           <a className=" normal-case text-sm">
             keyboard layout design made easy
-          </a>
+          </a></div>
+          <div className="flex-none">
+            <LoginButton/>
+          </div>
         </div>
         <div className="w-full py-8 ">
-          <div id="login">
-            {db.authStore.isValid && (
-              <div>
-                <p>hello {db.authStore.model?.id}</p>
-                <button
-                  onClick={() => {
-                    //
-                    db.authStore.clear();
-                    router.refresh();
-                  }}
-                >
-                  logout
-                </button>
-              </div>
-            )}
-
-            {!db.authStore.isValid && (
-              <div>
-                <Link href="/login">login</Link>
-              </div>
-            )}
-          </div>
+          
           <Steps />
         </div>
         <div className="flex flex-row  gap-6">

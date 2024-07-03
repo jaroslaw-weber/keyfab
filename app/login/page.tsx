@@ -23,30 +23,31 @@ export default function LoginPage() {
   };
 
   return (
+    <div className="flex justify-center items-center h-screen">
     <div className="form-control w-full max-w-xs">
       <label className="label">
         <span className="label-text">Email</span>
       </label>
       <input
         type="text"
+        autoComplete="email"
         placeholder="Enter your email"
         className="input input-bordered w-full max-w-xs"
-        onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
-        onBlur={(e) => setEmail((e.target as HTMLInputElement).value)}
+        onChange={(e) => setEmail((e.target as HTMLInputElement).value)}
       />
       <label className="label">
         <span className="label-text">Password</span>
       </label>
       <input
         type="password"
+        autoComplete="password"
         placeholder="Enter your password"
         className="input input-bordered w-full max-w-xs"
-        onInput={(e) => setPassword((e.target as HTMLInputElement).value)}
-        onBlur={(e) => setPassword((e.target as HTMLInputElement).value)}
+        onChange={(e) => setPassword((e.target as HTMLInputElement).value)}
       />
       <button className="btn btn-primary mt-4" onClick={handleLogin}>
         Login
       </button>
-    </div>
+    </div></div>
   );
 }
