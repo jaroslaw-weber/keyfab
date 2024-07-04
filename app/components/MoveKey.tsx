@@ -1,4 +1,4 @@
-import { useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
 import {
   Step,
@@ -9,14 +9,13 @@ import {
   stepAtom,
 } from "../state";
 import _ from "lodash";
-
+const shortcutsEnabledAtom = atom(false);
 export function MoveKey() {
   const [key] = useAtom(selectedKeyAtom);
-  const [layers,setLayers] = useAtom(layersAtom);
+  const [layers, setLayers] = useAtom(layersAtom);
   const [step] = useAtom(stepAtom);
-  const [codeEditorFocus] = useAtom(codeEditorFocusAtom);
   const label: string | null = layers[key.layerIndex]?.legends[key.keyIndex];
-
+  const [shortcutsEnabled, setShortcutsEnabled] = useAtom(shortcutsEnabledAtom);
   const [keyboardType, setKeyboardType] = useAtom(keyboardTypeAtom);
 
   const position = keyboardType.positions[key.keyIndex];
@@ -27,11 +26,12 @@ export function MoveKey() {
     console.log("mounting");
     const keyIndex = key.keyIndex;
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (!shortcutsEnabled) {
+        console.log("shortcuts disabled");
+        return;
+      }
       console.log("step", step);
       if (step != Step.move) {
-        return null;
-      }
-      if (codeEditorFocus) {
         return null;
       }
 
@@ -126,12 +126,12 @@ export function MoveKey() {
           console.log("positions", kt.positions);
           //remove position at index key.keyIndex
           kt.positions.splice(keyIndex, 1);
-          for(const layer of layers){
-            if(layer?.legends?.length>=keyIndex){
+          for (const layer of layers) {
+            if (layer?.legends?.length >= keyIndex) {
               layer.legends.splice(keyIndex, 1);
             }
           }
-          setLayers([...layers])
+          setLayers([...layers]);
           setKeyboardType(kt);
           break;
         }
@@ -151,7 +151,7 @@ export function MoveKey() {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [key, keyboardType, position, setKeyboardType, step, codeEditorFocus]);
+  }, [key, keyboardType, position, setKeyboardType, step]);
 
   if (step != Step.move) return null;
   return (
@@ -172,6 +172,15 @@ export function MoveKey() {
       <div className="card bg-base-100 shadow-xl mt-4">
         <div className="card-body">
           <h2 className="card-title justify-center">Shortcuts</h2>
+          <label className="label cursor-pointer mr-auto flex gap-6">
+            <span className="label-text">Enable Shortcuts</span>
+            <input
+              className="checkbox"
+              type="checkbox"
+              checked={shortcutsEnabled}
+              onChange={() => setShortcutsEnabled(!shortcutsEnabled)}
+            />
+          </label>
           <div></div>
           <p>Move key:</p>
           <div className="card-actions justify-center">

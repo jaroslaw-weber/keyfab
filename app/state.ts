@@ -57,4 +57,4 @@ export const passwordAtom = atom("");
 export const passwordConfirmAtom = atom("");
 export const usernameAtom = atom("");
 export const currentLayoutIdAtom = atomWithStorage("layout-id", "");
-export const currentLayoutNameAtom = atom("")
+export const currentLayoutNameAtom = atomWithStorage("layout-name", "")
