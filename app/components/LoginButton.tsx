@@ -9,7 +9,7 @@ export function LoginButton() {
       {db.authStore.isValid && (
         <div className="flex justify-center items-center gap-4">
           <p>hello {db.authStore.model?.username}!</p>
-          <button className="btn btn-neutral"
+          <button className="btn btn-link"
             onClick={() => {
               //
               db.authStore.clear();
@@ -23,7 +23,7 @@ export function LoginButton() {
 
       {!db.authStore.isValid && (
         <div>
-          <Link href="/login" className="btn btn-neutral">login</Link>
+          <Link href="/login" className="btn btn-link">login</Link>
         </div>
       )}
     </div>
