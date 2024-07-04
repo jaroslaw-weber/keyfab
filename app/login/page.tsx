@@ -50,7 +50,7 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-200">
+    <div className="flex justify-center items-center h-screen ">
       <div className="form-control w-full max-w-xs">
         {!isLogin && (
           <div>
