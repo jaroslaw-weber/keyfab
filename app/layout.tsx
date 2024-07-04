@@ -34,9 +34,9 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       border-width: 1px;
     }
   `}</style>
-        <main className={inter.className + " min-h-screen "}>
+        <main className={inter.className + " min-h-screen flex flex-col"}>
           <Navbar />
-          <div className="global min-h-full">{children}</div>
+          <div className="global min-h-full flex-1">{children}</div>
         </main>
       </body>
     </html>

@@ -4,19 +4,27 @@ import { useEffect, useState } from "react";
 import KeyboardView from "../../components/KeyboardView";
 import { db } from "@/app/db";
 import { atom, useAtom } from "jotai";
-import { currentLayoutNameAtom, layersAtom } from "@/app/state";
+import { currentLayoutIdAtom, currentLayoutNameAtom, layersAtom } from "@/app/state";
 import { KeyboardLayoutSchema } from "@/app/db/schema/KeyboardLayoutSchema";
 
 const loadingAtom = atom(true);
 export default function KeyboardPreview({
   params,
 }: {
-  params: { slug: string };
+  params: { id: string };
 }) {
+	const { id} = params
+	console.log("params", params);
   const [layers, setLayers] = useAtom(layersAtom);
+  const [layoutId, setLayoutId] = useAtom(currentLayoutIdAtom);
   const [layoutName, setLayoutName] = useAtom(currentLayoutNameAtom);
   const [loading, setLoading] = useAtom(loadingAtom);
   async function loadLayout(id: string) {
+	if(!id){
+		console.error("no id", id);
+		setLoading(false);
+		return
+	}
 	console.log("loadLayout", id);
     const layout = await db
       .collection<KeyboardLayoutSchema>("keyboard_layout")
@@ -24,20 +32,22 @@ export default function KeyboardPreview({
 	  console.log("layout", layout);
     if (layout) {
       setLayers(layout.layers);
+	  setLayoutName(layout.name);
+	  setLayoutId(layout.id);
     }
     setLoading(false);
   }
 
   useEffect(() => {
-    loadLayout(params.slug);
-  }, [params.slug]);
+    loadLayout(id);
+  }, []);
 
   return (
     <div>
       {loading && <p>Loading...</p>}
       {!loading && (
         <div>
-          <p>{params.slug}</p>
+          <p>{id}</p>
           <p>{layoutName}</p>
           <p></p>
           <KeyboardView />

@@ -1,37 +1,23 @@
-"use client";
-import { db } from "@/app/db";
-import { atom, useAtom } from "jotai";
-import Link from "next/link";
-import { useEffect } from "react";
-
-const myLayoutsAtom = atom<any[]>([]);
+"use client"
+import LayoutCard from "../components/LayoutCard";
+import { useFetchLayouts } from "../fetch";
 
 export default function MyLayouts() {
-  const [myLayouts, setMyLayouts] = useAtom(myLayoutsAtom);
+  const { layouts: myLayouts, isLoading } = useFetchLayouts(true); // true for personal layouts
 
-  async function refresh() {
-    try {
-      const layouts = await db.collection("keyboard_layout").getList(0, 0, {
-        filter: db.filter("created_by={:id}", {
-          id: db.authStore.model?.id,
-        }),
-      });
-      setMyLayouts(layouts.items);
-    } catch (error) {
-      console.error("Failed to fetch layouts:", error);
-      // Optionally handle the error by setting state, showing a message, etc.
-    }
+  if (isLoading) {
+    return (
+      <div className="min-h-full flex items-center justify-center p-4">
+        Loading layouts...
+      </div>
+    );
   }
 
-  refresh();
-
   return (
-    <div className="h-full">
-      {myLayouts.map((layout) => (
-        <div key={layout.id}>
-          <Link href={`/share/${layout.id}`}>{layout.name}</Link>
-        </div>
-      ))}
+    <div className="min-h-full p-4 grid grid-cols-3">
+      {myLayouts.length > 0 && (
+        myLayouts.map(layout => <LayoutCard key={layout.id} layout={layout} />)
+      )}
     </div>
   );
 }
