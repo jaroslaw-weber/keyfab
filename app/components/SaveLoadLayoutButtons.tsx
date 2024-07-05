@@ -7,10 +7,9 @@ import {
   layersAtom,
 } from "../state";
 import { db } from "../db";
-import { keyboardLayoutCollection} from "../db/utils";
+import { keyboardLayoutCollection } from "../db/utils";
 
 export default function SaveLoadLayoutButtons() {
-
   const [currentLayout, setCurrentLayout] = useAtom(currentKeyboardLayoutAtom);
 
   async function saveLayout() {
@@ -21,7 +20,7 @@ export default function SaveLoadLayoutButtons() {
         await keyboardLayoutCollection.update(id, { ...p });
       } else {
         const item = await keyboardLayoutCollection.create({ ...p });
-        setCurrentLayout({...p, id: item.id });
+        setCurrentLayout({ ...p, id: item.id });
       }
     } catch (e) {
       window.alert(e);
@@ -55,7 +54,7 @@ export default function SaveLoadLayoutButtons() {
           onChange={(e) => {
             const newName = e.target.value;
             currentLayout.name = newName;
-            setCurrentLayout({...currentLayout });
+            setCurrentLayout({ ...currentLayout });
           }}
         />
       </label>
@@ -70,22 +69,38 @@ export default function SaveLoadLayoutButtons() {
           value={currentLayout.hardware}
           onChange={(e) => {
             currentLayout.hardware = e.target.value;
-            setCurrentLayout({...currentLayout });
+            setCurrentLayout({ ...currentLayout });
+          }}
+        />
+      </label>{" "}
+      <label className="form-control w-full max-w-xs">
+        <div className="label">
+          <span className="label-text">description:</span>
+        </div>
+        <input
+          type="text"
+          placeholder="Type here"
+          className="input input-bordered"
+          value={currentLayout.description}
+          onChange={(e) => {
+            currentLayout.description = e.target.value;
+            setCurrentLayout({ ...currentLayout });
           }}
         />
       </label>
-
       <button className="btn btn-primary mt-auto" onClick={() => saveLayout()}>
         Save layout
       </button>
-      {currentLayout.id && <button
-        className="btn btn-neutral mt-auto"
-        onClick={() => {
-          setCurrentLayout({...currentLayout, id: undefined });
-        }}
-      >
-        Create New Layout
-      </button>}
+      {currentLayout.id && (
+        <button
+          className="btn btn-neutral mt-auto"
+          onClick={() => {
+            setCurrentLayout({ ...currentLayout, id: undefined });
+          }}
+        >
+          Create New Layout
+        </button>
+      )}
     </div>
   );
 }
