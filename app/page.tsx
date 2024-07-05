@@ -16,11 +16,12 @@ export default function Home() {
   return (
     <div>
       <div className="w-full py-8">
+        
+        <SaveLoadLayoutButtons />
         <Steps />
       </div>
       <div className="flex flex-row gap-6">
         <div className="flex-1">
-          <SaveLoadLayoutButtons />
           <KeyboardView />
         </div>
         <div className="flex-1 flex flex-col gap-6 pr-8">
