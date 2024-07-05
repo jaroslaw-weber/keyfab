@@ -46,10 +46,8 @@ export default function KeyboardPreview({
     <div>
       {loading && <p>Loading...</p>}
       {!loading && (
-        <div>
-          <p>{id}</p>
-          <p>{layoutName}</p>
-          <p></p>
+        <div className="flex flex-col justify-center items-center gap-4 py-8">
+          <p className="text-xl uppercase">{layoutName}</p>
           <KeyboardView />
         </div>
       )}

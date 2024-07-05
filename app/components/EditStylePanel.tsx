@@ -28,6 +28,7 @@ export function EditStylePanel() {
           }
           setStyle(style);
         }}
+        key={style.name}
       >
         {style.name}
       </option>

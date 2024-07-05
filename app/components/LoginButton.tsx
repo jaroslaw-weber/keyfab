@@ -2,14 +2,17 @@ import Link from "next/link";
 import { db } from "../db";
 
 import { useRouter } from "next/navigation";
+import { isLoggedIn } from "../db/utils";
 export function LoginButton() {
   const router = useRouter();
+  const logged = isLoggedIn();
   return (
     <div id="login">
-      {db.authStore.isValid && (
+      {logged && (
         <div className="flex justify-center items-center gap-4">
           <p className="font-sm">{db.authStore.model?.username}</p>
-          <button className="btn btn-link"
+          <button
+            className="btn btn-link"
             onClick={() => {
               //
               db.authStore.clear();
@@ -21,9 +24,11 @@ export function LoginButton() {
         </div>
       )}
 
-      {!db.authStore.isValid && (
+      {!logged && (
         <div>
-          <Link href="/login" className="btn btn-link">login</Link>
+          <Link href="/login" className="btn btn-link">
+            login
+          </Link>
         </div>
       )}
     </div>

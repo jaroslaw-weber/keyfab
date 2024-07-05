@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import { styleAtom } from "./state";
-import { useAtom } from "jotai";
 import KeyboardView from "./components/KeyboardView";
 import { EditStylePanel } from "./components/EditStylePanel";
 import { EditKeyPanel } from "./components/EditKeyPanel";
@@ -12,9 +10,7 @@ import { ResetButton } from "./components/ResetButton";
 import { EditPhysicalLayout } from "./components/EditPhysicalLayout";
 import { Labels } from "./components/Labels";
 import { ImportPage } from "./pages/ImportPage";
-import { LoginButton } from "./components/LoginButton";
 import SaveLoadLayoutButtons from "./components/SaveLoadLayoutButtons";
-import Layout from "./layout";
 
 export default function Home() {
   return (

@@ -24,6 +24,7 @@ export function SelectKeyboardType() {
           }
           setKeyboardType(style);
         }}
+        key={t.name}
       >
         {t.name}
       </option>
@@ -53,7 +54,6 @@ export function SelectKeyboardType() {
           <div className="card-actions justify-center">{selectStyle}</div>
         </div>
       </div>
-
     </div>
   );
 

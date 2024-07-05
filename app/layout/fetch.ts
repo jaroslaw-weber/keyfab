@@ -10,10 +10,14 @@ export function useFetchLayouts(isPersonal = true) {
   useEffect(() => {
     setLoading(true);
     async function fetchLayouts() {
-      const filter = isPersonal ? db.filter("created_by={:id}", { id: db.authStore.model?.id }) : undefined;
+      const filter = isPersonal
+        ? db?.filter("created_by={:id}", { id: db.authStore.model?.id })
+        : undefined;
       const params = filter ? { filter } : {};
       try {
-        const result = await db.collection("keyboard_layout").getList(0, 0, params);
+        const result = await db
+          .collection("keyboard_layout")
+          .getList(0, 0, params);
         setLayouts(result.items);
       } catch (error) {
         console.error("Failed to fetch layouts:", error);

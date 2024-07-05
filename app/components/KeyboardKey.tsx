@@ -37,18 +37,17 @@ export default function KeyboardKey(props: {
 
   const spacingMultiplier = keyboardType.spacing;
 
-  
   let height = position.h ?? 1;
   height *= keyboardType.keySize;
   let width = position.w ?? 1;
-  width *= keyboardType.keySize
+  width *= keyboardType.keySize;
 
-  const realSpacingSize = spacingMultiplier-keyboardType.keySize
-  const extraWidth = (position.w||1)-1
-  width += extraWidth*realSpacingSize
+  const realSpacingSize = spacingMultiplier - keyboardType.keySize;
+  const extraWidth = (position.w || 1) - 1;
+  width += extraWidth * realSpacingSize;
 
-  const extraHeight = (position.h||1)-1
-  height += extraHeight*realSpacingSize
+  const extraHeight = (position.h || 1) - 1;
+  height += extraHeight * realSpacingSize;
 
   const top = position.y * spacingMultiplier + "rem";
   const left = position.x * spacingMultiplier + "rem";
@@ -108,6 +107,7 @@ export default function KeyboardKey(props: {
 
   return (
     <div
+      key={`${index}-${layerIndex}`}
       className={keyClass + " justify-center"}
       style={{
         position: "absolute",

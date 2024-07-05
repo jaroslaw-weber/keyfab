@@ -1,5 +1,4 @@
-
-import beautify from 'beautify';
+import beautify from "beautify";
 const lilRainbow = {
   name: "lil rainbow",
   css: `@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
@@ -373,7 +372,7 @@ color:#000;
 const firstComputer = {
   name: "first computer",
   css: `
-	@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+	@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
 
 .global {
 background-color:  #fff;
@@ -447,8 +446,8 @@ opacity:0.2;
 };
 
 const choc = {
-	name: 'choc',
-	css:`
+  name: "choc",
+  css: `
 	
 	@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
 	.global {
@@ -514,8 +513,8 @@ const choc = {
 	
 	
 	
-	`
-}
+	`,
+};
 
 function cleanupCss(css: string) {
   //remove empty line at the beginning of the string
@@ -523,10 +522,8 @@ function cleanupCss(css: string) {
 }
 
 export function formatCss(css: string) {
-
- 
-const result = beautify(css, {format: 'css'})
-return result;
+  const result = beautify(css, { format: "css" });
+  return result;
 }
 
 export interface Style {
