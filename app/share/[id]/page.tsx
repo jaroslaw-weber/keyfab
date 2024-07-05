@@ -11,7 +11,7 @@ import {
   layersAtom,
 } from "@/app/state";
 import { KeyboardLayoutSchema } from "@/app/db/schema/KeyboardLayoutSchema";
-import { createKeyboardLayout, getKeyboardLayout, getUserId } from "@/app/db/utils";
+import {keyboardLayoutCollection, getUserId } from "@/app/db/utils";
 
 const loadingAtom = atom(true);
 export default function KeyboardPreview({
@@ -34,7 +34,7 @@ export default function KeyboardPreview({
       return;
     }
     console.log("loadLayout", id);
-    const layout = await getKeyboardLayout(id);
+    const layout = await keyboardLayoutCollection.getOne(id);
     console.log("layout", layout);
     if (layout) {
       await setCurrentKeyboardLayout(layout);
@@ -51,7 +51,7 @@ export default function KeyboardPreview({
     newLayout.id = undefined;
     newLayout.created_by = getUserId()
 
-    await createKeyboardLayout(newLayout);
+    await keyboardLayoutCollection.create(newLayout);
      router.push("/")
   }
 

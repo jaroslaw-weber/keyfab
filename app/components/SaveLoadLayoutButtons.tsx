@@ -7,7 +7,7 @@ import {
   layersAtom,
 } from "../state";
 import { db } from "../db";
-import { createKeyboardLayout, updateKeyboardLayout } from "../db/utils";
+import { keyboardLayoutCollection} from "../db/utils";
 
 export default function SaveLoadLayoutButtons() {
 
@@ -18,9 +18,9 @@ export default function SaveLoadLayoutButtons() {
       const p = currentLayout;
       const id = p.id;
       if (id) {
-        await updateKeyboardLayout(id, { ...p });
+        await keyboardLayoutCollection.update(id, { ...p });
       } else {
-        const item = await createKeyboardLayout({ ...p });
+        const item = await keyboardLayoutCollection.create({ ...p });
         setCurrentLayout({...p, id: item.id });
       }
     } catch (e) {
