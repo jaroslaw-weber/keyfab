@@ -2,10 +2,6 @@
 import Link from "next/link";
 import { LoginButton } from "./LoginButton";
 import { isLoggedIn } from "../db/utils";
-import { useAtom } from "jotai";
-import { styleAtom } from "../state";
-import { useEffect } from "react";
-import GlobalStyle from "./GlobalStyle";
 
 export default function Navbar() {
   const logged = isLoggedIn();
@@ -36,9 +32,8 @@ export default function Navbar() {
               </details>
             </li>
           )}
-
-          <LoginButton />
         </ul>
+        <LoginButton />
       </div>
     </div>
   );

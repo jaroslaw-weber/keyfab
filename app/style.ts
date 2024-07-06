@@ -1,10 +1,9 @@
 import beautify from "beautify";
 const lilRainbow = {
   name: "lil rainbow",
-  css: `@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+  css: `
   .global {
   background-color:  #edf0ee;
-	  font-family: 'Josefin Sans', sans-serif;
   }
   
   .layer-name
@@ -543,3 +542,20 @@ export const styles: Style[] = [
   return s;
 });
 export const defaultStyle = styles[0];
+
+export function cssStringToReactStyle(cssString: string) {
+  const styleObject: Record<string, any> = {};
+
+  cssString.split(";").forEach((style) => {
+    if (style.trim()) {
+      const [property, value] = style.split(":").map((item) => item.trim());
+      const camelCasedProperty = property.replace(
+        /-([a-z])/g,
+        (match, letter) => letter.toUpperCase()
+      );
+      styleObject[camelCasedProperty] = value;
+    }
+  });
+
+  return styleObject;
+}
