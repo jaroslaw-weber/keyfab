@@ -153,8 +153,8 @@ export function MoveKey() {
     };
   }, [key, keyboardType, position, setKeyboardType, step]);
 
-  if (step != Step.move) return null;
-  return (
+  const show = step == Step.move;
+  return (show &&
     <div>
       <p className="pl-4 pb-4">Click on key to select it.</p>
       <div className="card bg-base-100 shadow-xl">

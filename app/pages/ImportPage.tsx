@@ -18,11 +18,7 @@ export function ImportPage() {
   const setKeyboardType = useSetAtom(keyboardTypeAtom);
   const [layers, setLayers] = useAtom(layersAtom);
   const layerCount = useAtomValue(layerCountAtom);
-
-  if (step != Step.import) {
-    return null;
-  }
-
+const show = step === Step.import;
   const handleFileChange: ChangeEventHandler<HTMLInputElement> = async (
     e: any
   ) => {
@@ -42,7 +38,7 @@ export function ImportPage() {
     });
     setLayers(parsed.layers);
   };
-  const result = (
+  const result = (show &&
     <div className="flex flex-col gap-4">
       <p className="text-3xl">Import</p>
       <p>You can skip this step if you don't want to import anything.</p>

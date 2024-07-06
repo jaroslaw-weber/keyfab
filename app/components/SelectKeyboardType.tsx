@@ -5,9 +5,7 @@ import { keyboardTypes } from "../keyboardType/list";
 export function SelectKeyboardType() {
   const [keyboardType, setKeyboardType] = useAtom(keyboardTypeAtom);
   const [step] = useAtom(stepAtom);
-  if (step != Step.move) {
-    return null;
-  }
+  const show = step == Step.move
 
   //
 
@@ -57,5 +55,5 @@ export function SelectKeyboardType() {
     </div>
   );
 
-  return card;
+  return show && card;
 }

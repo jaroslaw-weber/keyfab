@@ -14,6 +14,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 const GlobalLayout: React.FC<LayoutProps> = ({ children }) => {
   const [css, setCss] = useAtom(styleAtom);
+  /*
   useLayoutEffect(() => {
     const style = document.createElement("style");
     style.innerHTML = css.css;
@@ -24,6 +25,7 @@ const GlobalLayout: React.FC<LayoutProps> = ({ children }) => {
       document.head.removeChild(style);
     };
   }, []);
+  */
   return (
     <html lang="en">
       <head>

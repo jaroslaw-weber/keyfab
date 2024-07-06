@@ -15,6 +15,8 @@ export function EditKeyPanel() {
   const label: string | null = layers[key.layerIndex]?.legends[key.keyIndex];
 
   if (step != Step.keyType) return null;
+
+  const showEmpty = step != Step.keyType
   //
 
   function setCategory(v: string) {
@@ -63,5 +65,5 @@ export function EditKeyPanel() {
       </p>
     </div>
   );
-  return result;
+  return (!showEmpty && result)
 }

@@ -20,18 +20,9 @@ export default function KeyboardKey(props: {
   const [key, selectKey] = useAtom(selectedKeyAtom);
   const [step] = useAtom(stepAtom);
 
-  if (!layers) {
-    return <div />;
-  }
-
-  const layer = layers[layerIndex];
-  if (!layer) {
-    return <div />;
-  }
-  const position = keyboardType.positions[index];
-  if (!position) {
-    return <div />;
-  }
+  const layer = layers?.[layerIndex];
+  const position = keyboardType?.positions?.[index];
+  const show = layers && position && layer;
 
   const label: string = layer?.legends?.[index] ?? "";
 
@@ -106,21 +97,23 @@ export default function KeyboardKey(props: {
   }
 
   return (
-    <div
-      key={`${index}-${layerIndex}`}
-      className={keyClass + " justify-center"}
-      style={{
-        position: "absolute",
-        top,
-        left,
-        zIndex: 0,
-        transform: rotate,
-        height: height + "rem",
-        width: width + "rem",
-      }}
-    >
-      {keyElem}
-    </div>
+    show && (
+      <div
+        key={`${index}-${layerIndex}`}
+        className={keyClass + " justify-center"}
+        style={{
+          position: "absolute",
+          top,
+          left,
+          zIndex: 0,
+          transform: rotate,
+          height: height + "rem",
+          width: width + "rem",
+        }}
+      >
+        {keyElem}
+      </div>
+    )
   );
 }
 function getKeyClass(category: number | undefined, label: string) {
