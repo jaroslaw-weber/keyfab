@@ -1,11 +1,17 @@
+"use client"
 import Link from "next/link";
 import { db } from "../db";
 
 import { useRouter } from "next/navigation";
 import { isLoggedIn } from "../db/utils";
+import { useEffect, useState } from "react";
 export function LoginButton() {
   const router = useRouter();
-  const logged = isLoggedIn();
+  const [logged, setLogged] = useState(false);
+
+  useEffect(() => {
+    setLogged(isLoggedIn());
+  }, []);
   return (
     <div id="login">
       {logged && (

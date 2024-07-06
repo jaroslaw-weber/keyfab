@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode, useLayoutEffect } from "react";
+import React, { ReactNode, useEffect, useLayoutEffect } from "react";
 import { useAtom } from "jotai";
 import { styleAtom } from "./state";
 import Navbar from "./components/Navbar";
@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 const GlobalLayout: React.FC<LayoutProps> = ({ children }) => {
   const [css, setCss] = useAtom(styleAtom);
-  /*
+  
   useLayoutEffect(() => {
     const style = document.createElement("style");
     style.innerHTML = css.css;
@@ -25,7 +25,7 @@ const GlobalLayout: React.FC<LayoutProps> = ({ children }) => {
       document.head.removeChild(style);
     };
   }, []);
-  */
+  
   return (
     <html lang="en">
       <head>
@@ -43,7 +43,7 @@ const GlobalLayout: React.FC<LayoutProps> = ({ children }) => {
       </head>
       <body>
         <main className={inter.className + " min-h-screen flex flex-col"}>
-          <Navbar />
+         <Navbar />
           <div className="global min-h-full flex-1">{children}</div>
         </main>
       </body>

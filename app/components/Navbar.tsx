@@ -2,9 +2,14 @@
 import Link from "next/link";
 import { LoginButton } from "./LoginButton";
 import { isLoggedIn } from "../db/utils";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
-  const logged = isLoggedIn();
+  const [logged, setLogged] = useState(false);
+
+  useEffect(() => {
+    setLogged(isLoggedIn());
+  }, []);
 
   return (
     <div className="navbar px-6 sticky top-0 z-30 bg-base-100">
