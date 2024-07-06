@@ -14,9 +14,11 @@ export default function MyLayouts() {
   }
 
   return (
-    <div className="min-h-full p-4 grid grid-cols-3">
+    <div className="min-h-full p-4 grid grid-cWols-3">
       {myLayouts.length > 0 && (
-        myLayouts.map(layout => <LayoutCard key={layout.id} layout={layout} />)
+myLayouts.map((layout) => (
+  <LayoutCard key={layout.id} layout={layout} />
+))
       )}
     </div>
   );

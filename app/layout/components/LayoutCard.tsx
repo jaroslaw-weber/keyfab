@@ -1,7 +1,7 @@
 import { KeyboardLayoutSchema } from "@/app/db/schema/KeyboardLayoutSchema";
 import Link from "next/link";
 
-function LayoutCard(layout: KeyboardLayoutSchema) {
+function LayoutCard({layout}:{layout: KeyboardLayoutSchema}) {
   return (
     <div key={layout.id} className="card card-bordered card-compact bg-base-100 shadow-xl m-2">
       <div className="card-body">
