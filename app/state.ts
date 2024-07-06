@@ -1,8 +1,6 @@
-import { PrimitiveAtom, atom, useAtom } from "jotai";
+import { atom } from "jotai";
 import { defaultStyle } from "./style";
 import { defaultUserLayout } from "./layer";
-import { atomWithDefault, atomWithStorage } from "jotai/utils";
-import { piantor } from "./keyboardType/piantor";
 import { SelectedKey } from "./SelectedKey";
 import { keyboardTypes } from "./keyboardType/list";
 import { db } from "./db";
@@ -52,10 +50,10 @@ export const selectedKeyAtom = atom(defaultSelectedKey);
 
 export const layerCountAtom = atom(6);
 
-export const emailAtom = atomWithStorage("email","");
+export const emailAtom = atom("");
 export const passwordAtom = atom("");
 export const passwordConfirmAtom = atom("");
-export const usernameAtom = atomWithStorage("email","");
+export const usernameAtom = atom("");
 export const currentLayoutIdAtom = atom("");
 export const currentLayoutNameAtom = atom("");
 export const layoutListAtom = atom<any[]>([]);

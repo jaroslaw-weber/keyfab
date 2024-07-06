@@ -5,6 +5,7 @@ import { styleAtom } from "./state";
 import Navbar from "./components/Navbar";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import GlobalStyle from "./components/GlobalStyle";
 
 interface LayoutProps {
   children: ReactNode;
@@ -15,6 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 const GlobalLayout: React.FC<LayoutProps> = ({ children }) => {
   const [css, setCss] = useAtom(styleAtom);
   
+  /*
   useLayoutEffect(() => {
     const style = document.createElement("style");
     style.innerHTML = css.css;
@@ -25,6 +27,7 @@ const GlobalLayout: React.FC<LayoutProps> = ({ children }) => {
       document.head.removeChild(style);
     };
   }, []);
+  */
   
   return (
     <html lang="en">
@@ -42,6 +45,7 @@ const GlobalLayout: React.FC<LayoutProps> = ({ children }) => {
   `}</style>
       </head>
       <body>
+        <GlobalStyle/>
         <main className={inter.className + " min-h-screen flex flex-col"}>
          <Navbar />
           <div className="global min-h-full flex-1">{children}</div>
