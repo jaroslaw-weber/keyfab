@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode, useEffect, useLayoutEffect } from "react";
+import React, { ReactNode } from "react";
 import { useAtom } from "jotai";
 import { styleAtom } from "./state";
 import Navbar from "./components/Navbar";
@@ -15,6 +15,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 const GlobalLayout: React.FC<LayoutProps> = ({ children }) => {
   const [css, setCss] = useAtom(styleAtom);
+
+  
   
   /*
   useLayoutEffect(() => {

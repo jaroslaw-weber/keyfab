@@ -11,7 +11,7 @@ import {
   layersAtom,
 } from "@/app/state";
 import { KeyboardLayoutSchema } from "@/app/db/schema/KeyboardLayoutSchema";
-import {keyboardLayoutCollection, getUserId } from "@/app/db/utils";
+import { keyboardLayoutCollection, getUserId } from "@/app/db/utils";
 
 const loadingAtom = atom(true);
 export default function KeyboardPreview({
@@ -22,11 +22,11 @@ export default function KeyboardPreview({
   const router = useRouter();
   const { id } = params;
   console.log("params", params);
-  const [layers, setLayers] = useAtom(layersAtom);
-  const [layoutId, setLayoutId] = useAtom(currentLayoutIdAtom);
   const [layoutName, setLayoutName] = useAtom(currentLayoutNameAtom);
   const [loading, setLoading] = useAtom(loadingAtom);
-  const [currentKeyboardLayout, setCurrentKeyboardLayout] = useAtom(currentKeyboardLayoutAtom);
+  const [currentKeyboardLayout, setCurrentKeyboardLayout] = useAtom(
+    currentKeyboardLayoutAtom
+  );
   async function loadLayout(id: string) {
     if (!id) {
       console.error("no id", id);
@@ -47,13 +47,19 @@ export default function KeyboardPreview({
   }, []);
 
   async function duplicateLayout() {
-    const newLayout = {...currentKeyboardLayout} as any
+    const newLayout = { ...currentKeyboardLayout } as any;
     newLayout.id = undefined;
-    newLayout.created_by = getUserId()
+    newLayout.created_by = getUserId();
 
     await keyboardLayoutCollection.create(newLayout);
-     router.push("/")
+    router.push("/");
   }
+
+  async function editLayout() {
+    router.push(`/`);
+  }
+  const isMyLayout = currentKeyboardLayout.created_by === getUserId();
+  console.log("isMyLayout", isMyLayout);
 
   return (
     <div>
@@ -62,7 +68,16 @@ export default function KeyboardPreview({
         <div className="flex flex-col justify-center items-center gap-4 py-8">
           <p className="text-xl uppercase">{layoutName}</p>
           <p>clone this layout and start editing it!</p>
-          <button className="btn btn-neutral" onClick={() => duplicateLayout()}>clone layout</button>
+          <div className="flex mx-auto gap-4">
+          <button className="btn btn-neutral" onClick={() => duplicateLayout()}>
+            clone
+          </button>
+          {isMyLayout && (
+            <button className="btn btn-neutral" onClick={() => editLayout()}>
+              edit
+            </button>
+          )}
+          </div>
           <KeyboardView />
         </div>
       )}

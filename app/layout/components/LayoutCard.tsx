@@ -5,6 +5,7 @@ function LayoutCard({layout}:{layout: KeyboardLayoutSchema}) {
   return (
     <div key={layout.id} className="card card-bordered card-compact bg-base-100 shadow-xl m-2">
       <div className="card-body">
+        <p className="text-sm text-gray-300">{layout.id}</p>
         <h2 className="card-title">{layout.name}</h2>
         <p>Hardware: {layout.hardware}</p>
         <p>Description: {layout.description}</p>

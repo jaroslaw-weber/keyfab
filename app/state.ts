@@ -59,6 +59,7 @@ export const currentLayoutNameAtom = atom("");
 export const layoutListAtom = atom<any[]>([]);
 export const loadingLayoutsAtom = atom(false);
 const layoutDescriptionAtom = atom("");
+const layoutCreatorAtom = atom("");
 
 export const currentKeyboardLayoutAtom = atom(
   (get) => {
@@ -71,7 +72,7 @@ export const currentKeyboardLayoutAtom = atom(
       description: get(layoutDescriptionAtom),
       name: currentLayoutName,
       hardware: keyboardType.name,
-      created_by: db.authStore.model?.id,
+      created_by: get(layoutCreatorAtom),
       public: true,
       layers,
       positions: keyboardType.positions,
@@ -94,5 +95,8 @@ export const currentKeyboardLayoutAtom = atom(
     set(keyboardTypeAtom, keyboardType);
     set(layersAtom, layers);
     set(currentLayoutIdAtom, update.id!);
+    set(layoutCreatorAtom, update.created_by!);
   }
 );
+
+

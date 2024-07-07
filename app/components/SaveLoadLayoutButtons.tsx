@@ -7,7 +7,7 @@ import {
   layersAtom,
 } from "../state";
 import { db } from "../db";
-import { keyboardLayoutCollection } from "../db/utils";
+import { getUserId, keyboardLayoutCollection } from "../db/utils";
 
 export default function SaveLoadLayoutButtons() {
   const [currentLayout, setCurrentLayout] = useAtom(currentKeyboardLayoutAtom);
@@ -26,6 +26,7 @@ export default function SaveLoadLayoutButtons() {
       window.alert(e);
     }
   }
+  const isMyLayout = currentLayout.created_by == getUserId();
 
   return (
     <div id="save" className="flex gap-8 w-full px-8 pb-8 items-center">
@@ -88,9 +89,14 @@ export default function SaveLoadLayoutButtons() {
           }}
         />
       </label>
-      <button className="btn btn-primary mt-auto" onClick={() => saveLayout()}>
-        Save layout
-      </button>
+      {isMyLayout && (
+        <button
+          className="btn btn-primary mt-auto"
+          onClick={() => saveLayout()}
+        >
+          Save layout
+        </button>
+      )}
       {currentLayout.id && (
         <button
           className="btn btn-neutral mt-auto"

@@ -1,17 +1,15 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { db } from "../db";
 
 import { useRouter } from "next/navigation";
-import { isLoggedIn } from "../db/utils";
 import { useEffect, useState } from "react";
+import { useAtom } from "jotai";
+import { logout } from "../db/utils";
 export function LoginButton() {
   const router = useRouter();
-  const [logged, setLogged] = useState(false);
+  const logged = db.authStore.isValid;
 
-  useEffect(() => {
-    setLogged(isLoggedIn());
-  }, []);
   return (
     <div id="login">
       {logged && (
@@ -21,7 +19,10 @@ export function LoginButton() {
             className="btn btn-link"
             onClick={() => {
               //
-              db.authStore.clear();
+
+              logout();
+
+              router.push("/");
               router.refresh();
             }}
           >

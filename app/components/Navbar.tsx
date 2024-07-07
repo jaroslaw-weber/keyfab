@@ -1,15 +1,10 @@
 "use client";
 import Link from "next/link";
 import { LoginButton } from "./LoginButton";
-import { isLoggedIn } from "../db/utils";
-import { useEffect, useState } from "react";
+import { db } from "../db";
 
 export default function Navbar() {
-  const [logged, setLogged] = useState(false);
-
-  useEffect(() => {
-    setLogged(isLoggedIn());
-  }, []);
+  const logged = db.authStore.isValid;
 
   return (
     <div className="navbar px-6 sticky top-0 z-30 bg-base-100">

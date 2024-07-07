@@ -5,6 +5,7 @@ import { emailAtom, passwordAtom, passwordConfirmAtom } from "@/app/state";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { saveAuth } from "../db/utils";
 
 export default function AuthPage() {
   const router = useRouter();
@@ -20,7 +21,9 @@ export default function AuthPage() {
         .collection("users")
         .authWithPassword(email, password);
       console.log("user", user);
+      document.cookie = db.authStore.exportToCookie({ httpOnly: false });
       router.push("/");
+      router.refresh()
     } catch (e) {
       window.alert((e as Error).message);
     }
@@ -43,7 +46,9 @@ export default function AuthPage() {
       console.log("new user", user);
       //now login
       await db.collection("users").authWithPassword(email, password);
+      document.cookie = db.authStore.exportToCookie({ httpOnly: false });
       router.push("/");
+      router.refresh()
     } catch (e) {
       window.alert((e as Error).message);
     }
