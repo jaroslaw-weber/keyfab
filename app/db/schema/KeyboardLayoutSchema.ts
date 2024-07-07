@@ -9,4 +9,5 @@ export interface KeyboardLayoutSchema {
   layers: Layer[];
   spacing?: number;
   key_size?:number;
+  layer_count:number
 }

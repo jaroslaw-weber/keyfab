@@ -78,6 +78,7 @@ export const currentKeyboardLayoutAtom = atom(
       positions: keyboardType.positions,
       spacing: keyboardType.spacing,
       key_size: keyboardType.keySize,
+      layer_count: get(layerCountAtom)
     };
   },
   (get, set, update: KeyboardLayoutSchema) => {
@@ -96,6 +97,7 @@ export const currentKeyboardLayoutAtom = atom(
     set(layersAtom, layers);
     set(currentLayoutIdAtom, update.id!);
     set(layoutCreatorAtom, update.created_by!);
+    set(layerCountAtom, update.layer_count!);
   }
 );
 

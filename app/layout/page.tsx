@@ -13,7 +13,7 @@ export default function AllLayouts() {
         </div>
       )}
       {!isLoading && (
-        <div className="min-h-full p-4 grid grid-cols-3">
+        <div className="min-h-full p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
           {layouts.length > 0 &&
             layouts.map((layout) => (
               <LayoutCard key={layout.id} layout={layout} />
