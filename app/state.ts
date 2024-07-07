@@ -58,6 +58,7 @@ export const currentLayoutIdAtom = atom("");
 export const currentLayoutNameAtom = atom("");
 export const layoutListAtom = atom<any[]>([]);
 export const loadingLayoutsAtom = atom(false);
+export const loadingAtom = atom(false)
 const layoutDescriptionAtom = atom("");
 const layoutCreatorAtom = atom("");
 

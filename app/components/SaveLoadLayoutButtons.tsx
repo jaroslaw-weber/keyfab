@@ -5,14 +5,17 @@ import {
   currentKeyboardLayoutAtom,
   keyboardTypeAtom,
   layersAtom,
+  loadingAtom,
 } from "../state";
 import { db } from "../db";
 import { getUserId, keyboardLayoutCollection } from "../db/utils";
 
 export default function SaveLoadLayoutButtons() {
+  const [loading, setLoading] = useAtom(loadingAtom);
   const [currentLayout, setCurrentLayout] = useAtom(currentKeyboardLayoutAtom);
 
   async function saveLayout() {
+    setLoading(true);
     try {
       const p = currentLayout;
       p.created_by = getUserId();
@@ -26,6 +29,7 @@ export default function SaveLoadLayoutButtons() {
     } catch (e) {
       window.alert(e);
     }
+    setLoading(false);
   }
   const isMyLayout = currentLayout.created_by == getUserId();
   const canSave = isMyLayout || !currentLayout.id;
@@ -89,7 +93,7 @@ export default function SaveLoadLayoutButtons() {
             className="btn btn-primary mt-auto"
             onClick={() => saveLayout()}
           >
-            Save layout
+            {loading ? "Wait..." :  "Save"}
           </button>
         )}
         {currentLayout.id && (
