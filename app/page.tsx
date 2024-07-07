@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import KeyboardView from "./components/KeyboardView";
 import { EditStylePanel } from "./components/EditStylePanel";
 import { EditKeyPanel } from "./components/EditKeyPanel";
@@ -11,12 +11,32 @@ import { EditPhysicalLayout } from "./components/EditPhysicalLayout";
 import { Labels } from "./components/Labels";
 import { ImportPage } from "./pages/ImportPage";
 import SaveLoadLayoutButtons from "./components/SaveLoadLayoutButtons";
+import { useAtom } from "jotai";
+import { currentKeyboardLayoutAtom, currentLayoutIdAtom } from "./state";
+import { db } from "./db";
+import { keyboardLayoutCollection } from "./db/utils";
 
 export default function Home() {
+  const [layoutId] = useAtom(currentLayoutIdAtom);
+  const [currentLayout, setCurrentLayout] = useAtom(currentKeyboardLayoutAtom);
+
+  async function loadLayout() {
+    console.log("loading layout", layoutId);
+    if (layoutId) {
+      const layout = await keyboardLayoutCollection.getOne(layoutId);
+      if(layout){
+
+        setCurrentLayout(layout)
+
+      }
+    }
+  }
+  useEffect(() => {
+    loadLayout()
+  }, [layoutId]);
   return (
     <div>
       <div className="w-full py-8">
-        
         <SaveLoadLayoutButtons />
         <Steps />
       </div>

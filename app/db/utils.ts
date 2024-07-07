@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { db } from "../db";
-import { KeyboardLayoutSchema } from "./schema/KeyboardLayoutSchema";
+import { HardwareSchema, KeyboardLayoutSchema } from "./schema/KeyboardLayoutSchema";
 
 export function getUserId() {
   // Use optional chaining to safely access nested properties
@@ -9,6 +9,7 @@ export function getUserId() {
 export const keyboardLayoutCollection =
   db.collection<KeyboardLayoutSchema>("keyboard_layout");
 
+export const hardwareList = db.collection<HardwareSchema>("hardware");
 export function saveAuth() {
   document.cookie = db.authStore.exportToCookie();
 }

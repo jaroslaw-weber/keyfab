@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { useAtom } from "jotai";
 import { styleAtom } from "./state";
 import Navbar from "./components/Navbar";
@@ -17,19 +17,6 @@ const GlobalLayout: React.FC<LayoutProps> = ({ children }) => {
   const [css, setCss] = useAtom(styleAtom);
 
   
-  
-  /*
-  useLayoutEffect(() => {
-    const style = document.createElement("style");
-    style.innerHTML = css.css;
-    document.head.appendChild(style);
-
-    // Cleanup the style tag when the component is unmounted
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
-  */
   
   return (
     <html lang="en">

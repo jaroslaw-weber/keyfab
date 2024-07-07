@@ -11,3 +11,7 @@ export interface KeyboardLayoutSchema {
   key_size?:number;
   layer_count:number
 }
+export interface HardwareSchema{
+  name: string;
+  default_layout: string
+}

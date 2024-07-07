@@ -5,6 +5,7 @@ import { SelectedKey } from "./SelectedKey";
 import { keyboardTypes } from "./keyboardType/list";
 import { db } from "./db";
 import { KeyboardLayoutSchema } from "./db/schema/KeyboardLayoutSchema";
+import { atomWithStorage } from "jotai/utils";
 
 export const styleAtom = atom(defaultStyle);
 
@@ -54,7 +55,7 @@ export const emailAtom = atom("");
 export const passwordAtom = atom("");
 export const passwordConfirmAtom = atom("");
 export const usernameAtom = atom("");
-export const currentLayoutIdAtom = atom("");
+export const currentLayoutIdAtom = atomWithStorage("currentLayoutId", "");
 export const currentLayoutNameAtom = atom("");
 export const layoutListAtom = atom<any[]>([]);
 export const loadingLayoutsAtom = atom(false);

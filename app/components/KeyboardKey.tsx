@@ -46,7 +46,7 @@ export default function KeyboardKey(props: {
   const rotation = position.rotation ?? 0;
   const rotate = `rotate(${rotation}deg)`;
 
-  const category = layer.specialKeys?.find((x) => x.index == index)?.category;
+  const category = layer?.specialKeys?.find((x) => x.index == index)?.category;
 
   let keyClass = getKeyClass(category, label);
 
