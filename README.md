@@ -47,11 +47,6 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 - explore layouts created by other users
 - import / export layouts to JSON
 
-# todo
-- add tutorial on how to setup custom key shape
-- changing layer order
-- move TODO into github tickets
-
 
 ## dev mode on local machine
 
