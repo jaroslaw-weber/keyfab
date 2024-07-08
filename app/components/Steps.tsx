@@ -32,7 +32,7 @@ export function Steps() {
         className={getClasses(Step.import)}
         onClick={(e) => setStep(Step.import)}
       >
-        Import
+        Import / Export
       </button>
       <button
         className={getClasses(Step.move)}
