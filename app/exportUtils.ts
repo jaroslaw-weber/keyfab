@@ -1,18 +1,18 @@
 export function saveToJson(data: any, fileName: string) {
-  if(window){
-  const json = JSON.stringify(data, null, 2);
-  const blob = new Blob([json], { type: "application/json" });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = fileName+".json";
-  a.click();
+  if (window) {
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName + ".json";
+    a.click();
 
-  window.URL.revokeObjectURL(url);
-  a.remove();
-  return json;
+    window.URL.revokeObjectURL(url);
+    a.remove();
+    return json;
   }
-  return null
+  return null;
 }
 
 export async function loadFromJson(file: File): Promise<any> {

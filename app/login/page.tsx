@@ -16,16 +16,18 @@ export default function AuthPage() {
   const [username, setUsername] = useState("");
 
   const handleLogin = async () => {
-    try {
-      const user = await db
-        .collection("users")
-        .authWithPassword(email, password);
-      console.log("user", user);
-      document.cookie = db.authStore.exportToCookie({ httpOnly: false });
-      router.push("/");
-      router.refresh()
-    } catch (e) {
-      window?.alert((e as Error).message);
+    if (document && window) {
+      try {
+        const user = await db
+          .collection("users")
+          .authWithPassword(email, password);
+        console.log("user", user);
+        document.cookie = db.authStore.exportToCookie({ httpOnly: false });
+        router.push("/");
+        router.refresh();
+      } catch (e) {
+        window.alert((e as Error).message);
+      }
     }
   };
 
@@ -46,9 +48,11 @@ export default function AuthPage() {
       console.log("new user", user);
       //now login
       await db.collection("users").authWithPassword(email, password);
-      document.cookie = db.authStore.exportToCookie({ httpOnly: false });
+      if (document) {
+        document.cookie = db.authStore.exportToCookie({ httpOnly: false });
+      }
       router.push("/");
-      router.refresh()
+      router.refresh();
     } catch (e) {
       window.alert((e as Error).message);
     }
