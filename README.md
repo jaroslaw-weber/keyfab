@@ -9,7 +9,10 @@ this project is for quickly creating and sharing good looking custom keyboard la
 
 video preview: 
 
-![Preview](preview-v2.mp4)
+
+
+https://github.com/jaroslaw-weber/keyfab/assets/9774233/e541dc41-a00d-4952-b22f-a5c2f22aaebf
+
 
 
 screenshots:
