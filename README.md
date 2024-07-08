@@ -5,11 +5,11 @@ https://jaroslaw-weber.github.io/keyfab/
 
 # what is this project
 
-this project is for quickly creating good looking custom keyboard layout designs.
+this project is for quickly creating and sharing good looking custom keyboard layout designs.
 
 video preview: 
 
-https://github.com/jaroslaw-weber/keyfab/assets/9774233/9149cab3-b6c1-4445-9361-9eb940062a59
+![Preview](preview-v2.mp4)
 
 
 screenshots:
@@ -24,7 +24,7 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 # features
 
 ## physical layout
-- predefined layouts (piantor/moonlander) keyboard types
+- predefined layouts (piantor/moonlander/...) keyboard types
 - change physical layout of the keyboard with shortcuts
 - change physical layout by editing yaml in browser
 - import/export layouts
@@ -42,18 +42,15 @@ it's similar concept as http://www.keyboard-layout-editor.com/ but more easy to 
 - custom fonts through css
 - advanced css editor
 
+# share
+- share features with others!
+- explore layouts created by other users
+- import / export layouts to JSON
+
 # todo
 - add tutorial on how to setup custom key shape
-- more keyboard types (currently only supports piantor 42 key split layout)
-- export/import style
-- share keyboard layout with url
-- sharing layouts
 - changing layer order
-- update video showcase
-- put styles in css files, not in javascript files
-- put physical layouts in yaml files, not in javascript files
 - move TODO into github tickets
-- yaml editor for labels
 
 
 ## dev mode on local machine
