@@ -3,8 +3,8 @@ import { Step, stepAtom } from "../state";
 
 export function Labels() {
   const [step] = useAtom(stepAtom);
-  if (step != Step.input) return null;
-  return <div className="card bg-base-100 shadow-xl">
+  const show = step == Step.input;
+  return show && <div className="card bg-base-100 shadow-xl">
     <div className="card-body">
       <h2 className="card-title justify-center">How to change label</h2>
       <div></div>

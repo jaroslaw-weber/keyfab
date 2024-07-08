@@ -1,33 +1,68 @@
-import { useAtom } from "jotai";
-import { Step, keyboardTypeAtom, stepAtom } from "../state";
+import { atom, useAtom } from "jotai";
+import {
+  Step,
+  currentKeyboardLayoutAtom,
+  currentLayoutIdAtom,
+  keyboardTypeAtom,
+  layerCountAtom,
+  layersAtom,
+  stepAtom,
+} from "../state";
 import { keyboardTypes } from "../keyboardType/list";
+import { useEffect } from "react";
+import { hardwareList } from "../db/utils";
+import { HardwareSchema } from "../db/schema/KeyboardLayoutSchema";
+import { useRouter } from "next/navigation";
+
+const hardwareOptionsAtom = atom<HardwareSchema[]>([]);
 
 export function SelectKeyboardType() {
+  const router = useRouter();
   const [keyboardType, setKeyboardType] = useAtom(keyboardTypeAtom);
+  const [layers, setLayers] = useAtom(layersAtom);
   const [step] = useAtom(stepAtom);
-  if (step != Step.move) {
-    return null;
-  }
+  const show = step == Step.move;
+  const [hardwareOptions, setHardwareOptions] = useAtom(hardwareOptionsAtom);
+  const [currentKeyboardLayout, setCurrentKeyboardLayout] = useAtom(
+    currentKeyboardLayoutAtom
+  );
+  const [layoutId, setLayoutId] = useAtom(currentLayoutIdAtom);
+  const [layerCount, setLayerCount] = useAtom(layerCountAtom);
 
   //
 
   const styleItems = [];
-  for (const t of keyboardTypes) {
+
+  styleItems.push(
+    <option value="custom" key="custom">
+      custom
+    </option>
+  );
+
+  const hardwares = new Map<string, HardwareSchema | null>();
+  for (const h of hardwareOptions) {
+    hardwares.set(h.name, h);
+  }
+  for (const hardcoded of keyboardTypes) {
+    if (hardwares.has(hardcoded.name)) {
+      continue;
+    }
+    hardwares.set(hardcoded.name, null);
+  }
+  for (const [k, t] of Array.from(hardwares.entries())) {
     const styleItem = (
       <option
-        value={t.name}
+        value={k}
         onSelect={(e) => {
           const name = e.currentTarget.value;
-          const style = keyboardTypes.find((s) => s.name === name);
-          if (!style) {
-            throw new Error("style not found");
-          }
-          setKeyboardType(style);
+          onSelected(name);
         }}
+        key={k}
       >
-        {t.name}
+        {k}
       </option>
     );
+
     styleItems.push(styleItem);
   }
   const selectStyle = (
@@ -35,15 +70,49 @@ export function SelectKeyboardType() {
       className="select select-bordered w-full max-w-xs my-2"
       value={keyboardType.name}
       onChange={(e) => {
-        const selected = keyboardTypes.find((x) => x.name == e.target.value);
-        if (!selected) return;
-        setKeyboardType(selected);
+        const name = e.currentTarget.value;
+        onSelected(name);
       }}
     >
       {styleItems}
     </select>
   );
+
+  function onSelected(name: string) {
+    const hw = hardwares.get(name);
+
+    if (hw) {
+      //for layouts from db
+      setLayoutId(hw.default_layout);
+      console.log("loading layout", hw.default_layout);
+      router.refresh();
+    } else {
+      //for hardcoded layouts
+      setLayoutId("");
+      const kt = keyboardTypes.find((t) => t.name === name);
+      if (kt) {
+        setKeyboardType(kt);
+        setLayerCount(1);
+        setLayers([
+          {
+            name: "layer",
+            legends: [],
+            order: 1,
+          },
+        ]);
+      }
+    }
+  }
+
+  async function loadAvailableKeyboardTypes() {
+    const l = await hardwareList.getFullList();
+    setHardwareOptions(l);
+  }
   //
+  useEffect(() => {
+    loadAvailableKeyboardTypes();
+  }, []);
+
   const dropdown = <div></div>;
   const card = (
     <div>
@@ -53,9 +122,8 @@ export function SelectKeyboardType() {
           <div className="card-actions justify-center">{selectStyle}</div>
         </div>
       </div>
-
     </div>
   );
 
-  return card;
+  return show && card;
 }

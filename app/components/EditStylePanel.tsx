@@ -11,9 +11,7 @@ export function EditStylePanel() {
   const [style, setStyle] = useAtom(styleAtom);
   const [step] = useAtom(stepAtom);
 
-  if (step != Step.style) {
-    return <div />;
-  }
+  const show = step === Step.style;
 
   const styleItems = [];
   for (const style of styles) {
@@ -28,6 +26,7 @@ export function EditStylePanel() {
           }
           setStyle(style);
         }}
+        key={style.name}
       >
         {style.name}
       </option>
@@ -103,5 +102,5 @@ export function EditStylePanel() {
       </div>
     </div>
   );
-  return card;
+  return show && card;
 }

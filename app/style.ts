@@ -1,11 +1,9 @@
-
-import beautify from 'beautify';
+import beautify from "beautify";
 const lilRainbow = {
   name: "lil rainbow",
-  css: `@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+  css: `
   .global {
   background-color:  #edf0ee;
-	  font-family: 'Josefin Sans', sans-serif;
   }
   
   .layer-name
@@ -373,7 +371,7 @@ color:#000;
 const firstComputer = {
   name: "first computer",
   css: `
-	@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+	@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
 
 .global {
 background-color:  #fff;
@@ -447,8 +445,8 @@ opacity:0.2;
 };
 
 const choc = {
-	name: 'choc',
-	css:`
+  name: "choc",
+  css: `
 	
 	@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
 	.global {
@@ -514,8 +512,8 @@ const choc = {
 	
 	
 	
-	`
-}
+	`,
+};
 
 function cleanupCss(css: string) {
   //remove empty line at the beginning of the string
@@ -523,10 +521,8 @@ function cleanupCss(css: string) {
 }
 
 export function formatCss(css: string) {
-
- 
-const result = beautify(css, {format: 'css'})
-return result;
+  const result = beautify(css, { format: "css" });
+  return result;
 }
 
 export interface Style {
@@ -546,3 +542,20 @@ export const styles: Style[] = [
   return s;
 });
 export const defaultStyle = styles[0];
+
+export function cssStringToReactStyle(cssString: string) {
+  const styleObject: Record<string, any> = {};
+
+  cssString.split(";").forEach((style) => {
+    if (style.trim()) {
+      const [property, value] = style.split(":").map((item) => item.trim());
+      const camelCasedProperty = property.replace(
+        /-([a-z])/g,
+        (match, letter) => letter.toUpperCase()
+      );
+      styleObject[camelCasedProperty] = value;
+    }
+  });
+
+  return styleObject;
+}

@@ -20,35 +20,25 @@ export default function KeyboardKey(props: {
   const [key, selectKey] = useAtom(selectedKeyAtom);
   const [step] = useAtom(stepAtom);
 
-  if (!layers) {
-    return <div />;
-  }
-
-  const layer = layers[layerIndex];
-  if (!layer) {
-    return <div />;
-  }
-  const position = keyboardType.positions[index];
-  if (!position) {
-    return <div />;
-  }
+  const layer = layers?.[layerIndex];
+  const position = keyboardType?.positions?.[index];
+  const show = layers && position && layer;
 
   const label: string = layer?.legends?.[index] ?? "";
 
   const spacingMultiplier = keyboardType.spacing;
 
-  
   let height = position.h ?? 1;
   height *= keyboardType.keySize;
   let width = position.w ?? 1;
-  width *= keyboardType.keySize
+  width *= keyboardType.keySize;
 
-  const realSpacingSize = spacingMultiplier-keyboardType.keySize
-  const extraWidth = (position.w||1)-1
-  width += extraWidth*realSpacingSize
+  const realSpacingSize = spacingMultiplier - keyboardType.keySize;
+  const extraWidth = (position.w || 1) - 1;
+  width += extraWidth * realSpacingSize;
 
-  const extraHeight = (position.h||1)-1
-  height += extraHeight*realSpacingSize
+  const extraHeight = (position.h || 1) - 1;
+  height += extraHeight * realSpacingSize;
 
   const top = position.y * spacingMultiplier + "rem";
   const left = position.x * spacingMultiplier + "rem";
@@ -56,7 +46,7 @@ export default function KeyboardKey(props: {
   const rotation = position.rotation ?? 0;
   const rotate = `rotate(${rotation}deg)`;
 
-  const category = layer.specialKeys?.find((x) => x.index == index)?.category;
+  const category = layer?.specialKeys?.find((x) => x.index == index)?.category;
 
   let keyClass = getKeyClass(category, label);
 
@@ -107,20 +97,23 @@ export default function KeyboardKey(props: {
   }
 
   return (
-    <div
-      className={keyClass + " justify-center"}
-      style={{
-        position: "absolute",
-        top,
-        left,
-        zIndex: 0,
-        transform: rotate,
-        height: height + "rem",
-        width: width + "rem",
-      }}
-    >
-      {keyElem}
-    </div>
+    show && (
+      <div
+        key={`${index}-${layerIndex}`}
+        className={keyClass + " justify-center"}
+        style={{
+          position: "absolute",
+          top,
+          left,
+          zIndex: 0,
+          transform: rotate,
+          height: height + "rem",
+          width: width + "rem",
+        }}
+      >
+        {keyElem}
+      </div>
+    )
   );
 }
 function getKeyClass(category: number | undefined, label: string) {

@@ -48,9 +48,8 @@ export function EditPhysicalLayout() {
   const [, setCodeEditorFocus] = useAtom(codeEditorFocusAtom);
 
 
-  if (step != Step.move) {
-    return <div/>;
-  }
+  const show = step == Step.move
+ 
 
   const slider = (
     <input
@@ -171,7 +170,7 @@ export function EditPhysicalLayout() {
       </div>
     </div>
   );
-  return (
+  return (show &&
     <div>
       <div className="flex flex-col gap-4">
         {sktc}

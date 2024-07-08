@@ -13,9 +13,7 @@ export function EditLayerCount() {
   const [keyboardType] = useAtom(keyboardTypeAtom)
   const [layers, setLayers] = useAtom(layersAtom);
   const [step] = useAtom(stepAtom);
-  if (step != Step.layers) {
-    return null;
-  }
+  const show = step == Step.layers;
   function onChange(e: any) {
     setLayerCount(parseInt(e.target.value));
     fixLayers({layers, layerCount,keyCount: keyboardType.positions.length})
@@ -40,5 +38,5 @@ export function EditLayerCount() {
       </div>
     </div>
   );
-  return result2;
+  return show &&result2;
 }

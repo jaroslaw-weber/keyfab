@@ -1,7 +1,7 @@
+"use client";
 import { useAtom } from "jotai";
 import KeyboardKey from "./KeyboardKey";
 import { keyboardTypeAtom, layerCountAtom, layersAtom } from "../state";
-//import { layerCssPropertiesAtom } from "../state";
 
 export default function KeyboardLayer(props: {
   layerIndex: number;
@@ -20,7 +20,7 @@ export default function KeyboardLayer(props: {
   }
 
   return (
-    <div className={className}>
+    <div className={className} key={layerIndex}>
       <input
         className="layer-name"
         value={layers[layerIndex]?.name}
