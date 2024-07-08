@@ -1,5 +1,5 @@
 export function saveToJson(data: any, fileName: string) {
-  if (window) {
+  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const json = JSON.stringify(data, null, 2);
     const blob = new Blob([json], { type: "application/json" });
     const url = window.URL.createObjectURL(blob);
@@ -16,7 +16,6 @@ export function saveToJson(data: any, fileName: string) {
 }
 
 export async function loadFromJson(file: File): Promise<any> {
-  //use await to load json file
   const reader = new FileReader();
   reader.readAsText(file);
   return new Promise((resolve, reject) => {
