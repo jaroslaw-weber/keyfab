@@ -1,4 +1,5 @@
 export function saveToJson(data: any, fileName: string) {
+  if(window){
   const json = JSON.stringify(data, null, 2);
   const blob = new Blob([json], { type: "application/json" });
   const url = window.URL.createObjectURL(blob);
@@ -6,9 +7,12 @@ export function saveToJson(data: any, fileName: string) {
   a.href = url;
   a.download = fileName+".json";
   a.click();
+
   window.URL.revokeObjectURL(url);
   a.remove();
   return json;
+  }
+  return null
 }
 
 export async function loadFromJson(file: File): Promise<any> {

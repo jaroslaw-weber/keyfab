@@ -25,17 +25,17 @@ export default function AuthPage() {
       router.push("/");
       router.refresh()
     } catch (e) {
-      window.alert((e as Error).message);
+      window?.alert((e as Error).message);
     }
   };
 
   const handleRegister = async () => {
     if (password !== passwordConfirm) {
-      window.alert("Passwords do not match!");
+      window?.alert("Passwords do not match!");
       return;
     }
     if (!username) {
-      window.alert("Please enter a username!");
+      window?.alert("Please enter a username!");
       return;
     }
     try {

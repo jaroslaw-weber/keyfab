@@ -143,71 +143,77 @@ export function MoveKey() {
     const handleKeyUp = (e: KeyboardEvent) => {
       pressed = false;
     };
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
+    if (window) {
+      window.addEventListener("keydown", handleKeyDown);
+      window.addEventListener("keyup", handleKeyUp);
+    }
 
     return () => {
       console.log("unmounting");
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
+      if (window) {
+        window.removeEventListener("keydown", handleKeyDown);
+        window.removeEventListener("keyup", handleKeyUp);
+      }
     };
   }, [key, keyboardType, position, setKeyboardType, step]);
 
   const show = step == Step.move;
-  return (show &&
-    <div>
-      <p className="pl-4 pb-4">Click on key to select it.</p>
-      <div className="card bg-base-100 shadow-xl">
-        <div className="card-body">
-          <h2 className="card-title justify-center">Selected Key</h2>
-          <div></div>
-          <div className="card-actions justify-center">
-            <kbd className="kbd">{label}</kbd>
+  return (
+    show && (
+      <div>
+        <p className="pl-4 pb-4">Click on key to select it.</p>
+        <div className="card bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title justify-center">Selected Key</h2>
+            <div></div>
+            <div className="card-actions justify-center">
+              <kbd className="kbd">{label}</kbd>
+            </div>
           </div>
         </div>
-      </div>
-      <p className="pl-4 pt-4">
-        Use shortcuts to change physical layout of your keyboard.
-      </p>
-      <div className="card bg-base-100 shadow-xl mt-4">
-        <div className="card-body">
-          <h2 className="card-title justify-center">Shortcuts</h2>
-          <label className="label cursor-pointer mr-auto flex gap-6">
-            <span className="label-text">Enable Shortcuts</span>
-            <input
-              className="checkbox"
-              type="checkbox"
-              checked={shortcutsEnabled}
-              onChange={() => setShortcutsEnabled(!shortcutsEnabled)}
-            />
-          </label>
-          <div></div>
-          <p>Move key:</p>
-          <div className="card-actions justify-center">
-            <kbd className="kbd"> ↑ ↓ ← → </kbd>
-          </div>
+        <p className="pl-4 pt-4">
+          Use shortcuts to change physical layout of your keyboard.
+        </p>
+        <div className="card bg-base-100 shadow-xl mt-4">
+          <div className="card-body">
+            <h2 className="card-title justify-center">Shortcuts</h2>
+            <label className="label cursor-pointer mr-auto flex gap-6">
+              <span className="label-text">Enable Shortcuts</span>
+              <input
+                className="checkbox"
+                type="checkbox"
+                checked={shortcutsEnabled}
+                onChange={() => setShortcutsEnabled(!shortcutsEnabled)}
+              />
+            </label>
+            <div></div>
+            <p>Move key:</p>
+            <div className="card-actions justify-center">
+              <kbd className="kbd"> ↑ ↓ ← → </kbd>
+            </div>
 
-          <div className="card-actions justify-center">
-            <kbd className="kbd"> w s a d </kbd>
-          </div>
-          <p>Rotate left:</p>
-          <div className="card-actions justify-center">
-            <kbd className="kbd">q</kbd>
-          </div>
-          <p>Rotate right:</p>
-          <div className="card-actions justify-center">
-            <kbd className="kbd">e</kbd>
-          </div>
-          <p>Add key:</p>
-          <div className="card-actions justify-center">
-            <kbd className="kbd">n</kbd>
-          </div>
-          <p>Remove key:</p>
-          <div className="card-actions justify-center">
-            <kbd className="kbd">backspace</kbd>
+            <div className="card-actions justify-center">
+              <kbd className="kbd"> w s a d </kbd>
+            </div>
+            <p>Rotate left:</p>
+            <div className="card-actions justify-center">
+              <kbd className="kbd">q</kbd>
+            </div>
+            <p>Rotate right:</p>
+            <div className="card-actions justify-center">
+              <kbd className="kbd">e</kbd>
+            </div>
+            <p>Add key:</p>
+            <div className="card-actions justify-center">
+              <kbd className="kbd">n</kbd>
+            </div>
+            <p>Remove key:</p>
+            <div className="card-actions justify-center">
+              <kbd className="kbd">backspace</kbd>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    )
   );
 }

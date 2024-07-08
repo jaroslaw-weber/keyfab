@@ -27,7 +27,9 @@ export default function SaveLoadLayoutButtons() {
         setCurrentLayout({ ...item });
       }
     } catch (e) {
+      if(window){
       window.alert(e);
+      }
     }
     setLoading(false);
   }
