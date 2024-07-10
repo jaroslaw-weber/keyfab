@@ -18,7 +18,11 @@ export default function SaveLoadLayoutButtons() {
     setLoading(true);
     try {
       const p = currentLayout;
-      p.created_by = getUserId();
+      const userId = getUserId();
+      if (!userId) {
+        throw new Error("No user logged in");
+      }
+      p.created_by = userId
       const id = p.id;
       if (id) {
         await keyboardLayoutCollection.update(id, { ...p });
@@ -27,8 +31,8 @@ export default function SaveLoadLayoutButtons() {
         setCurrentLayout({ ...item });
       }
     } catch (e) {
-      if(window){
-      window.alert(e);
+      if (window) {
+        window.alert(e);
       }
     }
     setLoading(false);
@@ -39,9 +43,8 @@ export default function SaveLoadLayoutButtons() {
   return (
     <div className="w-full">
       <div className="px-8 text-xs text-gray-400">
-      {currentLayout.id && <p>id: {currentLayout.id}</p>}
-      {currentLayout.id && <p>created by: {currentLayout.id}</p>}
-       
+        {currentLayout.id && <p>id: {currentLayout.id}</p>}
+        {currentLayout.id && <p>created by: {currentLayout.id}</p>}
       </div>
       <div id="save" className="flex gap-8 w-full px-8 pb-8 items-center">
         <label className="form-control">
@@ -95,7 +98,7 @@ export default function SaveLoadLayoutButtons() {
             className="btn btn-primary mt-auto"
             onClick={() => saveLayout()}
           >
-            {loading ? "Wait..." :  "Save"}
+            {loading ? "Wait..." : "Save"}
           </button>
         )}
         {currentLayout.id && (
