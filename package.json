@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@codemirror/lang-css": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
