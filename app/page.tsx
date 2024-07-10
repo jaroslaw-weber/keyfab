@@ -27,7 +27,10 @@ export default function Home() {
   const [loading, setLoading] = useAtom(loadingAtom);
 
   async function loadLayout() {
-    if(!layoutId) return;
+    if(!layoutId) {
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     if (layoutId) {
       const layout = await keyboardLayoutCollection.getOne(layoutId);
