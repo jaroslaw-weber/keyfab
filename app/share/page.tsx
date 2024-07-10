@@ -40,7 +40,7 @@ export default function KeyboardPreview({}: {}) {
   }
 
   useEffect(() => {
-    loadLayout(id);
+    loadLayout(id!);
   }, []);
 
   async function duplicateLayout() {
