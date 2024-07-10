@@ -108,7 +108,7 @@ export default function SaveLoadLayoutButtons() {
               setCurrentLayout({ ...currentLayout, id: undefined });
             }}
           >
-            Create New Layout
+            clone
           </button>
         )}
       </div>
