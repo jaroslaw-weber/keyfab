@@ -59,9 +59,10 @@ export const currentLayoutIdAtom = atomWithStorage("currentLayoutId", "");
 export const currentLayoutNameAtom = atom("");
 export const layoutListAtom = atom<any[]>([]);
 export const loadingLayoutsAtom = atom(false);
-export const loadingAtom = atom(false)
+export const loadingAtom = atom(true);
 const layoutDescriptionAtom = atom("");
 const layoutCreatorAtom = atom("");
+export const offsetAtom = atom({ x: 0, y: 0 });
 
 export const currentKeyboardLayoutAtom = atom(
   (get) => {
@@ -80,7 +81,9 @@ export const currentKeyboardLayoutAtom = atom(
       positions: keyboardType.positions,
       spacing: keyboardType.spacing,
       key_size: keyboardType.keySize,
-      layer_count: get(layerCountAtom)
+      offset_y: get(offsetAtom).y,
+      offset_x: get(offsetAtom).x,
+      layer_count: get(layerCountAtom),
     };
   },
   (get, set, update: KeyboardLayoutSchema) => {
@@ -100,7 +103,6 @@ export const currentKeyboardLayoutAtom = atom(
     set(currentLayoutIdAtom, update.id!);
     set(layoutCreatorAtom, update.created_by!);
     set(layerCountAtom, update.layer_count!);
+    set(offsetAtom, { x: update.offset_x ?? 0, y: update.offset_y ?? 0 });
   }
 );
-
-

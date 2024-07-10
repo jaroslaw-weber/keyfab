@@ -3,6 +3,7 @@ import {
   Step,
   codeEditorFocusAtom,
   keyboardTypeAtom,
+  offsetAtom,
   stepAtom,
   yamlAtom,
 } from "../state";
@@ -27,7 +28,7 @@ export function EditPhysicalLayout() {
 
   const stringified = YAML.stringify(keyboardType);
   const [yaml, setYaml] = useAtom(yamlAtom);
-  const sktc = SelectKeyboardType()
+  const sktc = SelectKeyboardType();
 
   useEffect(() => {
     // This code will run when the component mounts
@@ -46,10 +47,9 @@ export function EditPhysicalLayout() {
   }, [setYaml, stringified]);
   //yamlPhysicalEditorFocusAtom
   const [, setCodeEditorFocus] = useAtom(codeEditorFocusAtom);
+  const [offset, setOffset] = useAtom(offsetAtom);
 
-
-  const show = step == Step.move
- 
+  const show = step == Step.move;
 
   const slider = (
     <input
@@ -83,6 +83,37 @@ export function EditPhysicalLayout() {
       }}
     />
   );
+  const sliderOffsetX = (
+    <input
+      type="range"
+      min={-5}
+      max={5}
+      step="any"
+      value={offset.x}
+      className="range"
+      onChange={(e) => {
+        const newV = Number(e.target.value);
+        offset.x = newV;
+        setOffset({ ...offset });
+      }}
+    />
+  );
+  const sliderOffsetY = (
+    <input
+      type="range"
+      min={-5}
+      max={5}
+      step="any"
+      value={offset.y}
+      className="range"
+      onChange={(e) => {
+        const newV = Number(e.target.value);
+        offset.y = newV;
+        setOffset({ ...offset });
+      }}
+    />
+  );
+
   const yamlEditor = (
     <CodeMirror
       className="w-full max-w-xl rounded"
@@ -167,18 +198,24 @@ export function EditPhysicalLayout() {
         <div className="card-actions justify-center">{slider}</div>
         <p>Key size (rem):</p>
         <div className="card-actions justify-center">{slider2}</div>
+        <p>Offset x (rem)</p>
+        <div className="card-actions justify-center">{sliderOffsetX}</div>
+        <p>Offset y (rem)</p>
+        <div className="card-actions justify-center">{sliderOffsetY}</div>
       </div>
     </div>
   );
-  return (show &&
-    <div>
-      <div className="flex flex-col gap-4">
-        {sktc}
-        <MoveKey/>
-        {settingsCard}
-        {yamlEditorCard}
-        {importExportCard}
+  return (
+    show && (
+      <div>
+        <div className="flex flex-col gap-4">
+          {sktc}
+          <MoveKey />
+          {settingsCard}
+          {yamlEditorCard}
+          {importExportCard}
+        </div>
       </div>
-    </div>
+    )
   );
 }

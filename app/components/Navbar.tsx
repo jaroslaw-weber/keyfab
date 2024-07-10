@@ -4,9 +4,16 @@ import { LoginButton } from "./LoginButton";
 import { db } from "../db";
 import { logout } from "../db/utils";
 import { useRouter } from "next/navigation";
+import { atom, useAtom } from "jotai";
+import { useEffect } from "react";
+import { loadingAtom } from "../state";
 
+const loggedAtom = atom(false);
 export default function Navbar() {
-  const logged = db.authStore.isValid;
+  const [logged, setLogged] = useAtom(loggedAtom);
+  useEffect(() => {
+    setLogged(db.authStore.isValid);
+  });
 
   const router = useRouter();
   return (

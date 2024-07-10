@@ -3,6 +3,7 @@
 import { useAtom } from "jotai";
 import {
   Step,
+  currentKeyboardLayoutAtom,
   keyboardTypeAtom,
   layersAtom,
   selectedKeyAtom,
@@ -19,6 +20,7 @@ export default function KeyboardKey(props: {
   const [keyboardType] = useAtom(keyboardTypeAtom);
   const [key, selectKey] = useAtom(selectedKeyAtom);
   const [step] = useAtom(stepAtom);
+  const [layout] = useAtom(currentKeyboardLayoutAtom);
 
   const layer = layers?.[layerIndex];
   const position = keyboardType?.positions?.[index];
@@ -40,8 +42,8 @@ export default function KeyboardKey(props: {
   const extraHeight = (position.h || 1) - 1;
   height += extraHeight * realSpacingSize;
 
-  const top = position.y * spacingMultiplier + "rem";
-  const left = position.x * spacingMultiplier + "rem";
+  const top = layout.offset_y + position.y * spacingMultiplier + "rem";
+  const left = layout.offset_x + position.x * spacingMultiplier + "rem";
 
   const rotation = position.rotation ?? 0;
   const rotate = `rotate(${rotation}deg)`;
