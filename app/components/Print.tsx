@@ -36,6 +36,17 @@ export function Print() {
         })
   };
 
+  const printJpg = () => {
+        const node = document.getElementById("keyboardView");
+        toJpeg(node)
+            .then(function (dataUrl) {
+            const downloadLink = document.createElement("a");
+            downloadLink.download = currentKeyboardLayout.name + ".jpg";
+            downloadLink.href = dataUrl;
+            downloadLink.click();
+        })
+  };
+
   return show && <div className="card bg-base-100 shadow-xl">
     <div className="card-body">
       <h2 className="card-title justify-center">Print</h2>
@@ -43,6 +54,7 @@ export function Print() {
       <div className="card-actions justify-center">
         <button className="btn btn-primary" onClick={printPng}>PNG</button>
         <button className="btn btn-primary" onClick={printSvg}>SVG</button>
+        <button className="btn btn-primary" onClick={printJpg}>JPG</button>
       </div>
     </div>
   </div>;
