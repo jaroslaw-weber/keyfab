@@ -2,20 +2,24 @@ import { useAtom } from "jotai";
 import {
   Step,
   stepAtom,
+  currentKeyboardLayoutAtom,
 } from "../state";
 import * as htmlToImage from "html-to-image";
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 
 export function Print() {
   const [step] = useAtom(stepAtom);
+  const [currentKeyboardLayout, setCurrentKeyboardLayout] = useAtom(
+    currentKeyboardLayoutAtom
+  );
   const show = step == Step.preview;
 
   const printPng = () => {
         const node = document.getElementById("keyboardView");
-        console.log(node);
-        toPng(node).then(function (dataUrl) {
+        toPng(node)
+            .then(function (dataUrl) {
             const downloadLink = document.createElement("a");
-            downloadLink.download = "layout.png";
+            downloadLink.download = currentKeyboardLayout.name + ".png";
             downloadLink.href = dataUrl;
             downloadLink.click();
         })
