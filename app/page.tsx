@@ -5,6 +5,7 @@ import KeyboardView from "./components/KeyboardView";
 import { EditStylePanel } from "./components/EditStylePanel";
 import { EditKeyPanel } from "./components/EditKeyPanel";
 import { EditLayerCount } from "./components/EditLayerCount";
+import { Print } from "./components/Print";
 import { Steps } from "./components/Steps";
 import { ResetButton } from "./components/ResetButton";
 import { EditPhysicalLayout } from "./components/EditPhysicalLayout";
@@ -63,6 +64,7 @@ export default function Home() {
               <EditKeyPanel />
               <EditStylePanel />
               <EditPhysicalLayout />
+              <Print />
               <ResetButton />
             </div>
           </div>

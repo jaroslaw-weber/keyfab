@@ -12,5 +12,5 @@ export default function KeyboardView(): JSX.Element {
     result.push(rendered);
   }
 
-  return <div className="flex flex-col min-h-full">{result}</div>;
+  return <div className="flex flex-col min-h-full" id="keyboardView">{result}</div>;
 }
