@@ -25,9 +25,8 @@ const lilRainbow = {
   background-color: #82a5e0;
   border:1px;
   height:21rem;
-  margin-bottom:2rem;
   width:44rem;
-  margin-left:2rem;
+  margin: 1rem 2rem;
   border-radius: 0.5rem;
   }
   .layer:nth-child(3n+2) {

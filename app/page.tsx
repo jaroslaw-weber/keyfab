@@ -54,7 +54,7 @@ export default function Home() {
             <Steps />
           </div>
           <div className="flex flex-row gap-6">
-            <div className="flex-1">
+            <div className="flex-1 pl-8">
               <KeyboardView />
             </div>
             <div className="flex-1 flex flex-col gap-6 pr-8">
