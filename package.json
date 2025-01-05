@@ -25,6 +25,7 @@
     "daisyui": "latest",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
+    "html-to-image": "^1.11.11",
     "jotai": "^2.4.2",
     "lodash": "^4.17.21",
     "next": "13.4.19",

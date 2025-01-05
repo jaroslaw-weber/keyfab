@@ -25,9 +25,8 @@ const lilRainbow = {
   background-color: #82a5e0;
   border:1px;
   height:21rem;
-  margin-bottom:2rem;
   width:44rem;
-  margin-left:2rem;
+  margin: 1rem 2rem;
   border-radius: 0.5rem;
   }
   .layer:nth-child(3n+2) {
@@ -127,9 +126,8 @@ const blockyb = {
   border-color:#000;
   border-style:solid;
   height:24rem;
-  margin-bottom:2rem;
   width:44rem;
-  margin-left:2rem;
+  margin: 1rem 2rem;
   font-family: 'Rubik Mono One', sans-serif;
   }
   .layer:nth-child(3n+2) {
@@ -216,9 +214,8 @@ const macbook = {
 		position:relative;
 		border:1px;
 		height:21rem;
-		margin-bottom:2rem;
 		width:44rem;
-		margin-left:2rem;
+		margin: 1rem 2rem;
 		border-radius: 0.5rem;
 		}
 		.layer:nth-child(3n+2) {
@@ -307,9 +304,8 @@ font-weight: bold;
 position:relative;
 border:1px;
 height:21rem;
-margin-bottom:2rem;
 width:44rem;
-margin-left:2rem;
+margin: 1rem 2rem;
 }
 
 
@@ -397,9 +393,8 @@ position:relative;
 border:4px;
 border-color:#000;
 height:21rem;
-margin-bottom:2rem;
 width:44rem;
-margin-left:2rem;
+margin: 1rem 2rem;
 border-radius: 0.5rem;
 }
 
@@ -472,9 +467,8 @@ const choc = {
 	position:relative;
 	border:1px;
 	height:21rem;
-	margin-bottom:2rem;
 	width:44rem;
-	margin-left:2rem;
+	margin: 1rem 2rem;
 	border-radius: 0.5rem;
 	color:#707371;
 	}
