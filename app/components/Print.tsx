@@ -14,21 +14,21 @@ export function Print() {
   );
   const show = step == Step.preview;
 
-  const print = (filetype) => {
+  const print = (filetype:string) => {
     const node = document.getElementById("keyboardView");
     let dataUrlPromise;
     switch (filetype) {
         case "png":
-            dataUrlPromise = toPng(node);
+            dataUrlPromise = toPng(node!);
             break;
         case "svg":
-            dataUrlPromise = toSvg(node);
+            dataUrlPromise = toSvg(node!);
             break;
         case "jpg":
-            dataUrlPromise = toJpeg(node);
+            dataUrlPromise = toJpeg(node!);
             break;
     }
-    dataUrlPromise.then(function (dataUrl) {
+    dataUrlPromise!.then(function (dataUrl) {
         const downloadLink = document.createElement("a");
         downloadLink.download = currentKeyboardLayout.name + "." + filetype;
         downloadLink.href = dataUrl;
